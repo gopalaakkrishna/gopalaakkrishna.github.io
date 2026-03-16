@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gopala Krishna — Creative Producer & Director</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cream:#f6f0e4;
+  --cream2:#ede7d9;
+  --cream3:#e0d9cc;
+  --dark:#1c1a12;
+  --terra:#b5602a;
+  --terra2:#c97040;
+  --gray:#7a7060;
+  --light:#d8d0c0;
+  --btn:#2a2618;
+  --white:#faf7f2;
+}
+html,body{height:100%;overflow:hidden;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);}
+
+/* ── LAYOUT ── */
+.layout{display:flex;height:100vh;}
+.left{width:48%;min-width:360px;height:100vh;overflow-y:auto;overflow-x:hidden;background:var(--cream);display:flex;flex-direction:column;border-right:1px solid var(--light);scrollbar-width:none;position:relative;}
+.left::-webkit-scrollbar{display:none;}
+.right{flex:1;height:100vh;position:relative;background:#111008;overflow:hidden;}
+
+/* RIGHT PANEL */
+.right-bg{position:absolute;inset:0;transition:opacity 0.7s ease;background-size:cover;background-position:center;}
+.right-bg.fade{opacity:0;}
+.right-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,18,0.6) 0%,rgba(28,26,18,0.1) 60%,transparent 100%);z-index:2;}
+.ticker{position:absolute;top:0;left:0;right:0;background:var(--dark);color:var(--cream);font-size:0.66rem;letter-spacing:0.14em;padding:9px 0;z-index:10;overflow:hidden;white-space:nowrap;}
+.ticker-track{display:inline-flex;gap:32px;animation:tick 22s linear infinite;}
+@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.right-caption{position:absolute;bottom:0;left:0;right:0;z-index:10;padding:28px 32px;transition:opacity 0.5s;}
+.right-caption-label{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(246,240,228,0.6);margin-bottom:6px;}
+.right-caption-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--cream);font-weight:400;line-height:1.2;}
+.right-tag{position:absolute;top:52px;right:24px;z-index:10;background:var(--cream);border-radius:8px;padding:14px 18px;font-size:0.75rem;color:var(--dark);min-width:160px;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
+.right-tag strong{display:block;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;color:var(--gray);}
+.right-tag a{color:var(--terra);text-decoration:none;display:flex;align-items:center;justify-content:space-between;}
+.right-tag a::after{content:'↗';font-size:0.7rem;}
+
+/* ── NAV ── */
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;position:sticky;top:0;background:var(--cream);z-index:50;border-bottom:1px solid var(--light);}
+.nav-ham{cursor:pointer;font-size:1.15rem;background:none;border:none;color:var(--dark);padding:4px 6px;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;}
+.nav-hire{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--terra);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;}
+
+/* ── MENU ── */
+.menu-overlay{position:fixed;inset:0;background:var(--cream);z-index:200;display:none;flex-direction:column;}
+.menu-overlay.open{display:flex;}
+.menu-top{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;border-bottom:1px solid var(--light);}
+.menu-x{background:none;border:none;font-size:1rem;cursor:pointer;color:var(--dark);}
+.menu-body{flex:1;display:flex;gap:0;}
+.menu-links{flex:1;display:flex;flex-direction:column;justify-content:center;padding:40px 48px;gap:4px;}
+.menu-link{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:400;background:none;border:none;cursor:pointer;color:var(--dark);padding:10px 0;text-align:left;transition:color 0.2s;border-bottom:1px solid transparent;display:flex;align-items:center;justify-content:space-between;}
+.menu-link:hover,.menu-link.active{color:var(--terra);}
+.menu-link span{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray);font-family:'DM Sans',sans-serif;}
+.menu-side{width:200px;background:var(--cream2);padding:32px 24px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;border-left:1px solid var(--light);}
+.menu-side p{font-size:0.78rem;color:var(--gray);line-height:1.7;}
+.menu-side a{font-size:0.72rem;color:var(--terra);text-decoration:none;letter-spacing:0.06em;}
+
+/* ── PAGES ── */
+.page{display:none;flex-direction:column;flex:1;}
+.page.active{display:flex;}
+.page-inner{padding:44px 32px 56px;flex:1;}
+.page-footer{padding:20px 32px;border-top:1px solid var(--light);display:flex;justify-content:space-between;font-size:0.68rem;color:var(--gray);flex-shrink:0;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-block;padding:12px 28px;background:var(--btn);color:var(--cream);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:6px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:all 0.2s;text-decoration:none;}
+.btn:hover{background:#3a3620;transform:translateY(-1px);}
+.btn-outline{background:transparent;border:1px solid var(--light);color:var(--dark);}
+.btn-outline:hover{border-color:var(--terra);color:var(--terra);background:transparent;}
+.btn-sm{padding:8px 18px;font-size:0.68rem;}
+
+/* ── HOME ── */
+.home-tag{font-size:0.67rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--terra);margin-bottom:22px;}
+.home-h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4.8vw,3.6rem);font-weight:400;line-height:1.05;letter-spacing:-0.01em;margin-bottom:6px;}
+.home-h1 em{font-style:italic;}
+.inline-img{display:inline-block;width:48px;height:48px;border-radius:7px;vertical-align:middle;margin:0 5px;background:var(--cream3);text-align:center;line-height:48px;font-size:1.4rem;border:1px solid var(--light);}
+.home-desc{font-size:0.88rem;color:var(--gray);line-height:1.8;max-width:380px;margin:24px 0 32px;}
+.home-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px;}
+.home-split{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--light);padding-top:28px;}
+.home-bio p{font-size:0.8rem;color:var(--gray);line-height:1.75;margin-bottom:12px;}
+.home-bio .link-small{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--terra);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;}
+.contact-rows{display:flex;flex-direction:column;}
+.c-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--light);font-size:0.76rem;}
+.c-row .lbl{font-size:0.67rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gray);}
+.c-row a{color:var(--terra);text-decoration:none;display:flex;align-items:center;gap:5px;}
+.c-row a::after{content:'↗';font-size:0.68rem;}
+.stats-row{display:flex;gap:0;margin-top:28px;border-top:1px solid var(--light);padding-top:20px;}
+.stat{flex:1;text-align:center;padding:0 8px;border-right:1px solid var(--light);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--terra);display:block;}
+.stat-l{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);margin-top:3px;display:block;}
+
+/* ── SECTION HEADER ── */
+.sec-head{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:400;margin-bottom:6px;}
+.sec-head em{font-style:italic;}
+.sec-sub{font-size:0.82rem;color:var(--gray);margin-bottom:32px;line-height:1.6;}
+
+/* ── FILTER TABS ── */
+.filter-tabs{display:flex;gap:0;margin-bottom:28px;border-bottom:1px solid var(--light);}
+.ftab{background:none;border:none;cursor:pointer;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;padding:10px 16px;color:var(--gray);font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;transition:all 0.2s;margin-bottom:-1px;}
+.ftab.active{color:var(--terra);border-bottom-color:var(--terra);}
+
+/* ── FILM LIST ── */
+.film-list{display:flex;flex-direction:column;gap:0;}
+.film-item{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--light);cursor:pointer;transition:opacity 0.2s;}
+.film-item:hover{opacity:0.72;}
+.film-thumb{width:84px;height:58px;border-radius:6px;background:var(--cream2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:1px solid var(--light);}
+.film-date{font-size:0.65rem;color:var(--gray);letter-spacing:0.08em;margin-bottom:4px;}
+.film-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;line-height:1.25;margin-bottom:4px;}
+.film-role{font-size:0.7rem;color:var(--terra);letter-spacing:0.08em;text-transform:uppercase;}
+.film-badge{display:inline-block;font-size:0.6rem;padding:2px 8px;border:1px solid var(--terra);color:var(--terra);border-radius:3px;margin-bottom:4px;letter-spacing:0.08em;}
+
+/* ── PHOTO GRID ── */
+.photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.photo-card{border-radius:8px;overflow:hidden;cursor:pointer;position:relative;aspect-ratio:4/3;background:var(--cream2);display:flex;align-items:center;justify-content:center;border:1px solid var(--light);transition:transform 0.2s;}
+.photo-card:hover{transform:scale(1.02);}
+.photo-card .photo-emoji{font-size:2rem;}
+.photo-card .photo-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(28,26,18,0.65));padding:14px 10px 8px;color:var(--cream);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;}
+.photo-card .add-photo{position:absolute;top:8px;right:8px;font-size:0.58rem;background:rgba(246,240,228,0.85);color:var(--gray);padding:3px 7px;border-radius:3px;letter-spacing:0.06em;}
+
+/* ── WRITING LIST ── */
+.writing-list{display:flex;flex-direction:column;gap:0;}
+.writing-item{padding:18px 0;border-bottom:1px solid var(--light);cursor:pointer;transition:opacity 0.2s;}
+.writing-item:hover{opacity:0.72;}
+.w-cat{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--terra);margin-bottom:5px;}
+.w-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;margin-bottom:5px;}
+.w-excerpt{font-size:0.78rem;color:var(--gray);line-height:1.6;}
+
+/* ── PRODUCTION BINDER ── */
+.binder-intro{font-size:0.85rem;color:var(--gray);line-height:1.75;margin-bottom:28px;}
+.binder-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.binder-card{background:var(--cream2);border:1px solid var(--light);border-radius:8px;padding:18px 16px;cursor:pointer;transition:all 0.2s;}
+.binder-card:hover{border-color:var(--terra);background:var(--white);}
+.binder-icon{font-size:1.4rem;margin-bottom:8px;}
+.binder-title{font-size:0.84rem;font-weight:600;color:var(--dark);margin-bottom:4px;}
+.binder-desc{font-size:0.72rem;color:var(--gray);line-height:1.5;}
+
+/* ── SOCIAL GRID ── */
+.social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.social-card{aspect-ratio:1;border-radius:6px;background:var(--cream2);border:1px solid var(--light);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;position:relative;transition:transform 0.2s;overflow:hidden;}
+.social-card:hover{transform:scale(1.03);}
+.social-card .social-label{position:absolute;bottom:0;left:0;right:0;background:rgba(28,26,18,0.6);color:var(--cream);font-size:0.6rem;padding:5px;text-align:center;letter-spacing:0.08em;text-transform:uppercase;}
+.social-add{position:absolute;top:5px;right:5px;font-size:0.55rem;background:rgba(246,240,228,0.9);color:var(--gray);padding:2px 6px;border-radius:3px;}
+
+/* ── SERVICES LIST ── */
+.svc-list{display:flex;flex-direction:column;gap:0;}
+.svc-item{display:flex;gap:14px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--light);}
+.svc-num{font-family:'Playfair Display',serif;font-style:italic;font-size:0.95rem;color:var(--terra);min-width:24px;margin-top:2px;}
+.svc-title{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:5px;}
+.svc-desc{font-size:0.8rem;color:var(--gray);line-height:1.65;}
+
+/* ── ABOUT ── */
+.about-body p{font-size:0.88rem;color:var(--gray);line-height:1.8;margin-bottom:16px;}
+.about-body strong{color:var(--dark);font-weight:500;}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:24px;}
+.chip{padding:6px 14px;border:1px solid var(--light);border-radius:100px;font-size:0.71rem;letter-spacing:0.04em;color:var(--dark);background:var(--white);}
+
+/* ── HIRE ── */
+.hire-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px;}
+.hire-card{background:var(--cream2);border:1px solid var(--light);border-radius:10px;padding:28px 22px;}
+.hire-card.freelance{border-top:2px solid var(--terra);}
+.hire-card.fulltime{border-top:2px solid #5b8dee;}
+.hire-type{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:10px;}
+.hire-card.freelance .hire-type{color:var(--terra);}
+.hire-card.fulltime .hire-type{color:#5b8dee;}
+.hire-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;margin-bottom:12px;line-height:1.2;}
+.hire-list{display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
+.hire-list li{font-size:0.76rem;color:var(--gray);list-style:none;display:flex;gap:8px;}
+.hire-list li::before{content:'→';color:var(--terra);font-size:0.7rem;}
+.hire-card.fulltime .hire-list li::before{color:#5b8dee;}
+.btn-blue{background:#5b8dee;color:#fff;}
+.btn-blue:hover{background:#7aa3f5;}
+
+/* ── CONTACT PAGE ── */
+.contact-body{font-size:0.86rem;color:var(--gray);line-height:1.8;margin-bottom:28px;}
+.contact-full{display:flex;flex-direction:column;gap:0;}
+.cf-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--light);}
+.cf-lbl{font-size:0.67rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray);}
+.cf-val{font-size:0.82rem;}
+.cf-val a{color:var(--terra);text-decoration:none;display:flex;align-items:center;gap:5px;}
+.cf-val a::after{content:'↗';font-size:0.68rem;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:820px){
+  .layout{flex-direction:column;}
+  .right{display:none;}
+  .left{width:100%;}
+  html,body{overflow:auto;height:auto;}
+  .layout,.left{height:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-top">
+    <button class="menu-x" onclick="closeMenu()">✕</button>
+    <span class="nav-logo">Gopala Krishna</span>
+    <a href="mailto:gopalaakkrishna@gmail.com" class="nav-hire">Email ↗</a>
+  </div>
+  <div class="menu-body">
+    <div class="menu-links">
+      <button class="menu-link" onclick="go('home')">Home <span>Index</span></button>
+      <button class="menu-link" onclick="go('film')">Film &amp; Video <span>Production</span></button>
+      <button class="menu-link" onclick="go('photo')">Photography <span>Stills</span></button>
+      <button class="menu-link" onclick="go('social')">Social Posts <span>Digital</span></button>
+      <button class="menu-link" onclick="go('writing')">Writing <span>Copy &amp; Narrative</span></button>
+      <button class="menu-link" onclick="go('production')">Production Docs <span>Binder</span></button>
+      <button class="menu-link" onclick="go('about')">About <span>Bio</span></button>
+      <button class="menu-link" onclick="go('contact')">Contact <span>Hire Me</span></button>
+    </div>
+    <div class="menu-side">
+      <p>Creative Producer &amp; Director based in New York City. Available for freelance projects and full-time roles.</p>
+      <a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <!-- LEFT -->
+  <div class="left" id="leftPanel">
+    <nav>
+      <button class="nav-ham" onclick="openMenu()">☰</button>
+      <span class="nav-logo" onclick="go('home')" style="cursor:pointer;">Gopala Krishna</span>
+      <button class="nav-hire" onclick="go('contact')">Hire Me ↗</button>
+    </nav>
+
+    <!-- HOME -->
+    <div class="page active" id="page-home">
+      <div class="page-inner">
+        <div class="home-tag">Creative Producer &amp; Director · NYC</div>
+        <h1 class="home-h1">
+          <span class="inline-img">🎬</span> Frame.<br/>
+          Direct.<br/><em>Deliver.</em><span class="inline-img">🎞</span>
+        </h1>
+        <p class="home-desc">Documentary · Branded Content · Narrative Film · Social Video. Concept through final cut — with full creative ownership.</p>
+        <div class="home-btns">
+          <button class="btn" onclick="go('film')">View Film Work</button>
+          <button class="btn btn-outline" onclick="go('contact')">Work With Me</button>
+        </div>
+        <div class="home-split">
+          <div class="home-bio">
+            <p>Co-founder of <strong>Evolve Pictures LLC</strong>. M.A. Media Studies. Official Selection — <strong>Lighthouse IFF 2025</strong>.</p>
+            <p>Available for freelance projects and full-time roles in production.</p>
+            <button class="link-small" onclick="go('about')">Full Bio →</button>
+          </div>
+          <div class="contact-rows">
+            <div class="c-row"><span class="lbl">Email</span><a href="mailto:gopalaakkrishna@gmail.com">Write to me</a></div>
+            <div class="c-row"><span class="lbl">LinkedIn</span><a href="https://linkedin.com/in/gopalakkrishna" target="_blank">Connect</a></div>
+            <div class="c-row"><span class="lbl">Portfolio</span><a href="https://gopala.framer.website" target="_blank">Visit</a></div>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat"><span class="stat-n">3+</span><span class="stat-l">Yrs Production</span></div>
+          <div class="stat"><span class="stat-n">300K+</span><span class="stat-l">Views</span></div>
+          <div class="stat"><span class="stat-n">11K</span><span class="stat-l">Followers / 60 Days</span></div>
+          <div class="stat"><span class="stat-n">IFF</span><span class="stat-l">Festival 2025</span></div>
+        </div>
+      </div>
+      <div class="page-footer"><span>© Gopala Krishna 2026</span><span>Evolve Pictures LLC</span></div>
+    </div>
+
+    <!-- FILM -->
+    <div class="page" id="page-film">
+      <div class="page-inner">
+        <div class="sec-head">Film &amp; <em>Video</em></div>
+        <p class="sec-sub">Documentary · Branded Content · Narrative · Social Video</p>
+        <div class="film-list">
+          <div class="film-item" onmouseenter="setRight('film1')" onclick="setRight('film1')">
+            <div class="film-thumb">🎬</div>
+            <div>
+              <div class="film-badge">⭐ Official Selection · Lighthouse IFF 2025</div>
+              <div class="film-title">"Boundaries" — Short Film</div>
+              <div class="film-role">Writer · Director · Producer · Editor · DaVinci Resolve</div>
+            </div>
+          </div>
+          <div class="film-item" onmouseenter="setRight('film2')" onclick="setRight('film2')">
+            <div class="film-thumb">📣</div>
+            <div>
+              <div class="film-date">Branded Content</div>
+              <div class="film-title">PhysioRX Campaign</div>
+              <div class="film-role">Producer · Director · Editor · Adobe Premiere</div>
+            </div>
+          </div>
+          <div class="film-item" onmouseenter="setRight('film3')" onclick="setRight('film3')">
+            <div class="film-thumb">🍛</div>
+            <div>
+              <div class="film-date">Short Documentary</div>
+              <div class="film-title">Delhi Mughlai Biryani</div>
+              <div class="film-role">Field &amp; Post Producer · Full Pipeline</div>
+            </div>
+          </div>
+          <div class="film-item" onmouseenter="setRight('film4')" onclick="setRight('film4')">
+            <div class="film-thumb">🎭</div>
+            <div>
+              <div class="film-date">Narrative</div>
+              <div class="film-title">Mockumentary Series</div>
+              <div class="film-role">Director · Producer · Narrative Design</div>
+            </div>
+          </div>
+          <div class="film-item" onmouseenter="setRight('film5')" onclick="setRight('film5')">
+            <div class="film-thumb">📲</div>
+            <div>
+              <div class="film-date">Social Video · 300K+ Views · 600→11K Followers in 60 Days</div>
+              <div class="film-title">Instagram Growth Campaign</div>
+              <div class="film-role">Content Producer · Strategy · Publishing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-footer"><span>Film &amp; Video</span><button class="link-small" onclick="go('home')" style="background:none;border:none;cursor:pointer;font-size:0.68rem;color:var(--gray);">← Home</button></div>
+    </div>
+
+    <!-- PHOTOGRAPHY -->
+    <div class="page" id="page-photo">
+      <div class="page-inner">
+        <div class="sec-head"><em>Photo</em>graphy</div>
+        <p class="sec-sub">Travel · Portraits · Sports · Design</p>
+        <div class="filter-tabs">
+          <button class="ftab active" onclick="filterPhoto('all',this)">All</button>
+          <button class="ftab" onclick="filterPhoto('travel',this)">Travel</button>
+          <button class="ftab" onclick="filterPhoto('portrait',this)">Portraits</button>
+          <button class="ftab" onclick="filterPhoto('sports',this)">Sports</button>
+          <button class="ftab" onclick="filterPhoto('design',this)">Design</button>
+        </div>
+        <div class="photo-grid" id="photoGrid">
+          <div class="photo-card" data-cat="travel" style="background:#c8d4cc;"><span class="photo-emoji">🌍</span><span class="add-photo">Add Photo</span><span class="photo-label">Travel</span></div>
+          <div class="photo-card" data-cat="portrait" style="background:#d4c8c0;"><span class="photo-emoji">🧑‍🎨</span><span class="add-photo">Add Photo</span><span class="photo-label">Portrait</span></div>
+          <div class="photo-card" data-cat="sports" style="background:#c0c8d0;"><span class="photo-emoji">⚽</span><span class="add-photo">Add Photo</span><span class="photo-label">Sports</span></div>
+          <div class="photo-card" data-cat="design" style="background:#d0ccc4;"><span class="photo-emoji">🎨</span><span class="add-photo">Add Photo</span><span class="photo-label">Design</span></div>
+          <div class="photo-card" data-cat="travel" style="background:#c4d0c8;"><span class="photo-emoji">✈️</span><span class="add-photo">Add Photo</span><span class="photo-label">Travel</span></div>
+          <div class="photo-card" data-cat="portrait" style="background:#d8c8bc;"><span class="photo-emoji">📸</span><span class="add-photo">Add Photo</span><span class="photo-label">Portrait</span></div>
+          <div class="photo-card" data-cat="sports" style="background:#bcc4d0;"><span class="photo-emoji">🏃</span><span class="add-photo">Add Photo</span><span class="photo-label">Sports</span></div>
+          <div class="photo-card" data-cat="design" style="background:#ccc8c0;"><span class="photo-emoji">✏️</span><span class="add-photo">Add Photo</span><span class="photo-label">Design</span></div>
+        </div>
+        <p style="font-size:0.72rem;color:var(--gray);margin-top:16px;text-align:center;">Replace placeholders with your own photos — see editing guide.</p>
+      </div>
+      <div class="page-footer"><span>Photography</span><button class="link-small" onclick="go('home')" style="background:none;border:none;cursor:pointer;font-size:0.68rem;color:var(--gray);">← Home</button></div>
+    </div>
+
+    <!-- SOCIAL POSTS -->
+    <div class="page" id="page-social">
+      <div class="page-inner">
+        <div class="sec-head">Social <em>Posts</em></div>
+        <p class="sec-sub">Instagram · LinkedIn · Twitter/X — static posts, carousels, and graphics</p>
+        <div class="social-grid" id="socialGrid">
+          <div class="social-card" style="background:#d4c8b8;">📊<span class="social-add">Add Post</span><span class="social-label">Carousel</span></div>
+          <div class="social-card" style="background:#c8d4c8;">🖼<span class="social-add">Add Post</span><span class="social-label">Graphic</span></div>
+          <div class="social-card" style="background:#c8c8d4;">✍️<span class="social-add">Add Post</span><span class="social-label">Copy Post</span></div>
+          <div class="social-card" style="background:#d4c8c4;">📷<span class="social-add">Add Post</span><span class="social-label">Photo Post</span></div>
+          <div class="social-card" style="background:#ccd4c8;">📈<span class="social-add">Add Post</span><span class="social-label">Data Visual</span></div>
+          <div class="social-card" style="background:#d0cccc;">🎯<span class="social-add">Add Post</span><span class="social-label">Ad Creative</span></div>
+        </div>
+        <p style="font-size:0.72rem;color:var(--gray);margin-top:16px;text-align:center;">Drop in screenshots of your best performing posts.</p>
+      </div>
+      <div class="page-footer"><span>Social Posts</span><button class="link-small" onclick="go('home')" style="background:none;border:none;cursor:pointer;font-size:0.68rem;color:var(--gray);">← Home</button></div>
+    </div>
+
+    <!-- WRITING -->
+    <div class="page" id="page-writing">
+      <div class="page-inner">
+        <div class="sec-head"><em>Writing</em></div>
+        <p class="sec-sub">Narrative · Advertising · Academic · Copywriting</p>
+        <div class="filter-tabs">
+          <button class="ftab active" onclick="filterWriting('all',this)">All</button>
+          <button class="ftab" onclick="filterWriting('narrative',this)">Narrative</button>
+          <button class="ftab" onclick="filterWriting('ads',this)">Ads &amp; Copy</button>
+          <button class="ftab" onclick="filterWriting('academic',this)">Academic</button>
+        </div>
+        <div class="writing-list" id="writingList">
+          <div class="writing-item" data-cat="narrative">
+            <div class="w-cat">Narrative · Short Film Script</div>
+            <div class="w-title">"Boundaries" — Original Screenplay</div>
+            <div class="w-excerpt">An original short film script written, produced, and directed solo. Selected at Lighthouse International Film Festival 2025.</div>
+          </div>
+          <div class="writing-item" data-cat="narrative">
+            <div class="w-cat">Narrative · Mockumentary</div>
+            <div class="w-title">Mockumentary Series — Treatment &amp; Scripts</div>
+            <div class="w-excerpt">Genre-blending scripts that merge documentary format with scripted narrative arcs.</div>
+          </div>
+          <div class="writing-item" data-cat="ads">
+            <div class="w-cat">Advertising Copy · Branded Content</div>
+            <div class="w-title">PhysioRX — Brand Script &amp; On-Screen Copy</div>
+            <div class="w-excerpt">Commercial scripts, on-screen text, and brand messaging for a physiotherapy client campaign.</div>
+          </div>
+          <div class="writing-item" data-cat="ads">
+            <div class="w-cat">Copywriting · Social Media</div>
+            <div class="w-title">Instagram Campaign Copy — 600 → 11K Growth</div>
+            <div class="w-excerpt">Caption writing, hook engineering, and CTA copy strategy that drove 11K follower growth in under 60 days.</div>
+          </div>
+          <div class="writing-item" data-cat="academic">
+            <div class="w-cat">Academic · M.A. Media Studies</div>
+            <div class="w-title">Graduate Research — Media Studies Thesis</div>
+            <div class="w-excerpt">Peer-reviewed academic writing from M.A. studies, covering media theory, documentary ethics, and visual storytelling.</div>
+          </div>
+          <div class="writing-item" data-cat="academic">
+            <div class="w-cat">Academic · Analysis</div>
+            <div class="w-title">Documentary Analysis Papers</div>
+            <div class="w-excerpt">Critical analysis of documentary form, non-fiction narrative structure, and visual rhetoric.</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-footer"><span>Writing</span><button class="link-small" onclick="go('home')" style="background:none;border:none;cursor:pointer;font-size:0.68rem;color:var(--gray);">← Home</button></div>
+    </div>
+
+    <!-- PRODUCTION DOCS -->
+    <div class="page" id="page-production">
+      <div class="page-inner">
+        <div class="sec-head">Production <em>Binder</em></div>
+        <p class="sec-sub">Full production management documentation — every project, organised.</p>
+        <p class="binder-intro">Every production I run comes with a complete binder. These documents reflect hands-on line producing experience across short films, branded content, and documentary work.</p>
+        <div class="binder-grid">
+          <div class="binder-card">
+            <div class="binder-icon">📋</div>
+            <div class="binder-title">Call Sheets</div>
+            <div class="binder-desc">Day-of crew &amp; talent schedules, locations, contact lists, and timing breakdowns.</div>
+          </div>
+          <div class="binder-card">
+            <div class="binder-icon">🎯</div>
+            <div class="binder-title">Shot Lists</div>
+            <div class="binder-desc">Scene-by-scene shot breakdowns with framing, lens, and blocking notes.</div>
+          </div>
+          <div class="binder-card">
+            <div class="binder-icon">🗓</div>
+            <div class="binder-title">Production Schedules</div>
+            <div class="binder-desc">Pre-production to post timelines, milestone tracking, and delivery calendars.</div>
+          </div>
+          <div class="binder-card">
+            <div class="binder-icon">📍</div>
+            <div class="binder-title">Location Scouts</div>
+            <div class="binder-desc">Location reports, photo references, permits, and logistics documentation.</div>
+          </div>
+          <div class="binder-card">
+            <div class="binder-icon">💰</div>
+            <div class="binder-title">Budgets</div>
+            <div class="binder-desc">Line-item production budgets covering crew, gear, locations, and post.</div>
+          </div>
+          <div class="binder-card">
+            <div class="binder-icon">📝</div>
+            <div class="binder-title">Release Forms</div>
+            <div class="binder-desc">Talent releases, location agreements, and crew deal memos.</div>
+          </div>
+          <div class="binder-card">
+            <div class="binder-icon">🎬</div>
+            <div class="binder-title">Script Breakdowns</div>
+            <div class="binder-desc">Scene-by-scene production element breakdowns: cast, props, wardrobe, FX.</div>
+          </div>
+          <div class="binder-card">
+            <div class="binder-icon">📡</div>
+            <div class="binder-title">Distribution Plans</div>
+            <div class="binder-desc">Festival submission strategies, platform publishing checklists, and metadata.</div>
+          </div>
+        </div>
+        <p style="font-size:0.72rem;color:var(--gray);margin-top:20px;text-align:center;">Add PDF links to your real documents — replace binder-card onclick with a link to each file.</p>
+      </div>
+      <div class="page-footer"><span>Production Docs</span><button class="link-small" onclick="go('home')" style="background:none;border:none;cursor:pointer;font-size:0.68rem;color:var(--gray);">← Home</button></div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="page" id="page-about">
+      <div class="page-inner">
+        <div class="sec-head">About <em>Me</em></div>
+        <div class="about-body">
+          <p>I'm <strong>Gopala Krishna</strong> — a Creative Producer and Director based in <strong>New York City</strong>, co-founder of <strong>Evolve Pictures LLC</strong>. I own projects end-to-end: from the first story conversation all the way to final export and publishing.</p>
+          <p>My short film <strong>"Boundaries"</strong> — written, produced, directed, and edited entirely solo — was an <strong>Official Selection at Lighthouse International Film Festival 2025</strong>. I hold a <strong>Master's in Media Studies</strong> and bring 3+ years of hands-on experience across film, branded content, and digital video.</p>
+          <p>What I find most rewarding about production is the human orchestration of it — connecting a cinematographer, editor, sound designer, and talent toward one shared vision, and building the conditions where all of it clicks together. I show up fully and take real ownership of the outcome, not just the task.</p>
+          <p>Beyond film, I shoot <strong>photography</strong> (travel, portraits, sports, design), write across formats (narrative scripts, ad copy, academic papers), and manage the full production binder for every project I run.</p>
+          <div class="chips">
+            <span class="chip">Documentary</span><span class="chip">Branded Content</span>
+            <span class="chip">Narrative Film</span><span class="chip">Social Video</span>
+            <span class="chip">Line Producing</span><span class="chip">Photography</span>
+            <span class="chip">DaVinci Resolve</span><span class="chip">Adobe Premiere</span>
+            <span class="chip">Scriptwriting</span><span class="chip">Multi-Camera</span>
+            <span class="chip">Podcast Production</span><span class="chip">Photojournalism</span>
+          </div>
+        </div>
+      </div>
+      <div class="page-footer"><span>About</span><button class="link-small" onclick="go('contact')" style="background:none;border:none;cursor:pointer;font-size:0.68rem;color:var(--terra);font-family:DM Sans,sans-serif;">Contact →</button></div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="page" id="page-contact">
+      <div class="page-inner">
+        <div class="sec-head"><em>Hire</em> Me</div>
+        <p class="contact-body">Open to freelance projects and full-time roles. Whether you have a brand story to tell, a production that needs a reliable line producer, or a team looking for a creative to grow with — I'd love to hear from you.</p>
+        <div class="hire-grid">
+          <div class="hire-card freelance">
+            <div class="hire-type">Freelance · Project Basis</div>
+            <div class="hire-title">You bring the brief.<br/>I bring the film.</div>
+            <ul class="hire-list">
+              <li>Branded content campaigns</li>
+              <li>Short documentary production</li>
+              <li>Social video strategy &amp; production</li>
+              <li>Photography shoots</li>
+              <li>Copywriting &amp; scripts</li>
+            </ul>
+            <a href="mailto:gopalaakkrishna@gmail.com?subject=Freelance Inquiry" class="btn btn-sm">Start a Project</a>
+          </div>
+          <div class="hire-card fulltime">
+            <div class="hire-type">Full-Time · Staff Role</div>
+            <div class="hire-title">Let me grow<br/>with your team.</div>
+            <ul class="hire-list">
+              <li>Creative / Line Producer roles</li>
+              <li>Production companies &amp; studios</li>
+              <li>Sports, lifestyle, branded content</li>
+              <li>NYC-based or remote-first</li>
+              <li>Immediate availability</li>
+            </ul>
+            <a href="mailto:gopalaakkrishna@gmail.com?subject=Job Opportunity" class="btn btn-sm btn-blue">Send an Opportunity</a>
+          </div>
+        </div>
+        <div class="contact-full" style="margin-top:28px;">
+          <div class="cf-row"><span class="cf-lbl">Email</span><span class="cf-val"><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></div>
+          <div class="cf-row"><span class="cf-lbl">LinkedIn</span><span class="cf-val"><a href="https://linkedin.com/in/gopalakkrishna" target="_blank">linkedin.com/in/gopalakkrishna</a></span></div>
+          <div class="cf-row"><span class="cf-lbl">Portfolio</span><span class="cf-val"><a href="https://gopala.framer.website" target="_blank">gopala.framer.website</a></span></div>
+          <div class="cf-row"><span class="cf-lbl">Location</span><span class="cf-val" style="color:var(--dark)">New York City, NY</span></div>
+        </div>
+      </div>
+      <div class="page-footer"><span>© Gopala Krishna 2026 · Evolve Pictures LLC</span></div>
+    </div>
+
+  </div><!-- /left -->
+
+  <!-- RIGHT -->
+  <div class="right">
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>★ Creative Producer</span><span>·</span><span>Director</span><span>·</span>
+        <span>Documentary</span><span>·</span><span>Branded Content</span><span>·</span>
+        <span>Narrative Film</span><span>·</span><span>Social Video</span><span>·</span>
+        <span>Photography</span><span>·</span><span>Lighthouse IFF 2025</span><span>·</span>
+        <span>NYC</span><span>·</span>
+        <span>★ Creative Producer</span><span>·</span><span>Director</span><span>·</span>
+        <span>Documentary</span><span>·</span><span>Branded Content</span><span>·</span>
+        <span>Narrative Film</span><span>·</span><span>Social Video</span><span>·</span>
+        <span>Photography</span><span>·</span><span>Lighthouse IFF 2025</span><span>·</span>
+        <span>NYC</span>
+      </div>
+    </div>
+    <div class="right-bg" id="rightBg" style="background:linear-gradient(160deg,#2e2010 0%,#1a1208 60%,#0e0c06 100%);"></div>
+    <div class="right-overlay"></div>
+    <div class="right-caption" id="rightCaption">
+      <div class="right-caption-label">Now showing</div>
+      <div class="right-caption-title" id="captionTitle">Creative Producer &amp; Director</div>
+    </div>
+    <div class="right-tag" id="rightTag">
+      <strong>Open to work</strong>
+      <a href="mailto:gopalaakkrishna@gmail.com">Get in touch</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const rightData = {
+  home:    {bg:'linear-gradient(160deg,#2e2010 0%,#1a1208 60%,#0e0c06 100%)',  label:'Index',           title:'Creative Producer &amp; Director'},
+  film:    {bg:'linear-gradient(160deg,#121620 0%,#0c1018 60%,#080c12 100%)',  label:'Film &amp; Video', title:'Documentary · Branded Content · Narrative'},
+  film1:   {bg:'linear-gradient(160deg,#0e0e18 0%,#0a0a14 60%,#080810 100%)', label:'Boundaries (2025)',title:'Official Selection · Lighthouse IFF 2025'},
+  film2:   {bg:'linear-gradient(160deg,#1a1410 0%,#140e0a 60%,#0e0a08 100%)', label:'PhysioRX',         title:'Branded Content Campaign'},
+  film3:   {bg:'linear-gradient(160deg,#1a1208 0%,#14100a 60%,#0e0c08 100%)', label:'Documentary',      title:'Delhi Mughlai Biryani'},
+  film4:   {bg:'linear-gradient(160deg,#101420 0%,#0c1018 60%,#080c12 100%)', label:'Mockumentary',     title:'Narrative Series'},
+  film5:   {bg:'linear-gradient(160deg,#0c1814 0%,#0a1410 60%,#080e0c 100%)', label:'Social Video',     title:'600 → 11K Followers · 300K+ Views'},
+  photo:   {bg:'linear-gradient(160deg,#141a10 0%,#101408 60%,#0c1006 100%)', label:'Photography',      title:'Travel · Portraits · Sports · Design'},
+  social:  {bg:'linear-gradient(160deg,#181014 0%,#120c10 60%,#0e080c 100%)', label:'Social Posts',     title:'Instagram · LinkedIn · Digital'},
+  writing: {bg:'linear-gradient(160deg,#181410 0%,#12100a 60%,#0e0c08 100%)', label:'Writing',          title:'Narrative · Ads · Academic · Copy'},
+  production:{bg:'linear-gradient(160deg,#101418 0%,#0c1014 60%,#080c10 100%)',label:'Production Binder',title:'Full Production Management Docs'},
+  about:   {bg:'linear-gradient(160deg,#1a1810 0%,#141208 60%,#100e06 100%)', label:'About',            title:'Gopala Krishna · NYC'},
+  contact: {bg:'linear-gradient(160deg,#0e1418 0%,#0a1014 60%,#080c10 100%)', label:'Contact',          title:'Open to Freelance &amp; Full-Time'},
+};
+
+function setRight(key) {
+  const d = rightData[key] || rightData.home;
+  const bg = document.getElementById('rightBg');
+  const ct = document.getElementById('captionTitle');
+  const cl = document.getElementById('rightCaption').querySelector('.right-caption-label');
+  bg.style.opacity = '0';
+  setTimeout(() => {
+    bg.style.background = d.bg;
+    bg.style.opacity = '1';
+    ct.innerHTML = d.title;
+    cl.textContent = d.label;
+  }, 350);
+}
+
+function go(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('leftPanel').scrollTop = 0;
+  closeMenu();
+  setRight(id);
+}
+
+function openMenu() { document.getElementById('menuOverlay').classList.add('open'); }
+function closeMenu() { document.getElementById('menuOverlay').classList.remove('open'); }
+
+function filterPhoto(cat, btn) {
+  document.querySelectorAll('#photoGrid .photo-card').forEach(c => {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'flex' : 'none';
+  });
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function filterWriting(cat, btn) {
+  document.querySelectorAll('#writingList .writing-item').forEach(c => {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'block' : 'none';
+  });
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+document.getElementById('rightBg').style.transition = 'opacity 0.35s ease';
+</script>
+</body>
+</html>
