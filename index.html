@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gopala Krishna — Creative Producer & Director</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#141414;--bg2:#1a1a1a;--bg3:#222;--bg4:#2a2a2a;--tx:#fff;--tx2:#b3b3b3;--tx3:#777;--red:#e6a84f;--red2:#c58a36;--gold:#c5a44e;--cyan:cyan;--card-w:300px;--pad:5%}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.15) transparent}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.5;width:100%;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:9px}
+a{color:inherit;text-decoration:none}button{font-family:inherit}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;height:68px;padding:0 0 0 var(--pad);background:linear-gradient(180deg,rgba(0,0,0,.75) 0%,transparent 100%);transition:background .35s}
+.nav.solid{background:rgba(20,20,20,.98);box-shadow:0 2px 20px rgba(0,0,0,.5)}
+.logo{font-family:'Playfair Display',serif;font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;cursor:pointer;text-shadow:-2px 0 var(--cyan),2px 0 var(--red);transition:text-shadow .3s;margin-right:28px;white-space:nowrap;flex-shrink:0}
+.logo:hover{text-shadow:-3px 0 var(--cyan),3px 0 var(--red)}
+.nav-menu{display:flex;align-items:center;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+.nav-menu::-webkit-scrollbar{display:none}
+.nav-menu::after{content:'';padding-right:var(--pad);flex-shrink:0} /* Fixes mobile scroll cutoff */
+.nm{background:none;border:none;color:var(--tx2);font-size:.8rem;font-weight:500;padding:6px 11px;border-radius:3px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.nm:hover{color:#fff}.nm.on{color:#fff;font-weight:700}
+.nav-end{margin-left:auto;flex-shrink:0;padding-right:var(--pad)}
+.hire-btn{padding:6px 16px;border:1px solid var(--red);color:var(--red);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-radius:3px;background:none;cursor:pointer;transition:all .25s}
+.hire-btn:hover{background:var(--red);color:#fff}
+.logo-short { display: none; }
+.mobile-browse { display: none; }
+.browse-dropdown { display: none; }
+
+/* BILLBOARD */
+.billboard{position:relative;width:100%;height:90vh;min-height:500px;max-height:900px;overflow:hidden;background:#000}
+.billboard-vid{position:absolute;inset:0;z-index:0}
+.billboard-vid iframe{position:absolute;top:50%;left:50%;width:max(100%,178vh);height:max(100%,56.25vw);transform:translate(-50%,-50%);border:none;pointer-events:none}
+.billboard-mask{position:absolute;inset:0;z-index:1;background:linear-gradient(to right,rgba(20,20,20,.85) 0%,rgba(20,20,20,.4) 38%,transparent 60%),linear-gradient(to top,var(--bg) 0%,rgba(20,20,20,.08) 50%,rgba(20,20,20,.4) 100%)}
+.billboard-info{position:absolute;bottom:12%;left:var(--pad);z-index:2;max-width:800px;width:calc(100% - var(--pad) * 2)}
+
+/* Yellow Headline (Kicker) */
+.bb-kicker{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bb-kicker::before{content:'';width:24px;height:2px;background:var(--red)}
+.bb-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem, 6vw + 1rem, 5.2rem);line-height:1;letter-spacing:.025em;color:#fff;margin-bottom:18px;word-wrap:break-word}
+
+/* SKILL BOXES */
+.bb-types{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.bb-type{padding:6px 14px;background:rgba(230, 168, 79, 0.08);border:1px solid rgba(230, 168, 79, 0.4);border-radius:6px;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;color:#fff;text-transform:uppercase;transition:all .3s;white-space:nowrap}
+.bb-type:hover{background:rgba(230, 168, 79, 0.15);border-color:var(--red)}
+
+.bb-desc{font-size:clamp(0.85rem, 2vw, 0.95rem);line-height:1.7;color:rgba(255,255,255,.6);margin-bottom:24px;max-width:460px}
+.bb-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.btn-w{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:#fff;color:#111;font-size:.84rem;font-weight:700;border-radius:4px;border:none;cursor:pointer;transition:background .2s;flex-shrink:0}
+.btn-w:hover{background:rgba(255,255,255,.75)}.btn-w svg{width:18px;height:18px}
+.btn-g{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:rgba(109,109,110,.7);color:#fff;font-size:.84rem;font-weight:700;border-radius:4px;border:none;cursor:pointer;transition:background .2s;flex-shrink:0}
+.btn-g:hover{background:rgba(109,109,110,.4)}
+
+/* Stat Pills */
+.bb-pills{display:flex;gap:10px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;padding:6px 0 14px;margin-top:6px}
+.bb-pills::-webkit-scrollbar{display:none}
+.bb-pills::after{content:'';padding-right:var(--pad);flex-shrink:0}
+.bb-pill{font-size:.7rem;padding:6px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;color:rgba(255,255,255,0.6);white-space:nowrap;display:flex;align-items:center;line-height:1;flex-shrink:0}
+.bb-pill b{color:var(--red);font-weight:700;margin-right:4px}
+
+/* SECTIONS */
+.sec{display:none;padding:100px 0 60px;animation:secIn .4s ease}.sec.on{display:block}
+@keyframes secIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ROW - Bleed to Edge Optimization */
+.row{margin-bottom:32px;}
+.row-track{display:flex;gap:12px;overflow-x:auto;padding:4px var(--pad) 16px;scroll-snap-type:x proximity;scroll-padding-left:var(--pad);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.row-track::-webkit-scrollbar{display:none}
+
+/* CARD */
+.card{flex:0 0 var(--card-w);max-width:85vw;border-radius:4px;overflow:hidden;background:var(--bg2);transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s;position:relative;scroll-snap-align:start;cursor:pointer}
+.card:hover{transform:scale(1.04);z-index:10;box-shadow:0 14px 40px rgba(0,0,0,.75)}
+.card-img{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden}
+.card-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.4rem}
+.card-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4);opacity:0;transition:opacity .25s;cursor:pointer}
+.card:hover .card-play{opacity:1}
+.card-play-c{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 14px rgba(0,0,0,.5)}
+.card-play-c svg{width:16px;height:16px;fill:#111;margin-left:2px}
+.card-body{padding:12px 14px 14px}
+.card-badge{display:inline-block;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border-radius:2px;font-weight:700;margin-bottom:6px}
+.b-red{background:rgba(230, 168, 79, 0.12);color:var(--red);border:1px solid rgba(230, 168, 79, 0.2)}
+.b-gold{background:rgba(197,164,78,.08);color:var(--gold);border:1px solid rgba(197,164,78,.16)}
+.b-green{background:rgba(100,180,100,.08);color:#8c8;border:1px solid rgba(100,180,100,.16)}
+.b-blue{background:rgba(100,140,230,.08);color:#8af;border:1px solid rgba(100,140,230,.16)}
+.b-pink{background:rgba(200,100,200,.08);color:#d8a;border:1px solid rgba(200,100,200,.16)}
+.card-title{font-size:.88rem;font-weight:600;color:#fff;line-height:1.3;margin-bottom:4px}
+.card-role{font-size:.68rem;color:var(--tx2);margin-bottom:10px}
+.card-btns{display:flex;gap:6px;flex-wrap:wrap}
+.cb{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:3px;font-size:.64rem;font-weight:600;cursor:pointer;transition:all .2s;border:none;white-space:nowrap}
+.cb-w{background:#fff;color:#111}.cb-w:hover{background:rgba(255,255,255,.8)}
+.cb-o{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.1)}.cb-o:hover{background:rgba(255,255,255,.14)}
+.cb svg{width:12px;height:12px}
+.card-ext{display:flex;align-items:center;gap:3px;font-size:.58rem;color:var(--tx3);margin-top:6px;transition:color .2s}
+.card-ext:hover{color:#fff}
+.ext{width:9px;height:9px;flex-shrink:0}
+
+/* GRIDS */
+.g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;padding:0 var(--pad)}
+.g-card{border-radius:4px;overflow:hidden;background:var(--bg2);border:1px solid rgba(255,255,255,.03);cursor:pointer;transition:all .3s}
+.g-card:hover{transform:scale(1.02);border-color:rgba(255,255,255,.1);box-shadow:0 8px 24px rgba(0,0,0,.5);z-index: 5;position: relative;}
+.g-img{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.g-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;}
+.g-card:hover .g-img img{transform:scale(1.08);}
+.g-lbl{position:absolute;bottom:0;left:0;right:0;padding:32px 10px 10px;background:linear-gradient(transparent,rgba(0,0,0,.9));font-size:.68rem;color:rgba(255,255,255,.95);letter-spacing:.1em;text-transform:uppercase;font-weight:600;pointer-events:none;}
+.g-cat{position:absolute;top:6px;left:6px;font-size:.5rem;background:rgba(0,0,0,.6);color:rgba(255,255,255,.9);padding:4px 8px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none;backdrop-filter:blur(4px);}
+.t-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;padding:0 var(--pad)}
+.t-card{border-radius:4px;background:var(--bg2);border:1px solid rgba(255,255,255,.03);padding:18px 20px;transition:all .3s}
+.t-card:hover{border-color:rgba(255,255,255,.1);background:var(--bg3)}
+.tc-cat{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:6px;font-weight:600}
+.tc-title{font-size:.95rem;font-weight:600;color:#fff;margin-bottom:6px;line-height:1.3}
+.tc-desc{font-size:.8rem;color:var(--tx2);line-height:1.65}
+.b-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;padding:0 var(--pad)}
+.b-card{border-radius:4px;background:var(--bg2);border:1px solid rgba(255,255,255,.03);padding:20px 18px;transition:all .3s}
+.b-card:hover{border-color:rgba(255,255,255,.1);background:var(--bg3)}
+.b-icon{font-size:1.4rem;margin-bottom:8px}
+.b-title{font-size:.88rem;font-weight:600;color:#fff;margin-bottom:4px}
+.b-desc{font-size:.76rem;color:var(--tx2);line-height:1.6}
+
+/* Filters Bleed Optimization */
+.fbar{display:flex;gap:4px;margin-bottom:16px;padding:0 0 0 var(--pad);border-bottom:2px solid rgba(255,255,255,.04);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.fbar::-webkit-scrollbar{display:none}
+.fbar::after{content:'';padding-right:var(--pad);flex-shrink:0}
+.fb{background:none;border:none;color:var(--tx3);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 14px;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;flex-shrink:0}
+.fb:hover{color:#fff}.fb.on{color:#fff;border-bottom-color:var(--red)}
+
+.about-wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;padding:0 var(--pad)}
+.about-p{font-size:.95rem;color:var(--tx2);line-height:1.8;margin-bottom:14px}
+.about-p strong{color:#fff;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{padding:5px 12px;border:1px solid rgba(255,255,255,.07);border-radius:100px;font-size:.7rem;color:var(--tx2);background:rgba(255,255,255,.02)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+.stat-box{background:var(--bg2);border:1px solid rgba(255,255,255,.04);border-radius:6px;padding:22px 16px;text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--red);display:block;margin-bottom:2px}
+.stat-l{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tx3)}
+
+/* SERVICES & PROCESS HIGHLIGHTS */
+.svc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 var(--pad);margin-bottom:24px}
+.svc{background:var(--bg2);border:1px solid rgba(255,255,255,.03);border-radius:4px;padding:24px 20px;transition:all .3s;position:relative;overflow:hidden}
+.svc:hover{border-color:rgba(230, 168, 79, 0.25);background:var(--bg3)}
+.svc-no{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:rgba(230, 168, 79, 0.35);margin-bottom:6px;line-height:1}
+.svc-t{font-size:.95rem;font-weight:600;color:#fff;margin-bottom:8px}
+.svc-d{font-size:.8rem;color:var(--tx2);line-height:1.7}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.svc-tags span{font-size:.6rem;letter-spacing:.04em;padding:4px 10px;border:1px solid rgba(255,255,255,.12);border-radius:3px;color:var(--tx2);background:rgba(255,255,255,0.03)}
+
+.proc-g{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 var(--pad);margin-bottom:24px}
+.proc{background:var(--bg2);border:1px solid rgba(255,255,255,.03);border-radius:4px;padding:24px 20px;transition:all .3s}
+.proc:hover{border-color:rgba(230, 168, 79, 0.2)}
+.proc-no{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:rgba(230, 168, 79, 0.3);margin-bottom:6px;line-height:1}
+.proc-t{font-size:.9rem;font-weight:600;color:#fff;margin-bottom:8px}
+.proc-d{font-size:.8rem;color:var(--tx2);line-height:1.7}
+
+.tk-g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 var(--pad)}
+.tk{background:var(--bg2);border:1px solid rgba(255,255,255,.03);border-radius:4px;padding:20px 18px}
+.tk-h{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05)}
+.tk li{font-size:.85rem;color:var(--tx2);list-style:none;display:flex;gap:8px;padding:3px 0;line-height:1.6}
+.tk li::before{content:'→';color:var(--red);opacity:.6}
+.role-g{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 var(--pad);margin-top:24px}
+.role{background:var(--bg2);border:1px solid rgba(255,255,255,.03);border-radius:4px;padding:20px 18px}
+.role-ico{font-size:1.2rem;margin-bottom:10px;display:block}
+.role-t{font-size:.9rem;font-weight:600;color:#fff;margin-bottom:4px}
+.role-d{font-size:.8rem;color:var(--tx2);line-height:1.65}
+
+.hire-g{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 var(--pad);margin-bottom:24px}
+.hire{background:var(--bg2);border:1px solid rgba(255,255,255,.03);border-radius:6px;padding:30px 24px;position:relative;overflow:hidden}
+.hire::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.hire.fl::before{background:var(--red)}.hire.ft::before{background:#5b8dee}
+.hire-tp{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;font-weight:700}
+.hire.fl .hire-tp{color:var(--red)}.hire.ft .hire-tp{color:#5b8dee}
+.hire-ht{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em;color:#fff;margin-bottom:14px;line-height:1.1}
+.hire-ul{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.hire-ul li{font-size:.78rem;color:var(--tx2);list-style:none;display:flex;gap:8px}
+.hire-ul li::before{content:'→';font-size:.66rem}
+.hire.fl .hire-ul li::before{color:var(--red)}.hire.ft .hire-ul li::before{color:#5b8dee}
+.hire-cta{display:inline-block;padding:10px 20px;border-radius:3px;font-size:.7rem;font-weight:700;border:none;color:#fff;cursor:pointer;transition:all .2s;text-align:center}
+.cta-r{background:var(--red)}.cta-r:hover{background:var(--red2)}
+.cta-b{background:#5b8dee}.cta-b:hover{background:#7aa3f5}
+
+/* Contact Links Stack Layout Guard */
+.c-rows{display:flex;flex-direction:column;padding:0 var(--pad);margin-top:16px}
+.c-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.04);gap:16px;flex-wrap:wrap}
+.c-lbl{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tx3);flex-shrink:0}
+.c-val{text-align:right;word-break:break-word}
+.c-val a{color:var(--red);font-size:.85rem;font-weight:500;display:inline-flex;align-items:center;gap:4px;transition:color .2s}
+.c-val a:hover{color:#ff4040}
+
+.sh{padding:16px var(--pad) 12px;display:flex;align-items:baseline;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.sh-t{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.05em;color:#fff}
+.sh-s{font-size:.75rem;color:var(--tx3)}
+.sh-desc{padding:0 var(--pad);font-size:.9rem;color:var(--tx2);line-height:1.8;margin-bottom:24px;max-width:760px}
+
+/* MODAL & IG NAV */
+.modal{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.88);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:24px}
+.modal.open{display:flex}
+.m-box{width:min(1000px,96vw);background:#181818;border:1px solid rgba(255,255,255,.06);border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6);display:flex;flex-direction:column;max-height:92vh}
+.m-top{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.04)}
+.m-info{display:flex;align-items:center;gap:10px}
+.m-plat{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:100px;background:rgba(255,255,255,.06);font-size:.65rem;font-weight:600;color:var(--tx3);letter-spacing:.06em;text-transform:uppercase}
+.m-plat svg{width:14px;height:14px}
+.m-t{font-size:.9rem;font-weight:600;color:#fff}
+.m-x{background:none;border:1px solid rgba(255,255,255,.08);color:var(--tx2);border-radius:100px;padding:8px 14px;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.m-x:hover{background:rgba(255,255,255,.06);color:#fff}
+.m-stage{width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;position:relative;flex-shrink:0}
+.m-stage iframe{width:100%;height:100%;border:none;position:absolute;inset:0;}
+.m-stage img.m-img-view{width:100%;height:100%;object-fit:contain;background:#050505;display:none;position:absolute;inset:0;}
+.modal.portrait .m-box{width:min(440px,94vw); max-height:95vh;}
+.modal.portrait .m-stage{aspect-ratio:auto; height:740px; max-height:calc(95vh - 120px);}
+
+/* DOCUMENT & IMAGE MODAL */
+.modal.document .m-box{width:min(900px,94vw);height:90vh;display:flex;flex-direction:column}
+.modal.document .m-stage{aspect-ratio:auto;height:100%;flex:1;max-height:none}
+.modal.image-view .m-box{width:min(1200px,94vw);height:88vh;display:flex;flex-direction:column}
+.modal.image-view .m-stage{aspect-ratio:auto;height:100%;flex:1;max-height:none}
+.m-link.doc{background:rgba(255,255,255,.15)}.m-link.doc:hover{background:rgba(255,255,255,.25)}
+
+.m-link.ig{background:linear-gradient(135deg,#f58529,#dd2a7b)}.m-link.ig:hover{opacity:.85}
+.ig-nav{display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 16px;background:#181818;border-top:1px solid rgba(255,255,255,.04)}
+.ig-btn{background:none;border:1px solid rgba(255,255,255,.15);color:#fff;padding:8px 18px;border-radius:100px;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+.ig-btn:hover:not(:disabled){background:rgba(255,255,255,.1)}
+.ig-btn:disabled{opacity:.3;cursor:not-allowed}
+.ig-dots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.ig-dot{width:26px;height:12px;border-radius:100px;background:#111;border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:all .3s;padding:0}
+.ig-dot:hover{background:rgba(255,255,255,.25)}
+.modal[data-ig="physio"] .ig-dot.active{background:var(--gold);border-color:var(--gold)}
+.modal[data-ig="biryani"] .ig-dot.active{background:#5a9e5a;border-color:#5a9e5a}
+.modal[data-ig="growth"] .ig-dot.active{background:#b070b0;border-color:#b070b0}
+.m-bot{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid rgba(255,255,255,.04)}
+.m-note{font-size:.6rem;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase}
+.m-link{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;font-size:.72rem;font-weight:600;color:#fff;transition:all .2s}
+.m-link.yt{background:rgba(229,9,20,.75)}.m-link.yt:hover{background:var(--red)}
+.m-link.vm{background:rgba(26,183,234,.6)}.m-link.vm:hover{background:rgba(26,183,234,.85)}
+
+footer{padding:40px var(--pad) 32px;border-top:1px solid rgba(255,255,255,.04);display:flex;align-items:center;justify-content:space-between;font-size:.75rem;color:var(--tx3)}
+footer a{color:var(--red)}
+
+/* RESPONSIVE SCALING */
+@media(min-width:1600px){
+  :root{--pad:5%;--card-w:350px}
+  .g-grid{grid-template-columns:repeat(auto-fill,minmax(310px,1fr));}
+  .bb-title{font-size:4.8rem}
+}
+@media(min-width:2000px){
+  :root{--pad:8%;--card-w:420px}
+  .bb-title{font-size:5.6rem}
+  .billboard-info{max-width:900px}
+  .g-grid{grid-template-columns:repeat(auto-fill,minmax(380px,1fr));}
+}
+@media(max-width:1100px){
+  .svc-g{grid-template-columns:repeat(2,1fr)}
+  .proc-g{grid-template-columns:repeat(2,1fr)}
+  .role-g{grid-template-columns:repeat(2,1fr)}
+  .about-wrap{grid-template-columns:1fr;gap:24px}
+}
+@media(max-width:768px){
+  :root{--pad:20px;--card-w:280px} /* Increased pad for touch breathing room */
+  .nav{height:56px}
+  .logo-full { display: none; }
+  .logo-short { display: inline; font-size: 1.2rem; }
+  .logo{margin-right:12px}
+  .hire-btn{display:none}
+  .nm{font-size:.75rem;padding:6px 10px}
+  
+  /* Mobile Browse Menu Styling */
+  .desktop-only { display: none !important; }
+  .mobile-browse { display: inline-block; }
+  .browse-dropdown {
+      display: none;
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: rgba(20,20,20,0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      z-index: 199;
+      flex-direction: column;
+      padding: 4px var(--pad) 10px;
+  }
+  .browse-dropdown.open {
+      display: flex;
+      animation: slideDown 0.2s ease forwards;
+  }
+  @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+  }
+  .browse-dropdown .nm {
+      width: 100%;
+      text-align: left;
+      padding: 14px 8px;
+      font-size: .85rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-radius: 0;
+      white-space: normal;
+  }
+  .browse-dropdown .nm:last-child {
+      border-bottom: none;
+  }
+
+  /* Billboard Overlap Fix */
+  .billboard{height:80vh;min-height:500px}
+  .billboard-info {
+      top: auto;
+      bottom: 8%;
+      display: block; /* Removed flex layout to prevent top clipping */
+      max-height: calc(100vh - 80px); /* Strictly prevents overlapping the nav */
+      overflow-y: auto; /* Scrolls gracefully if content exceeds screen */
+      padding-top: 40px; /* Safe padding */
+  }
+  .billboard-info::-webkit-scrollbar { display: none; }
+  .bb-title{font-size:clamp(2.2rem, 8vw, 3rem);margin-bottom:12px}
+  .bb-desc{margin-bottom:16px;font-size:.85rem}
+  
+  /* Make stat pills wrap on mobile so they all show fully */
+  .bb-pills { flex-wrap: wrap; overflow-x: visible; padding-bottom: 0; }
+  .bb-pills::after { display: none; }
+  
+  .sec{padding:80px 0 50px}
+  .svc-g,.proc-g,.tk-g,.hire-g,.role-g{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .g-grid,.b-grid{grid-template-columns:repeat(2,1fr)}
+  .t-cards{grid-template-columns:1fr}
+  .modal{padding:10px}
+  .m-top,.m-bot{flex-direction:column;gap:8px;align-items:stretch}
+  
+  /* Mobile fix for Instagram modal cutting off */
+  .modal.portrait .m-box { max-height: 88vh; }
+  .modal.portrait .m-stage { height: 480px; max-height: calc(88vh - 220px); }
+
+  footer{flex-direction:column;gap:12px;text-align:center}
+  .ig-sl{flex:0 0 100%}
+  .ig-sl iframe{height:520px}
+}
+@media(max-width:480px){
+  :root{--card-w:85vw}
+  .g-grid,.b-grid{grid-template-columns:1fr}
+  .ig-sl iframe{height:480px}
+  .c-row{flex-direction:column;align-items:flex-start;gap:6px} /* Stack contact details */
+  .c-val{text-align:left;width:100%}
+  .row-track{scroll-snap-type:x mandatory} /* Snappier mobile swipe */
+}
+/* HOME ROWS (below billboard) */
+.home-rows{padding:0 0 40px;margin-top:-60px;position:relative;z-index:3}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="logo" onclick="go('home')">
+    <span class="logo-full">Gopala Krishna</span>
+    <span class="logo-short">GK</span>
+  </div>
+  <div class="nav-menu" id="navMenu">
+    <button class="nm on" data-s="home" onclick="go('home')">Home</button>
+    <button class="nm" data-s="film" onclick="go('film')">Film & Video</button>
+    <button class="nm" data-s="photo" onclick="go('photo')">Photography</button>
+    <button class="nm mobile-browse" id="browseBtn" onclick="toggleBrowse(event)">Browse ▾</button>
+    
+    <button class="nm desktop-only" data-s="social" onclick="go('social')">Social Posts</button>
+    <button class="nm desktop-only" data-s="writing" onclick="go('writing')">Writing</button>
+    <button class="nm desktop-only" data-s="production" onclick="go('production')">Production Docs</button>
+    <button class="nm desktop-only" data-s="about" onclick="go('about')">About</button>
+    <button class="nm desktop-only" data-s="services" onclick="go('services')">Work With Me</button>
+    <button class="nm desktop-only" data-s="contact" onclick="go('contact')">Contact</button>
+  </div>
+  <div class="nav-end">
+    <button class="hire-btn" onclick="go('contact')">Hire Me</button>
+  </div>
+</nav>
+
+<!-- Mobile Dropdown Menu Container -->
+<div class="browse-dropdown" id="browseDropdown">
+    <button class="nm" data-s="social" onclick="go('social')">Social Posts</button>
+    <button class="nm" data-s="writing" onclick="go('writing')">Writing</button>
+    <button class="nm" data-s="production" onclick="go('production')">Production Docs</button>
+    <button class="nm" data-s="about" onclick="go('about')">About</button>
+    <button class="nm" data-s="services" onclick="go('services')">Work With Me</button>
+    <button class="nm" data-s="contact" onclick="go('contact')">Contact</button>
+</div>
+
+<div class="billboard" id="billboard"><div class="billboard-vid"><iframe src="https://player.vimeo.com/video/1031440535?autoplay=1&muted=1&loop=1&background=1" allow="autoplay;fullscreen" allowfullscreen></iframe></div><div class="billboard-mask"></div><div class="billboard-info"><div class="bb-kicker">Creative Producer & Director · NYC</div><h1 class="bb-title">STORIES THAT MOVE PEOPLE.<br>CONTENT THAT MOVES PRODUCT.</h1>
+
+<div class="bb-types">
+  <div class="bb-type">Documentary</div>
+  <div class="bb-type">Branded Content</div>
+  <div class="bb-type">Narrative Film</div>
+  <div class="bb-type">Social Video</div>
+</div>
+
+<p class="bb-desc">Concept through final cut — with full creative ownership.</p><div class="bb-actions"><button class="btn-w" onclick="play('https://player.vimeo.com/video/1031440535?autoplay=1','Showreel — Gopala Krishna','vimeo','https://vimeo.com/1031440535')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Play Showreel</button><button class="btn-g" onclick="go('film')"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> More Work</button></div>
+
+<div class="bb-pills">
+  <span class="bb-pill"><b>4+</b> Years Production</span>
+  <span class="bb-pill"><b>500K+</b> YouTube Views</span>
+  <span class="bb-pill"><b>3M+</b> Instagram Views</span>
+  <span class="bb-pill"><b>5K</b> Followers / 60 Days</span>
+  <span class="bb-pill"><b>LIFF</b> 2025 Official Selection</span>
+</div>
+</div></div>
+
+<!-- HOME ROWS (below billboard, Netflix-style) -->
+<div class="home-rows" id="homeRows">
+
+<!-- Featured Work -->
+<div class="sh" style="padding-top:24px"><div class="sh-t">FEATURED WORK</div></div>
+<div class="row"><div class="row-track">
+<div class="card" onclick="play('https://www.youtube-nocookie.com/embed/SQmqA1WDet8?autoplay=1&rel=0','Boundaries — Full Film','youtube','https://www.youtube.com/watch?v=SQmqA1WDet8')">
+  <div class="card-img" style="background:linear-gradient(135deg,#0e0e18,#1a1420)"><div class="card-icon">🎬</div><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body">
+    <div class="card-badge b-red">⭐ Official Selection · Lighthouse IFF 2025</div>
+    <div class="card-title">"Boundaries" — Short Film</div>
+    <div class="card-role">Writer · Director · Producer · Editor · DaVinci Resolve</div>
+    <div class="card-btns">
+      <button class="cb cb-w" onclick="event.stopPropagation(); play('https://www.youtube-nocookie.com/embed/SQmqA1WDet8?autoplay=1&rel=0','Boundaries — Full Film','youtube','https://www.youtube.com/watch?v=SQmqA1WDet8')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Full Film</button>
+      <button class="cb cb-o" onclick="event.stopPropagation(); play('https://www.youtube-nocookie.com/embed/PQpjJMIVnfc?autoplay=1&rel=0','Boundaries — Trailer','youtube','https://www.youtube.com/watch?v=PQpjJMIVnfc')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Trailer</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" onclick="openIgModal('physio', 'PhysioRX Campaign')">
+  <div class="card-img" style="background:linear-gradient(135deg,#1a1410,#201810)"><div class="card-icon">📣</div><div class="card-play"><div class="card-play-c" style="background:rgba(197,164,78,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-gold">Branded Content · Instagram Reels</div><div class="card-title">PhysioRX Campaign</div><div class="card-role">Producer · Director · Editor · Adobe Premiere · CapCut</div><div style="font-size:.6rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
+</div>
+
+<div class="card" onclick="openIgModal('growth', 'Instagram Growth Campaign')">
+  <div class="card-img" style="background:linear-gradient(135deg,#0c1814,#142018)"><div class="card-icon">📲</div><div class="card-play"><div class="card-play-c" style="background:rgba(200,100,200,.85)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-pink">Social Video · Content Strategy</div><div class="card-title">Instagram Growth Campaign</div><div class="card-role">10.5K → 15.5K Followers · 3M+ Views</div><div style="font-size:.6rem;color:#d8a;margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
+</div>
+</div></div>
+
+<!-- Discover -->
+<div class="sh"><div class="sh-t">DISCOVER</div></div>
+<div class="row"><div class="row-track">
+<div class="card" onclick="play('https://www.youtube-nocookie.com/embed/zf3PclBSFVk?autoplay=1&rel=0','DYCD Summer Leagues Promo','youtube','https://www.youtube.com/watch?v=zf3PclBSFVk')">
+  <div class="card-img" style="background:linear-gradient(135deg,#1a1a10,#2a2210)"><div class="card-icon">🏀</div><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body">
+    <div class="card-badge b-gold">Promo · Branded Content</div>
+    <div class="card-title">DYCD Summer Leagues Promo</div>
+    <div class="card-role">Concept · Editor</div>
+    <div class="card-btns">
+      <button class="cb cb-w" onclick="event.stopPropagation(); play('https://www.youtube-nocookie.com/embed/zf3PclBSFVk?autoplay=1&rel=0','DYCD Summer Leagues Promo','youtube','https://www.youtube.com/watch?v=zf3PclBSFVk')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Promo</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" onclick="play('https://www.youtube-nocookie.com/embed/mOOkPWhkPbE?autoplay=1&rel=0','NYC Strangest Outbreak','youtube','https://www.youtube.com/watch?v=mOOkPWhkPbE')"><div class="card-img" style="background:linear-gradient(135deg,#101420,#181828)"><div class="card-icon">🎭</div><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div><div class="card-body"><div class="card-badge b-blue">Narrative · Mockumentary</div><div class="card-title">Investigating NYC's Strangest Outbreak</div><div class="card-role">Producer · Production Manager</div><div class="card-btns"><button class="cb cb-w"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Film</button></div></div></div>
+
+<div class="card" onclick="play('https://www.youtube-nocookie.com/embed/o7rM0fg1yyo?autoplay=1&rel=0','AERIAL - A Different Kind of Close (Official Music Video)','youtube','https://www.youtube.com/watch?v=o7rM0fg1yyo')">
+  <div class="card-img" style="background:linear-gradient(135deg,#140c1c,#1c1024)"><div class="card-icon">🎸</div><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body">
+    <div class="card-badge b-pink">Music Video</div>
+    <div class="card-title">AERIAL - A Different Kind of Close</div>
+    <div class="card-role">Production Manager</div>
+    <div class="card-btns">
+      <button class="cb cb-w" onclick="event.stopPropagation(); play('https://www.youtube-nocookie.com/embed/o7rM0fg1yyo?autoplay=1&rel=0','AERIAL - A Different Kind of Close (Official Music Video)','youtube','https://www.youtube.com/watch?v=o7rM0fg1yyo')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Video</button>
+    </div>
+  </div>
+</div>
+</div></div>
+
+</div><!-- /homeRows -->
+
+<div class="sec" id="s-film">
+<div class="sh"><div class="sh-t">NARRATIVE FILM</div><div class="sh-s">2 projects</div></div>
+<div class="row"><div class="row-track">
+<div class="card" onclick="play('https://www.youtube-nocookie.com/embed/SQmqA1WDet8?autoplay=1&rel=0','Boundaries — Full Film','youtube','https://www.youtube.com/watch?v=SQmqA1WDet8')">
+  <div class="card-img" style="background:linear-gradient(135deg,#0e0e18,#1a1420)"><div class="card-icon">🎬</div><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body">
+    <div class="card-badge b-red">⭐ Official Selection · Lighthouse IFF 2025</div>
+    <div class="card-title">"Boundaries" — Short Film</div>
+    <div class="card-role">Writer · Director · Producer · Editor · DaVinci Resolve</div>
+    <div class="card-btns">
+      <button class="cb cb-w" onclick="event.stopPropagation(); play('https://www.youtube-nocookie.com/embed/SQmqA1WDet8?autoplay=1&rel=0','Boundaries — Full Film','youtube','https://www.youtube.com/watch?v=SQmqA1WDet8')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Full Film</button>
+      <button class="cb cb-o" onclick="event.stopPropagation(); play('https://www.youtube-nocookie.com/embed/PQpjJMIVnfc?autoplay=1&rel=0','Boundaries — Trailer','youtube','https://www.youtube.com/watch?v=PQpjJMIVnfc')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Trailer</button>
+    </div>
+  </div>
+</div>
+<div class="card" onclick="play('https://www.youtube-nocookie.com/embed/mOOkPWhkPbE?autoplay=1&rel=0','NYC Strangest Outbreak','youtube','https://www.youtube.com/watch?v=mOOkPWhkPbE')"><div class="card-img" style="background:linear-gradient(135deg,#101420,#181828)"><div class="card-icon">🎭</div><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div><div class="card-body"><div class="card-badge b-blue">Narrative · Mockumentary</div><div class="card-title">Investigating NYC's Strangest Outbreak</div><div class="card-role">Producer · Production Manager</div><div class="card-btns"><button class="cb cb-w"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Film</button></div></div></div>
+</div></div>
+
+<div class="sh"><div class="sh-t">MUSIC VIDEO</div><div class="sh-s">1 project</div></div>
+<div class="row"><div class="row-track">
+<div class="card" onclick="play('https://www.youtube-nocookie.com/embed/o7rM0fg1yyo?autoplay=1&rel=0','AERIAL - A Different Kind of Close (Official Music Video)','youtube','https://www.youtube.com/watch?v=o7rM0fg1yyo')">
+  <div class="card-img" style="background:linear-gradient(135deg,#140c1c,#1c1024)"><div class="card-icon">🎸</div><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body">
+    <div class="card-badge b-pink">Music Video</div>
+    <div class="card-title">AERIAL - A Different Kind of Close</div>
+    <div class="card-role">Production Manager</div>
+    <div class="card-btns">
+      <button class="cb cb-w" onclick="event.stopPropagation(); play('https://www.youtube-nocookie.com/embed/o7rM0fg1yyo?autoplay=1&rel=0','AERIAL - A Different Kind of Close (Official Music Video)','youtube','https://www.youtube.com/watch?v=o7rM0fg1yyo')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Video</button>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<div class="sh"><div class="sh-t">BRANDED CONTENT</div><div class="sh-s">3 projects</div></div>
+<div class="row"><div class="row-track">
+<div class="card" onclick="play('https://www.youtube-nocookie.com/embed/zf3PclBSFVk?autoplay=1&rel=0','DYCD Summer Leagues Promo','youtube','https://www.youtube.com/watch?v=zf3PclBSFVk')">
+  <div class="card-img" style="background:linear-gradient(135deg,#1a1a10,#2a2210)"><div class="card-icon">🏀</div><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body">
+    <div class="card-badge b-gold">Promo · Branded Content</div>
+    <div class="card-title">DYCD Summer Leagues Promo</div>
+    <div class="card-role">Concept · Editor</div>
+    <div class="card-btns">
+      <button class="cb cb-w" onclick="event.stopPropagation(); play('https://www.youtube-nocookie.com/embed/zf3PclBSFVk?autoplay=1&rel=0','DYCD Summer Leagues Promo','youtube','https://www.youtube.com/watch?v=zf3PclBSFVk')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Promo</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" onclick="openIgModal('physio', 'PhysioRX Campaign')">
+  <div class="card-img" style="background:linear-gradient(135deg,#1a1410,#201810)"><div class="card-icon">📣</div><div class="card-play"><div class="card-play-c" style="background:rgba(197,164,78,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-gold">Branded Content · Instagram Reels</div><div class="card-title">PhysioRX Campaign</div><div class="card-role">Producer · Director · Editor · Adobe Premiere · CapCut</div><div style="font-size:.6rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
+</div>
+
+<div class="card" onclick="openIgModal('biryani', 'Delhi Mughlai Biryani')">
+  <div class="card-img" style="background:linear-gradient(135deg,#1a1208,#201510)"><div class="card-icon">🍛</div><div class="card-play"><div class="card-play-c" style="background:rgba(100,180,100,.85)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-green">Short Documentary</div><div class="card-title">Delhi Mughlai Biryani</div><div class="card-role">Field & Post Producer · Full Pipeline</div><div style="font-size:.6rem;color:#8c8;margin-top:6px;letter-spacing:.06em">▶ Play Reel</div></div>
+</div>
+</div></div>
+
+<div class="sh"><div class="sh-t">SOCIAL VIDEO</div><div class="sh-s">1 project</div></div>
+<div class="row"><div class="row-track">
+<div class="card" onclick="openIgModal('growth', 'Instagram Growth Campaign')">
+  <div class="card-img" style="background:linear-gradient(135deg,#0c1814,#142018)"><div class="card-icon">📲</div><div class="card-play"><div class="card-play-c" style="background:rgba(200,100,200,.85)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-pink">Social Video · Content Strategy</div><div class="card-title">Instagram Growth Campaign</div><div class="card-role">10.5K → 15.5K Followers · 3M+ Views</div><div style="font-size:.6rem;color:#d8a;margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
+</div>
+</div></div>
+</div><!-- /s-film -->
+
+<!-- UPDATE: Photography Gallery Section -->
+<div class="sec" id="s-photo">
+  <div class="sh">
+    <div class="sh-t">PHOTOGRAPHY</div>
+    <div class="sh-s">Travel · Portraits · Sports · Design <a href="https://www.cosmos.so/gopalakkrishna" target="_blank" style="color:var(--gold); margin-left:8px; text-decoration:underline;">↗ View Cosmos Board</a></div>
+  </div>
+  <div class="fbar" id="pF">
+    <button class="fb on" onclick="fil('p','all',this)">All</button>
+    <button class="fb" onclick="fil('p','travel',this)">Travel</button>
+    <button class="fb" onclick="fil('p','portrait',this)">Portraits</button>
+    <button class="fb" onclick="fil('p','sports',this)">Sports</button>
+    <button class="fb" onclick="fil('p','design',this)">Design</button>
+  </div>
+  
+  <div class="g-grid" id="pG">
+    <!-- NEW TRAVEL IMAGES -->
+    <div class="g-card" data-c="travel" data-url="NY_New%20Yorker.jpg" data-title="The New Yorker" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="NY_New%20Yorker.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">New York</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="travel" data-url="NY_Union%20Square.jpg" data-title="Union Square" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="NY_Union%20Square.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">New York</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="travel" data-url="Coorg_Mountain.jpg" data-title="Coorg Mountains" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="Coorg_Mountain.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">Landscape</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="travel" data-url="Coorg_Mountain2.jpg" data-title="Coorg Valley" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="Coorg_Mountain2.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">Mountains</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="travel" data-url="Pondicherry_Beach.jpg" data-title="Pondicherry Beach" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="Pondicherry_Beach.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">Coast</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="travel" data-url="Miami_Beach.jpg" data-title="Miami Beach" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="Miami_Beach.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">Beach</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="travel" data-url="City_Murudeshwar.jpg" data-title="Murudeshwar City" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="City_Murudeshwar.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">Aerial</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="travel" data-url="Sea_Murudeshwar.jpg" data-title="Murudeshwar Sea" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="Sea_Murudeshwar.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">Ocean</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="travel" data-url="Night_Moon.jpg" data-title="Night Moon" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="Night_Moon.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">Night Sky</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="travel" data-url="Waterview.jpg" data-title="Water View" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="Waterview.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">Silhouette</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="travel" data-url="IMG_20201003_075959-2.jpg" data-title="Ancient Temple Interior" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="IMG_20201003_075959-2.jpg" alt="Travel">
+        <span class="g-cat">Travel</span>
+        <span class="g-lbl">Heritage</span>
+      </div>
+    </div>
+    <!-- END NEW TRAVEL IMAGES -->
+
+    <!-- NEW PORTRAIT IMAGES -->
+    <div class="g-card" data-c="portrait" data-url="100mm%20Portrait-2.jpg" data-title="100mm B&W Portrait" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="100mm%20Portrait-2.jpg" alt="Portrait">
+        <span class="g-cat">Portrait</span>
+        <span class="g-lbl">B&W</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="portrait" data-url="Experiment_Drag_Ghost-2.jpg" data-title="Abstract Ghost Portrait" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="Experiment_Drag_Ghost-2.jpg" alt="Portrait">
+        <span class="g-cat">Portrait</span>
+        <span class="g-lbl">Creative</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="portrait" data-url="Hands.jpg" data-title="Hands Ritual" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="Hands.jpg" alt="Portrait">
+        <span class="g-cat">Portrait</span>
+        <span class="g-lbl">Details</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="portrait" data-url="IMG_0862.jpg" data-title="Bird on Balcony" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="IMG_0862.jpg" alt="Portrait">
+        <span class="g-cat">Portrait</span>
+        <span class="g-lbl">Wildlife</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="portrait" data-url="IMG_1826.jpg" data-title="Colorful Portrait" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="IMG_1826.jpg" alt="Portrait">
+        <span class="g-cat">Portrait</span>
+        <span class="g-lbl">Portrait</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="portrait" data-url="IMG_4467-2.jpg" data-title="Graduation Portrait" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="IMG_4467-2.jpg" alt="Portrait">
+        <span class="g-cat">Portrait</span>
+        <span class="g-lbl">Graduation</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="portrait" data-url="IMG_6179-2.jpg" data-title="Travel Portrait" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="IMG_6179-2.jpg" alt="Portrait">
+        <span class="g-cat">Portrait</span>
+        <span class="g-lbl">Portrait</span>
+      </div>
+    </div>
+    <!-- END NEW PORTRAIT IMAGES -->
+
+    <!-- NEW SPORTS IMAGES -->
+    <div class="g-card" data-c="sports" data-url="IMG_6206-2.jpg" data-title="Archery Practice" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="IMG_6206-2.jpg" alt="Sports">
+        <span class="g-cat">Sports</span>
+        <span class="g-lbl">Archery</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="sports" data-url="IMG_6427-2.jpg" data-title="Skiing Portrait" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="IMG_6427-2.jpg" alt="Sports">
+        <span class="g-cat">Sports</span>
+        <span class="g-lbl">Skiing</span>
+      </div>
+    </div>
+    <div class="g-card" data-c="sports" data-url="IMG_6438-2.jpg" data-title="Skiing Action" onclick="openGalleryModal(this)">
+      <div class="g-img">
+        <img src="IMG_6438-2.jpg" alt="Sports">
+        <span class="g-cat">Sports</span>
+        <span class="g-lbl">Skiing</span>
+      </div>
+    </div>
+    <!-- END NEW SPORTS IMAGES -->
+
+  </div>
+</div>
+
+<div class="sec" id="s-social"><div class="sh"><div class="sh-t">SOCIAL POSTS</div><div class="sh-s">Instagram · LinkedIn · Twitter/X — static posts, carousels, and graphics</div></div><div class="g-grid"><div class="g-card"><div class="g-img" style="background:linear-gradient(135deg,#201a14,#181210)"><span style="font-size:1.8rem; position:absolute; z-index:1;">📊</span><span class="g-lbl" style="z-index:2;">Carousel</span></div></div><div class="g-card"><div class="g-img" style="background:linear-gradient(135deg,#142018,#0e1810)"><span style="font-size:1.8rem; position:absolute; z-index:1;">🖼</span><span class="g-lbl" style="z-index:2;">Graphic</span></div></div><div class="g-card"><div class="g-img" style="background:linear-gradient(135deg,#141420,#0e0e18)"><span style="font-size:1.8rem; position:absolute; z-index:1;">✍️</span><span class="g-lbl" style="z-index:2;">Copy Post</span></div></div><div class="g-card"><div class="g-img" style="background:linear-gradient(135deg,#201418,#181010)"><span style="font-size:1.8rem; position:absolute; z-index:1;">📷</span><span class="g-lbl" style="z-index:2;">Photo Post</span></div></div><div class="g-card"><div class="g-img" style="background:linear-gradient(135deg,#182014,#10180e)"><span style="font-size:1.8rem; position:absolute; z-index:1;">📈</span><span class="g-lbl" style="z-index:2;">Data Visual</span></div></div><div class="g-card"><div class="g-img" style="background:linear-gradient(135deg,#1c1418,#141010)"><span style="font-size:1.8rem; position:absolute; z-index:1;">🎯</span><span class="g-lbl" style="z-index:2;">Ad Creative</span></div></div></div></div>
+
+<div class="sec" id="s-writing"><div class="sh"><div class="sh-t">WRITING</div><div class="sh-s">Narrative · Advertising · Academic · Copywriting</div></div><div class="fbar" id="wF"><button class="fb on" onclick="fil('w','all',this)">All</button><button class="fb" onclick="fil('w','narrative',this)">Narrative</button><button class="fb" onclick="fil('w','ads',this)">Ads & Copy</button><button class="fb" onclick="fil('w','academic',this)">Academic</button></div><div class="t-cards" id="wG"><div class="t-card" data-c="narrative"><div class="tc-cat">Narrative · Short Film Script</div><div class="tc-title">"Boundaries" — Original Screenplay</div><div class="tc-desc">An original short film script written, produced, and directed solo. Selected at Lighthouse International Film Festival 2025.</div></div><div class="t-card" data-c="narrative"><div class="tc-cat">Narrative · Mockumentary</div><div class="tc-title">Mockumentary Series — Treatment & Scripts</div><div class="tc-desc">Genre-blending scripts that merge documentary format with scripted narrative arcs.</div></div><div class="t-card" data-c="ads"><div class="tc-cat">Advertising Copy · Branded Content</div><div class="tc-title">PhysioRX — Brand Script & On-Screen Copy</div><div class="tc-desc">Commercial scripts, on-screen text, and brand messaging for a physiotherapy client campaign.</div></div><div class="t-card" data-c="ads"><div class="tc-cat">Copywriting · Social Media</div><div class="tc-title">Instagram Campaign Copy — 10.5K → 15.5K Growth</div><div class="tc-desc">Caption writing, hook engineering, and CTA copy strategy that drove follower growth from 10.5K to 15.5K in under 60 days.</div></div><div class="t-card" data-c="academic"><div class="tc-cat">Academic · M.A. Media Studies</div><div class="tc-title">Graduate Research — Media Studies Thesis</div><div class="tc-desc">Peer-reviewed academic writing covering media theory, documentary ethics, and visual storytelling.</div></div><div class="t-card" data-c="academic"><div class="tc-cat">Academic · Analysis</div><div class="tc-title">Documentary Analysis Papers</div><div class="tc-desc">Critical analysis of documentary form, non-fiction narrative structure, and visual rhetoric.</div></div></div></div>
+
+<div class="sec" id="s-production"><div class="sh"><div class="sh-t">PRODUCTION BINDER</div><div class="sh-s">Full production management documentation</div></div><div class="sh-desc">Every production I run comes with a complete binder. These documents reflect hands-on line producing experience across short films, branded content, and documentary work.</div><div class="b-grid"><div class="b-card"><div class="b-icon">📋</div><div class="b-title">Call Sheets</div><div class="b-desc">Day-of crew & talent schedules, locations, contact lists, and timing breakdowns.</div></div><div class="b-card"><div class="b-icon">🎯</div><div class="b-title">Shot Lists</div><div class="b-desc">Scene-by-scene shot breakdowns with framing, lens, and blocking notes.</div></div><div class="b-card"><div class="b-icon">🗓</div><div class="b-title">Production Schedules</div><div class="b-desc">Pre-production to post timelines, milestone tracking, and delivery calendars.</div></div><div class="b-card"><div class="b-icon">📍</div><div class="b-title">Location Scouts</div><div class="b-desc">Location reports, photo references, permits, and logistics documentation.</div></div><div class="b-card"><div class="b-icon">💰</div><div class="b-title">Budgets</div><div class="b-desc">Line-item production budgets covering crew, gear, locations, and post.</div></div><div class="b-card"><div class="b-icon">📝</div><div class="b-title">Release Forms</div><div class="b-desc">Talent releases, location agreements, and crew deal memos.</div></div><div class="b-card"><div class="b-icon">🎬</div><div class="b-title">Script Breakdowns</div><div class="b-desc">Scene-by-scene production element breakdowns: cast, props, wardrobe, FX.</div></div><div class="b-card"><div class="b-icon">📡</div><div class="b-title">Distribution Plans</div><div class="b-desc">Festival submission strategies, platform publishing checklists, and metadata.</div></div></div></div>
+
+<div class="sec" id="s-about"><div class="sh"><div class="sh-t">ABOUT</div></div><div class="about-wrap"><div><p class="about-p">I'm <strong>Gopala Krishna</strong> — a Creative Producer and Director based in <strong>New York City</strong>, part of the founding team at <strong>Evolve Pictures LLC</strong>. I own projects end-to-end: from the first story conversation all the way to final export and publishing.</p><p class="about-p">My short film <strong>"Boundaries"</strong> — written, produced, directed, and edited entirely solo — was an <strong>Official Selection at Lighthouse International Film Festival 2025</strong>. I hold a <strong>Master's in Media Studies</strong> and bring 3+ years of hands-on experience across film, branded content, and digital video.</p><p class="about-p">What I find most rewarding about production is the human orchestration of it — connecting a cinematographer, editor, sound designer, and talent toward one shared vision, and building the conditions where all of it clicks together. I show up fully and take real ownership of the outcome, not just the task.</p><p class="about-p">Beyond film, I shoot <strong>photography</strong> (travel, portraits, sports, design), write across formats (narrative scripts, ad copy, academic papers), and manage the full production binder for every project I run.</p><div class="chips"><span class="chip">Documentary</span><span class="chip">Branded Content</span><span class="chip">Narrative Film</span><span class="chip">Social Video</span><span class="chip">Production Management</span><span class="chip">Photography</span><span class="chip">DaVinci Resolve</span><span class="chip">Adobe Premiere</span><span class="chip">Scriptwriting</span><span class="chip">Multi-Camera</span><span class="chip">Podcast Production</span><span class="chip">Photojournalism</span></div></div><div class="stat-grid"><div class="stat-box"><span class="stat-n">4+</span><span class="stat-l">Years Production</span></div><div class="stat-box"><span class="stat-n">500K+</span><span class="stat-l">YouTube Views</span></div><div class="stat-box"><span class="stat-n">3M+</span><span class="stat-l">Instagram Views</span></div><div class="stat-box"><span class="stat-n">5K</span><span class="stat-l">Followers / 60 Days</span></div><div class="stat-box"><span class="stat-n">LIFF</span><span class="stat-l">Festival 2025</span></div></div></div></div>
+
+<div class="sec" id="s-services"><div class="sh"><div class="sh-t">SERVICES</div><div class="sh-s">What I Do</div></div><div class="svc-g"><div class="svc"><div class="svc-no">01</div><div class="svc-t">Documentary & Non-Fiction</div><div class="svc-d">Story development, field production, interviews, and edit — for short-form docs, branded documentaries, and factual series.</div><div class="svc-tags"><span>Story Development</span><span>Field Production</span><span>Interview Direction</span><span>Post Production</span></div></div><div class="svc"><div class="svc-no">02</div><div class="svc-t">Branded Content</div><div class="svc-d">Concept-to-delivery content for brands that need to tell a real story — not just an ad. Clients get a full-service creative partner.</div><div class="svc-tags"><span>Concept & Script</span><span>Shoot Direction</span><span>Brand Alignment</span><span>Multi-Platform</span></div></div><div class="svc"><div class="svc-no">03</div><div class="svc-t">Narrative Film</div><div class="svc-d">Short films, mockumentaries, and narrative projects — from writing through production and festival-ready post.</div><div class="svc-tags"><span>Writing</span><span>Directing</span><span>Producing</span><span>Editing</span></div></div><div class="svc"><div class="svc-no">04</div><div class="svc-t">Social & Digital Video</div><div class="svc-d">High-retention short-form content for Instagram, YouTube, and TikTok — scripted, shot, and edited with platform growth in mind.</div><div class="svc-tags"><span>Reels / Shorts</span><span>Growth Strategy</span><span>Hook Engineering</span><span>Publishing</span></div></div><div class="svc"><div class="svc-no">05</div><div class="svc-t">Podcast & Long-Form</div><div class="svc-d">End-to-end podcast production, including video podcast formatting, show development, and multi-camera setup.</div><div class="svc-tags"><span>Show Development</span><span>Multi-Camera</span><span>Audio</span><span>Post Edit</span></div></div><div class="svc"><div class="svc-no">06</div><div class="svc-t">Creative Strategy</div><div class="svc-d">Content audits, production planning, and creative direction for teams that need a senior creative eye across channels.</div><div class="svc-tags"><span>Content Audit</span><span>Pre-Production</span><span>Creative Direction</span><span>Consulting</span></div></div></div><div class="sh"><div class="sh-t">MY PROCESS</div><div class="sh-s">How I Work</div></div><div class="proc-g"><div class="proc"><div class="proc-no">01</div><div class="proc-t">Discover & Brief</div><div class="proc-d">Understanding your goals, audience, and creative vision before a single frame is planned.</div></div><div class="proc"><div class="proc-no">02</div><div class="proc-t">Develop & Pre-Produce</div><div class="proc-d">Scripting, shot lists, casting, location, crew, and schedule — all locked before production starts.</div></div><div class="proc"><div class="proc-no">03</div><div class="proc-t">Produce & Direct</div><div class="proc-d">On-set leadership, coordinating every creative and logistical element toward the best possible capture.</div></div><div class="proc"><div class="proc-no">04</div><div class="proc-t">Edit & Deliver</div><div class="proc-d">From rough cut to final — picture edit, color, sound design, and export ready for your platform.</div></div></div><div class="sh"><div class="sh-t">TOOLKIT</div><div class="sh-s">Skills & Tools</div></div><div class="tk-g"><div class="tk"><div class="tk-h">Production</div><ul><li>Multi-Camera Direction</li><li>Pre-Production Planning</li><li>Location & Crew Coordination</li><li>Script Supervision</li><li>Photojournalism</li></ul></div><div class="tk"><div class="tk-h">Post Production</div><ul><li>DaVinci Resolve Studio</li><li>Adobe Premiere Pro</li><li>Color Grading</li><li>Sound Design</li><li>VidIQ / Analytics</li></ul></div><div class="tk"><div class="tk-h">Strategy & Distribution</div><ul><li>Instagram / YouTube / TikTok</li><li>Content Architecture</li><li>Audience Growth</li><li>Show Development</li><li>Podcast Production</li></ul></div></div><div class="role-g"><div class="role"><span class="role-ico">🎬</span><div class="role-t">Director</div><div class="role-d">Narrative shorts, documentaries, and branded films with complete creative control.</div></div><div class="role"><span class="role-ico">📋</span><div class="role-t">Line Producer</div><div class="role-d">Crew coordination, shoot logistics, budgets, and keeping every moving part aligned.</div></div><div class="role"><span class="role-ico">✂️</span><div class="role-t">Editor</div><div class="role-d">DaVinci Resolve & Adobe Premiere — picture edit, color grade, sound design.</div></div><div class="role"><span class="role-ico">🎛️</span><div class="role-t">Social Video</div><div class="role-d">Short-form content engineered for attention, growth, and platform performance.</div></div></div></div>
+
+<div class="sec" id="s-contact"><div class="sh"><div class="sh-t">HIRE ME</div><div class="sh-s">Open to freelance projects and full-time roles.</div></div><div class="sh-desc">Whether you have a brand story to tell, a production that needs a creative leader, or a team looking for someone to own the work end-to-end — I'd love to hear from you.</div><div class="hire-g"><div class="hire fl"><div class="hire-tp">Freelance · Project Basis</div><div class="hire-ht">YOU BRING THE BRIEF.<br>I BRING THE FILM.</div><ul class="hire-ul"><li>Branded content campaigns</li><li>Documentary & narrative production</li><li>Social video strategy & production</li><li>Photography shoots</li><li>Copywriting & scripts</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-r">Start a Project</a></div><div class="hire ft"><div class="hire-tp">Full-Time · Staff Role</div><div class="hire-ht">LET ME GROW<br>WITH YOUR TEAM.</div><ul class="hire-ul"><li>Creative Producer & Director roles</li><li>Production companies & studios</li><li>Sports, lifestyle, branded content</li><li>NYC-based or remote-first</li><li>Immediate availability</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-b">Send an Opportunity</a></div></div><div class="c-rows"><div class="c-row"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></div><div class="c-row"><span class="c-lbl">LinkedIn</span><span class="c-val"><a href="https://linkedin.com/in/gopalakkrishna" target="_blank">linkedin.com/in/gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">Instagram</span><span class="c-val"><a href="https://www.instagram.com/gopalakkrishna/" target="_blank">@gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">YouTube</span><span class="c-val"><a href="https://www.youtube.com/@Evolvepictures" target="_blank">@Evolvepictures</a></span></div><div class="c-row"><span class="c-lbl">Resume</span><span class="c-val"><a href="#" onclick="event.preventDefault(); play('https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/preview', 'Gopala Krishna — Resume', 'doc', 'https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/view?usp=drive_link')">View Resume</a></span></div><div class="c-row"><span class="c-lbl">Location</span><span class="c-val" style="color:#fff;font-size:.8rem">New York City, NY <span style="color:var(--tx3);font-size:.7rem">(Open to other cities)</span></span></div></div></div>
+
+<footer id="ft"><span>© Gopala Krishna 2026 · Evolve Pictures LLC</span><span><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></footer>
+
+<!-- MAIN MEDIA MODAL -->
+<div class="modal" id="modal" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
+  <iframe id="mF" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen scrolling="no" frameborder="0"></iframe>
+  <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/>
+</div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">Platform Preview</div><a class="m-link yt" id="mL" href="#" target="_blank"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
+
+<script>
+addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>50));
+
+function toggleBrowse(e) {
+    if(e) e.stopPropagation();
+    document.getElementById('browseDropdown').classList.toggle('open');
+}
+
+document.addEventListener('click', (e) => {
+    const drop = document.getElementById('browseDropdown');
+    if(drop && drop.classList.contains('open') && !e.target.closest('.mobile-browse') && !e.target.closest('#browseDropdown')) {
+        drop.classList.remove('open');
+    }
+});
+
+function go(s){
+    document.querySelectorAll('.nm').forEach(n => {
+        if(n.dataset.s) n.classList.toggle('on', n.dataset.s === s);
+    });
+    
+    // Highlight "Browse" button if a dropdown section is active
+    const dropItems = ['social', 'writing', 'production', 'about', 'services', 'contact'];
+    const browseBtn = document.getElementById('browseBtn');
+    if(browseBtn) {
+        if(dropItems.includes(s)) browseBtn.classList.add('on');
+        else browseBtn.classList.remove('on');
+    }
+
+    const drop = document.getElementById('browseDropdown');
+    if(drop) drop.classList.remove('open');
+
+    document.getElementById('billboard').style.display=s==='home'?'':'none';
+    document.getElementById('homeRows').style.display=s==='home'?'':'none';
+    document.querySelectorAll('.sec').forEach(e=>e.classList.remove('on'));
+    const el=document.getElementById('s-'+s);
+    if(el){el.classList.remove('on');void el.offsetWidth;el.classList.add('on')}
+    document.getElementById('ft').style.display=s==='home'?'none':'';
+    scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('ft').style.display='none';
+function fil(t,c,b){const g=document.getElementById(t+'G');[...g.children].forEach(e=>e.style.display=(c==='all'||e.dataset.c===c)?'':'none');document.querySelectorAll('#'+t+'F .fb').forEach(e=>e.classList.remove('on'));b.classList.add('on')}
+const PLAT_ICONS={
+  yt:'<svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M23.5 6.2a3.01 3.01 0 0 0-2.12-2.13C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.57A3.01 3.01 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3.01 3.01 0 0 0 2.12 2.13c1.88.57 9.38.57 9.38.57s7.5 0 9.38-.57a3.01 3.01 0 0 0 2.12-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.75 15.53V8.47L15.98 12l-6.23 3.53Z"/></svg>',
+  vimeo:'<svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609-3.268 4.247-6.026 6.37-8.29 6.37-1.409 0-2.578-1.294-3.553-3.881L5.322 12.5C4.603 9.913 3.83 8.619 3 8.619c-.185 0-.829.388-1.932 1.164L0 8.316c1.214-1.067 2.41-2.135 3.588-3.203C5.186 3.67 6.398 2.755 7.25 2.68c2.146-.205 3.465 1.259 3.953 4.391.533 3.374.902 5.474 1.107 6.297.615 2.798 1.291 4.191 2.035 4.191.577 0 1.443-.911 2.603-2.74 1.154-1.83 1.769-3.226 1.848-4.189.165-1.582-.457-2.379-1.848-2.379-.659 0-1.336.151-2.035.449 1.352-4.423 3.932-6.572 7.742-6.45 2.817.086 4.147 1.913 3.992 5.487z"/></svg>',
+  ig:'<svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>',
+  doc:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>',
+  photo:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>'
+};
+
+// Original Media Play Setup
+function play(url,title,plat,href){
+  document.getElementById('mF').style.display = 'block';
+  document.getElementById('mImg').style.display = 'none';
+  document.getElementById('mBot').style.display = 'flex';
+  
+  document.getElementById('mF').src=url;
+  document.getElementById('mT').textContent=title;
+  const l=document.getElementById('mL');
+  l.href=href;
+  const isIg=plat==='ig', isVimeo=plat==='vimeo', isDoc=plat==='doc';
+  l.className='m-link '+(isVimeo?'vm':isIg?'ig':isDoc?'doc':'yt');
+  document.getElementById('mLT').textContent='Open '+(isDoc?'File':isVimeo?'on Vimeo':isIg?'on Instagram':'on YouTube');
+  const platEl=document.getElementById('mPlat');
+  const label=isVimeo?'Vimeo':isIg?'Instagram':isDoc?'Document':'YouTube';
+  platEl.innerHTML=PLAT_ICONS[isVimeo?'vimeo':isIg?'ig':isDoc?'doc':'yt']+'<span id="mPN">'+label+'</span>';
+  const m=document.getElementById('modal');
+  m.classList.remove('portrait', 'document', 'image-view');
+  if(isIg) m.classList.add('portrait');
+  if(isDoc) m.classList.add('document');
+  m.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+// New Image Viewing Setup with Gallery Navigation
+let currentGallery = [];
+let currentGalleryIndex = 0;
+
+function openGalleryModal(el) {
+  // Get all currently visible gallery items
+  const cards = Array.from(document.querySelectorAll('#pG .g-card'));
+  currentGallery = cards.filter(c => c.style.display !== 'none').map(c => ({
+    url: c.getAttribute('data-url'),
+    title: c.getAttribute('data-title')
+  }));
+  
+  // Find index of clicked item
+  const targetUrl = el.getAttribute('data-url');
+  currentGalleryIndex = currentGallery.findIndex(item => item.url === targetUrl);
+  if(currentGalleryIndex === -1) currentGalleryIndex = 0;
+  
+  renderGalleryImage();
+}
+
+function renderGalleryImage() {
+  if(!currentGallery.length) return;
+  const item = currentGallery[currentGalleryIndex];
+  
+  document.getElementById('mF').style.display = 'none';
+  document.getElementById('mImg').style.display = 'block';
+  document.getElementById('mBot').style.display = 'none';
+  
+  document.getElementById('mImg').src = item.url;
+  document.getElementById('mT').textContent = item.title;
+  
+  const platEl = document.getElementById('mPlat');
+  platEl.innerHTML = PLAT_ICONS['photo'] + '<span id="mPN">Photography</span>';
+  
+  const m = document.getElementById('modal');
+  m.classList.remove('portrait', 'document');
+  m.classList.add('image-view');
+  m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  
+  // Render Navigation
+  const nav = document.getElementById('mIgNav');
+  if (currentGallery.length <= 1) {
+      nav.style.display = 'none';
+  } else {
+      nav.style.display = 'flex';
+      let dotsHtml = '';
+      for(let i=0; i<currentGallery.length; i++) {
+          dotsHtml += `<button class="ig-dot" onclick="gotoGallery(${i})" style="${i === currentGalleryIndex ? 'background:var(--gold); border-color:var(--gold);' : ''}"></button>`;
+      }
+      nav.innerHTML = `
+          <button class="ig-btn" onclick="navGallery(-1)" ${currentGalleryIndex === 0 ? 'disabled' : ''}>← Prev</button>
+          <div class="ig-dots" style="max-width: 60%;">${dotsHtml}</div>
+          <button class="ig-btn" onclick="navGallery(1)" ${currentGalleryIndex === currentGallery.length - 1 ? 'disabled' : ''}>Next →</button>
+      `;
+  }
+}
+
+function navGallery(dir) {
+    const max = currentGallery.length - 1;
+    let nI = currentGalleryIndex + dir;
+    if (nI < 0) nI = 0;
+    if (nI > max) nI = max;
+    if (nI !== currentGalleryIndex) {
+        currentGalleryIndex = nI;
+        renderGalleryImage();
+    }
+}
+
+function gotoGallery(index) {
+    if (index !== currentGalleryIndex) {
+        currentGalleryIndex = index;
+        renderGalleryImage();
+    }
+}
+
+function xPlay(){
+  const m=document.getElementById('modal');
+  m.classList.remove('open','portrait','document','image-view');
+  m.removeAttribute('data-ig');
+  document.getElementById('mF').src='';
+  document.getElementById('mImg').src='';
+  document.getElementById('mIgNav').style.display='none';
+  document.body.style.overflow='';
+  currentIgKey=null;
+  currentGallery=[];
+}
+
+const IG={
+  physio:{r:['DVoKY8ejDLV','DVbMAuxjM9c','DTa0jPQk_5b','DQ5RmrSjfze','DRPdSZVDRBZ','DSXYkwgjWQB']},
+  growth:{r:['DSAG-FkDtAO','DTNFp9JkWT6','DSHszuKDj3n','DR7B0QoDtAA']},
+  biryani:{r:['DM_Hi8rR22y']}
+};
+const IX={physio:0, growth:0, biryani:0};
+let currentIgKey=null;
+
+function openIgModal(k, title) {
+  currentIgKey = k;
+  const m = document.getElementById('modal');
+  m.dataset.ig = k;
+  
+  document.getElementById('mF').style.display = 'block';
+  document.getElementById('mImg').style.display = 'none';
+  document.getElementById('mBot').style.display = 'flex';
+  
+  const platEl = document.getElementById('mPlat');
+  platEl.innerHTML = PLAT_ICONS['ig'] + '<span id="mPN">Instagram</span>';
+  document.getElementById('mT').textContent = title;
+  document.getElementById('mLT').textContent = 'Open Reel on Instagram';
+  document.getElementById('mL').className = 'm-link ig';
+
+  m.classList.remove('document', 'image-view');
+  m.classList.add('portrait');
+  m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  
+  renderModalReel();
+}
+
+function renderModalReel() {
+    if(!currentIgKey) return;
+    const k = currentIgKey;
+    const index = IX[k];
+    const ids = IG[k].r;
+    const currentId = ids[index];
+    
+    document.getElementById('mF').src = `https://www.instagram.com/reel/${currentId}/embed`;
+    document.getElementById('mL').href = `https://www.instagram.com/reel/${currentId}/`;
+
+    const nav = document.getElementById('mIgNav');
+    if (ids.length <= 1) {
+        nav.style.display = 'none';
+    } else {
+        nav.style.display = 'flex';
+        let dotsHtml = '';
+        for(let i=0; i<ids.length; i++) {
+            dotsHtml += `<button class="ig-dot ${i === index ? 'active' : ''}" onclick="gotoReel(${i})"></button>`;
+        }
+        nav.innerHTML = `
+            <button class="ig-btn" onclick="navReel(-1)" ${index === 0 ? 'disabled' : ''}>← Prev</button>
+            <div class="ig-dots">${dotsHtml}</div>
+            <button class="ig-btn" onclick="navReel(1)" ${index === ids.length - 1 ? 'disabled' : ''}>Next →</button>
+        `;
+    }
+}
+
+function navReel(dir) {
+    if(!currentIgKey) return;
+    const k = currentIgKey;
+    const max = IG[k].r.length - 1;
+    let nI = IX[k] + dir;
+    if (nI < 0) nI = 0;
+    if (nI > max) nI = max;
+    if (nI !== IX[k]) {
+        IX[k] = nI;
+        renderModalReel();
+    }
+}
+
+function gotoReel(index) {
+    if(!currentIgKey) return;
+    const k = currentIgKey;
+    if (index !== IX[k]) {
+        IX[k] = index;
+        renderModalReel();
+    }
+}
+
+// Global Keyboard Navigation
+document.addEventListener('keydown', (e) => {
+    const m = document.getElementById('modal');
+    if (!m.classList.contains('open')) return;
+    
+    if (m.classList.contains('image-view') && currentGallery.length > 1) {
+        if (e.key === 'ArrowLeft') navGallery(-1);
+        if (e.key === 'ArrowRight') navGallery(1);
+    } else if (m.dataset.ig) {
+        if (e.key === 'ArrowLeft') navReel(-1);
+        if (e.key === 'ArrowRight') navReel(1);
+    }
+    
+    if (e.key === 'Escape') xPlay();
+});
+</script>
+</body>
+</html>
