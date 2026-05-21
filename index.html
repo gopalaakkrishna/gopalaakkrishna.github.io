@@ -73,7 +73,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit}
 /* CARD */
 .card{flex:0 0 var(--card-w);max-width:85vw;border-radius:4px;overflow:hidden;background:var(--bg2);transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s;position:relative;scroll-snap-align:start;cursor:pointer}
 .card:hover{transform:scale(1.04);z-index:10;box-shadow:0 14px 40px rgba(0,0,0,.75)}
-.card-img{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden}
+.card-img{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;background-color:#1a1a1a;}
 .card-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.4rem}
 .card-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4);opacity:0;transition:opacity .25s;cursor:pointer}
 .card:hover .card-play{opacity:1}
@@ -420,9 +420,27 @@ footer a{color:var(--red)}
   </div>
 </div>
 
+<div class="card" onclick="play('https://player.vimeo.com/video/1146722977?autoplay=1','The Story of a Superfan','vimeo','https://vimeo.com/1146722977')">
+  <div class="card-img" style="background:url('https://vumbnail.com/1146722977.jpg') center/cover no-repeat, linear-gradient(135deg, #18281a, #101a14);"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body">
+    <div class="card-badge b-blue">Short Documentary</div>
+    <div class="card-title">The Story of a Superfan</div>
+    <div class="card-role">Producer · DOP (Dir: Boobalan Rameshkumar)</div>
+    <div class="card-btns">
+      <button class="cb cb-w" onclick="event.stopPropagation(); play('https://player.vimeo.com/video/1146722977?autoplay=1','The Story of a Superfan','vimeo','https://vimeo.com/1146722977')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Film</button>
+    </div>
+  </div>
+</div>
+
 <div class="card" onclick="openIgModal('physio', 'PhysioRX Campaign')">
   <div class="card-img" style="background:url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop') center/cover no-repeat #201810;"><div class="card-play"><div class="card-play-c" style="background:rgba(197,164,78,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body"><div class="card-badge b-gold">Branded Content · Instagram Reels</div><div class="card-title">PhysioRX Campaign</div><div class="card-role">Producer · Director · Editor · Adobe Premiere · CapCut</div><div style="font-size:.6rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
+  <div class="card-body"><div class="card-badge b-gold">Branded Content · Instagram Reels</div><div class="card-title">PhysioRX Campaign</div><div class="card-role">Producer · Director · Editor · CapCut · DaVinci Resolve</div><div style="font-size:.6rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
+</div>
+
+<div class="card" onclick="openIgModal('growth', 'Instagram Growth Campaign')">
+  <div class="card-img" style="background:url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=600&auto=format&fit=crop') center/cover no-repeat #142018;"><div class="card-play"><div class="card-play-c" style="background:rgba(200,100,200,.85)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-pink">Social Video · Content Strategy</div><div class="card-title">Instagram Growth Campaign</div><div class="card-role">DOP · Producer · 10.5K → 15.5K Followers · 3M+ Views</div><div style="font-size:.6rem;color:#d8a;margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
+</div>
 </div>
 
 <div class="card" onclick="openIgModal('growth', 'Instagram Growth Campaign')">
@@ -481,6 +499,21 @@ footer a{color:var(--red)}
 <div class="card" onclick="play('https://www.youtube-nocookie.com/embed/mOOkPWhkPbE?autoplay=1&rel=0','NYC Strangest Outbreak','youtube','https://www.youtube.com/watch?v=mOOkPWhkPbE')"><div class="card-img" style="background:url('https://img.youtube.com/vi/mOOkPWhkPbE/maxresdefault.jpg') center/cover no-repeat #181828;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div><div class="card-body"><div class="card-badge b-blue">Narrative · Mockumentary</div><div class="card-title">Investigating NYC's Strangest Outbreak</div><div class="card-role">Producer · Production Manager</div><div class="card-btns"><button class="cb cb-w"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Film</button></div></div></div>
 </div></div>
 
+<div class="sh"><div class="sh-t">DOCUMENTARY</div><div class="sh-s">1 project</div></div>
+<div class="row"><div class="row-track">
+<div class="card" onclick="play('https://player.vimeo.com/video/1146722977?autoplay=1','The Story of a Superfan','vimeo','https://vimeo.com/1146722977')">
+  <div class="card-img" style="background:url('https://vumbnail.com/1146722977.jpg') center/cover no-repeat, linear-gradient(135deg, #18281a, #101a14);"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body">
+    <div class="card-badge b-blue">Short Documentary</div>
+    <div class="card-title">The Story of a Superfan</div>
+    <div class="card-role">Producer · DOP (Dir: Boobalan Rameshkumar)</div>
+    <div class="card-btns">
+      <button class="cb cb-w" onclick="event.stopPropagation(); play('https://player.vimeo.com/video/1146722977?autoplay=1','The Story of a Superfan','vimeo','https://vimeo.com/1146722977')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Film</button>
+    </div>
+  </div>
+</div>
+</div></div>
+
 <div class="sh"><div class="sh-t">MUSIC VIDEO</div><div class="sh-s">1 project</div></div>
 <div class="row"><div class="row-track">
 <div class="card" onclick="play('https://www.youtube-nocookie.com/embed/o7rM0fg1yyo?autoplay=1&rel=0','AERIAL - A Different Kind of Close (Official Music Video)','youtube','https://www.youtube.com/watch?v=o7rM0fg1yyo')">
@@ -512,7 +545,7 @@ footer a{color:var(--red)}
 
 <div class="card" onclick="openIgModal('physio', 'PhysioRX Campaign')">
   <div class="card-img" style="background:url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop') center/cover no-repeat #201810;"><div class="card-play"><div class="card-play-c" style="background:rgba(197,164,78,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body"><div class="card-badge b-gold">Branded Content · Instagram Reels</div><div class="card-title">PhysioRX Campaign</div><div class="card-role">Producer · Director · Editor · Adobe Premiere · CapCut</div><div style="font-size:.6rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
+  <div class="card-body"><div class="card-badge b-gold">Branded Content · Instagram Reels</div><div class="card-title">PhysioRX Campaign</div><div class="card-role">Producer · Director · Editor · CapCut · DaVinci Resolve</div><div style="font-size:.6rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
 </div>
 
 <div class="card" onclick="openIgModal('biryani', 'Delhi Mughlai Biryani')">
@@ -525,7 +558,7 @@ footer a{color:var(--red)}
 <div class="row"><div class="row-track">
 <div class="card" onclick="openIgModal('growth', 'Instagram Growth Campaign')">
   <div class="card-img" style="background:url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=600&auto=format&fit=crop') center/cover no-repeat #142018;"><div class="card-play"><div class="card-play-c" style="background:rgba(200,100,200,.85)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body"><div class="card-badge b-pink">Social Video · Content Strategy</div><div class="card-title">Instagram Growth Campaign</div><div class="card-role">10.5K → 15.5K Followers · 3M+ Views</div><div style="font-size:.6rem;color:#d8a;margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
+  <div class="card-body"><div class="card-badge b-pink">Social Video · Content Strategy</div><div class="card-title">Instagram Growth Campaign</div><div class="card-role">DOP · Producer · 10.5K → 15.5K Followers · 3M+ Views</div><div style="font-size:.6rem;color:#d8a;margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
 </div>
 </div></div>
 </div><!-- /s-film -->
