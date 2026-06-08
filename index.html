@@ -210,8 +210,9 @@ a{color:inherit;text-decoration:none}button{font-family:inherit}
 .modal.portrait .m-stage{aspect-ratio:auto; height:740px; max-height:calc(95vh - 120px);}
 
 /* DOCUMENT & IMAGE MODAL */
-.modal.document .m-box{width:min(900px,94vw);height:90vh;display:flex;flex-direction:column}
-.modal.document .m-stage{aspect-ratio:auto;height:100%;flex:1;max-height:none}
+.modal.document .m-box{width:min(1600px,96vw);height:96vh;display:flex;flex-direction:column}
+.modal.document .m-stage{aspect-ratio:auto;height:100%;flex:1;max-height:none;overflow:hidden}
+.modal.document .m-stage iframe {width:125%;height:125%;transform:scale(0.8);transform-origin:top left}
 .modal.image-view .m-box{width:min(1200px,94vw);height:88vh;display:flex;flex-direction:column}
 .modal.image-view .m-stage{aspect-ratio:auto;height:100%;flex:1;max-height:none}
 .m-link.doc{background:rgba(255,255,255,.15)}.m-link.doc:hover{background:rgba(255,255,255,.25)}
@@ -755,7 +756,7 @@ footer a{color:var(--red)}
 
 <!-- MAIN MEDIA MODAL -->
 <div class="modal" id="modal" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
-  <iframe id="mF" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen scrolling="no" frameborder="0"></iframe>
+  <iframe id="mF" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
   <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/>
 </div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">Platform Preview</div><a class="m-link yt" id="mL" href="#" target="_blank"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
 
