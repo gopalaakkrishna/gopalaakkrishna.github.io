@@ -534,17 +534,7 @@ footer a{color:var(--red)}
 
 <div class="card" onclick="play('https://www.youtube-nocookie.com/embed/mOOkPWhkPbE?autoplay=1&rel=0','NYC Strangest Outbreak','youtube','https://www.youtube.com/watch?v=mOOkPWhkPbE')"><div class="card-img" style="background:url('https://img.youtube.com/vi/mOOkPWhkPbE/maxresdefault.jpg') center/cover no-repeat #181828;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div><div class="card-body"><div class="card-badge b-blue">Narrative · Mockumentary</div><div class="card-title">Investigating NYC's Strangest Outbreak</div><div class="card-role">Producer · Production Manager</div><div class="card-btns"><button class="cb cb-w"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Film</button></div></div></div>
 
-<div class="card" onclick="play('https://www.youtube-nocookie.com/embed/o7rM0fg1yyo?autoplay=1&rel=0','AERIAL - A Different Kind of Close (Official Music Video)','youtube','https://www.youtube.com/watch?v=o7rM0fg1yyo')">
-  <div class="card-img" style="background:url('https://img.youtube.com/vi/o7rM0fg1yyo/maxresdefault.jpg') center/cover no-repeat #1c1024;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body">
-    <div class="card-badge b-pink">Music Video</div>
-    <div class="card-title">AERIAL - A Different Kind of Close</div>
-    <div class="card-role">Production Manager</div>
-    <div class="card-btns">
-      <button class="cb cb-w" onclick="event.stopPropagation(); play('https://www.youtube-nocookie.com/embed/o7rM0fg1yyo?autoplay=1&rel=0','AERIAL - A Different Kind of Close (Official Music Video)','youtube','https://www.youtube.com/watch?v=o7rM0fg1yyo')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Video</button>
-    </div>
-  </div>
-</div>
+<div class="card" onclick="play('https://www.youtube-nocookie.com/embed/o7rM0fg1yyo?autoplay=1&rel=0','AERIAL - A Different Kind of Close (Official Music Video)','youtube','https://www.youtube.com/watch?v=o7rM0fg1yyo')"><div class="card-img" style="background:url('https://img.youtube.com/vi/o7rM0fg1yyo/maxresdefault.jpg') center/cover no-repeat #1c1024;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div><div class="card-body"><div class="card-badge b-pink">Music Video</div><div class="card-title">AERIAL - A Different Kind of Close</div><div class="card-role">Production Manager</div><div class="card-btns"><button class="cb cb-w" onclick="event.stopPropagation(); play('https://www.youtube-nocookie.com/embed/o7rM0fg1yyo?autoplay=1&rel=0','AERIAL - A Different Kind of Close (Official Music Video)','youtube','https://www.youtube.com/watch?v=o7rM0fg1yyo')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch Video</button></div></div></div>
 </div></div>
 
 </div><!-- /homeRows -->
@@ -1052,6 +1042,18 @@ function navGallery(dir) {
     }
 }
 
+// Global Swapping triggers and cleanup routines
+function switchMainDoc(idx) {
+  currentDocIndex = idx;
+  currentSubDocIndex = 0; // Reset sub-index when swapping main tabs
+  openDocGroupItem();
+}
+
+function switchSubDoc(idx) {
+  currentSubDocIndex = idx;
+  openDocGroupItem();
+}
+
 function gotoGallery(index) {
     if (index !== currentGalleryIndex) {
         currentGalleryIndex = index;
@@ -1169,12 +1171,12 @@ const DOC_GROUPS = {
         name: "The Void",
         subItems: [
           {
-            name: "The Void",
+            name: "Day 1",
             preview: "https://docs.google.com/document/d/1FJyU9fGRAudfiix0Skyen6mVMi6srB6s/preview",
             edit: "https://docs.google.com/document/d/1FJyU9fGRAudfiix0Skyen6mVMi6srB6s/edit?usp=drive_link"
           },
           {
-            name: "Additional Shot List",
+            name: "Day 2",
             preview: "https://docs.google.com/document/d/1i4cfh9cR8ZOq4aC9K8-5Uu_608_cqz9i/preview",
             edit: "https://docs.google.com/document/d/1i4cfh9cR8ZOq4aC9K8-5Uu_608_cqz9i/edit?usp=drive_link"
           }
@@ -1238,17 +1240,6 @@ function openDocGroupItem() {
       docSubNav.style.display = 'none';
     }
   }
-}
-
-function switchMainDoc(idx) {
-  currentDocIndex = idx;
-  currentSubDocIndex = 0; // Reset sub-index when swapping main tabs
-  openDocGroupItem();
-}
-
-function switchSubDoc(idx) {
-  currentSubDocIndex = idx;
-  openDocGroupItem();
 }
 
 // Global Keyboard Navigation
