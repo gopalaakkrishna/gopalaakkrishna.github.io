@@ -216,6 +216,80 @@ a{color:inherit;text-decoration:none}button{font-family:inherit}
 .modal.image-view .m-stage{aspect-ratio:auto;height:100%;flex:1;max-height:none}
 .m-link.doc{background:rgba(255,255,255,.15)}.m-link.doc:hover{background:rgba(255,255,255,.25)}
 
+/* Document Sub-Navigation (Tabs) */
+.doc-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #181818;
+  border-top: 1px solid rgba(255,255,255,.04);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.doc-nav::-webkit-scrollbar { display: none; }
+.doc-tab {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  color: var(--tx2);
+  font-size: .75rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.doc-tab:hover {
+  color: #fff;
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.15);
+}
+.doc-tab.active {
+  color: #111;
+  background: var(--red);
+  border-color: var(--red);
+  font-weight: 600;
+}
+
+/* Document Tier-2 (Sub-items) navigation */
+.doc-sub-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: #181818;
+  border-top: 1px solid rgba(255,255,255,.02);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.doc-sub-nav::-webkit-scrollbar { display: none; }
+.doc-sub-tab {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+  color: var(--tx2);
+  font-size: .72rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.doc-sub-tab:hover {
+  color: #fff;
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.12);
+}
+.doc-sub-tab.active {
+  color: #111;
+  background: var(--gold);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
 .m-link.ig{background:linear-gradient(135deg,#f58529,#dd2a7b)}.m-link.ig:hover{opacity:.85}
 .ig-nav{display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 16px;background:#181818;border-top:1px solid rgba(255,255,255,.04)}
 .ig-btn{background:none;border:1px solid rgba(255,255,255,.15);color:#fff;padding:8px 18px;border-radius:100px;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
@@ -781,20 +855,17 @@ footer a{color:var(--red)}
     <div class="b-title">Call Sheets</div>
     <div class="b-desc">Day-of crew & talent schedules, locations, contact lists, and timing breakdowns.</div>
   </div>
-  <div class="b-card" onclick="play('https://docs.google.com/spreadsheets/d/1eFyC8MLowmSdnctUmsKq7h30Fyp70iMCa3I4wGnU9Ms/preview', 'Production Shot List', 'doc', 'https://docs.google.com/spreadsheets/d/1eFyC8MLowmSdnctUmsKq7h30Fyp70iMCa3I4wGnU9Ms/edit?usp=drive_link')">
+  <div class="b-card" onclick="playDocGroup('shotLists')">
     <div class="b-icon">🎯</div>
     <div class="b-title">Shot Lists</div>
     <div class="b-desc">Scene-by-scene shot breakdowns with framing, lens, and blocking notes.</div>
-    <div class="card-btns" style="margin-top:12px;">
-      <button class="cb cb-o" onclick="event.stopPropagation(); play('https://docs.google.com/document/d/1FJyU9fGRAudfiix0Skyen6mVMi6srB6s/preview', 'The Void — Shot List', 'doc', 'https://docs.google.com/document/d/1FJyU9fGRAudfiix0Skyen6mVMi6srB6s/edit?usp=drive_link')">
-        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> The Void
-      </button>
-      <button class="cb cb-o" onclick="event.stopPropagation(); play('https://docs.google.com/document/d/1i4cfh9cR8ZOq4aC9K8-5Uu_608_cqz9i/preview', 'Additional Shot List', 'doc', 'https://docs.google.com/document/d/1i4cfh9cR8ZOq4aC9K8-5Uu_608_cqz9i/edit?usp=drive_link')">
-        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> Doc 2
-      </button>
-    </div>
   </div>
-  <div class="b-card"><div class="b-icon">🗓</div><div class="b-title">Production Schedules</div><div class="b-desc">Pre-production to post timelines, milestone tracking, and delivery calendars.</div></div><div class="b-card"><div class="b-icon">📍</div><div class="b-title">Location Scouts</div><div class="b-desc">Location reports, photo references, permits, and logistics documentation.</div></div><div class="b-card"><div class="b-icon">💰</div><div class="b-title">Budgets</div><div class="b-desc">Line-item production budgets covering crew, gear, locations, and post.</div></div><div class="b-card"><div class="b-icon">📝</div><div class="b-title">Release Forms</div><div class="b-desc">Talent releases, location agreements, and crew deal memos.</div></div><div class="b-card"><div class="b-icon">🎬</div><div class="b-title">Script Breakdowns</div><div class="b-desc">Scene-by-scene production element breakdowns: cast, props, wardrobe, FX.</div></div><div class="b-card"><div class="b-icon">📡</div><div class="b-title">Distribution Plans</div><div class="b-desc">Festival submission strategies, platform publishing checklists, and metadata.</div></div></div></div>
+  <div class="b-card" onclick="play('https://docs.google.com/spreadsheets/d/1njR1WD2cJYNsy58tg08EgnOFk3Wui2R9hBeEDO70pUY/preview', 'Production Schedule', 'doc', 'https://docs.google.com/spreadsheets/d/1njR1WD2cJYNsy58tg08EgnOFk3Wui2R9hBeEDO70pUY/edit?usp=drive_link')">
+    <div class="b-icon">🗓</div>
+    <div class="b-title">Production Schedules</div>
+    <div class="b-desc">Pre-production to post timelines, milestone tracking, and delivery calendars.</div>
+  </div>
+  <div class="b-card"><div class="b-icon">📍</div><div class="b-title">Location Scouts</div><div class="b-desc">Location reports, photo references, permits, and logistics documentation.</div></div><div class="b-card"><div class="b-icon">💰</div><div class="b-title">Budgets</div><div class="b-desc">Line-item production budgets covering crew, gear, locations, and post.</div></div><div class="b-card"><div class="b-icon">📝</div><div class="b-title">Release Forms</div><div class="b-desc">Talent releases, location agreements, and crew deal memos.</div></div><div class="b-card"><div class="b-icon">🎬</div><div class="b-title">Script Breakdowns</div><div class="b-desc">Scene-by-scene production element breakdowns: cast, props, wardrobe, FX.</div></div><div class="b-card"><div class="b-icon">📡</div><div class="b-title">Distribution Plans</div><div class="b-desc">Festival submission strategies, platform publishing checklists, and metadata.</div></div></div></div>
 
 <div class="sec" id="s-about"><div class="sh"><div class="sh-t">ABOUT</div></div><div class="about-wrap"><div><p class="about-p">I'm <strong>Gopala Krishna</strong> — a Creative Producer and Director based in <strong>New York City</strong>, part of the founding team at <strong>Evolve Pictures LLC</strong>. I own projects end-to-end: from the first story conversation all the way to final export and publishing.</p><p class="about-p">My short film <strong>"Boundaries"</strong> — written, produced, directed, and edited entirely solo — was an <strong>Official Selection at Lighthouse International Film Festival 2025</strong>. I hold a <strong>Master's in Media Studies</strong> and bring 3+ years of hands-on experience across film, branded content, and digital video.</p><p class="about-p">What I find most rewarding about production is the human orchestration of it — connecting a cinematographer, editor, sound designer, and talent toward one shared vision, and building the conditions where all of it clicks together. I show up fully and take real ownership of the outcome, not just the task.</p><p class="about-p">Beyond film, I shoot <strong>photography</strong> (travel, portraits, sports, design), write across formats (narrative scripts, ad copy, academic papers), and manage the full production binder for every project I run.</p><div class="chips"><span class="chip">Documentary</span><span class="chip">Branded Content</span><span class="chip">Narrative Film</span><span class="chip">Social Video</span><span class="chip">Production Management</span><span class="chip">Photography</span><span class="chip">DaVinci Resolve</span><span class="chip">Adobe Premiere</span><span class="chip">Scriptwriting</span><span class="chip">Multi-Camera</span><span class="chip">Podcast Production</span><span class="chip">Photojournalism</span></div></div><div class="stat-grid"><div class="stat-box"><span class="stat-n">4+</span><span class="stat-l">Years Production</span></div><div class="stat-box"><span class="stat-n">500K+</span><span class="stat-l">YouTube Views</span></div><div class="stat-box"><span class="stat-n">3M+</span><span class="stat-l">Instagram Views</span></div><div class="stat-box"><span class="stat-n">5K</span><span class="stat-l">Followers / 60 Days</span></div><div class="stat-box"><span class="stat-n">LIFF</span><span class="stat-l">Festival 2025</span></div></div></div></div>
 
@@ -808,7 +879,7 @@ footer a{color:var(--red)}
 <div class="modal" id="modal" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
   <iframe id="mF" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
   <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/>
-</div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">Platform Preview</div><a class="m-link yt" id="mL" href="#" target="_blank"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
+</div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="doc-nav" id="mDocNav" style="display:none"></div><div class="doc-sub-nav" id="mDocSubNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">Platform Preview</div><a class="m-link yt" id="mL" href="#" target="_blank"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
 
 <script>
 addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>50));
@@ -852,29 +923,24 @@ function go(s){
 
 document.getElementById('ft').style.display='none';
 
-// Fix the filter initialization
-function fil(type, cat, el) {
-    const bar = el.parentElement;
-    bar.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
-    el.classList.add('on');
-    
-    const container = document.getElementById(type === 'w' ? 'wG' : 'oG');
-    // Ensure we are selecting the right cards depending on type
-    const selector = type === 'w' ? '.t-card' : '.g-card';
-    const cards = container.querySelectorAll(selector);
-    
-    cards.forEach(card => {
-        if (cat === 'all' || card.getAttribute('data-c') === cat) {
-            card.style.display = 'block';
+// Unified Filter Script for Writing and Photography
+function fil(t, c, b) {
+    const g = document.getElementById(t + 'G');
+    if (!g) return;
+    [...g.children].forEach(e => {
+        if (c === 'all' || e.dataset.c === c) {
+            e.style.display = '';
         } else {
-            card.style.display = 'none';
+            e.style.display = 'none';
         }
     });
+    document.querySelectorAll('#' + t + 'F .fb').forEach(e => e.classList.remove('on'));
+    b.classList.add('on');
 }
 
 // Ensure cards are visible on load
 window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.t-card, .g-card').forEach(c => c.style.display = 'block');
+    document.querySelectorAll('.t-card, .g-card').forEach(c => c.style.display = '');
 });
 
 const PLAT_ICONS={
@@ -992,9 +1058,14 @@ function xPlay(){
   document.getElementById('mF').src='';
   document.getElementById('mImg').src='';
   document.getElementById('mIgNav').style.display='none';
+  const mDocNav = document.getElementById('mDocNav');
+  if (mDocNav) mDocNav.style.display='none';
+  const mDocSubNav = document.getElementById('mDocSubNav');
+  if (mDocSubNav) mDocSubNav.style.display='none';
   document.body.style.overflow='';
   currentIgKey=null;
   currentGallery=[];
+  currentDocGroup=null;
 }
 
 const IG={
@@ -1075,6 +1146,101 @@ function gotoReel(index) {
         IX[k] = index;
         renderModalReel();
     }
+}
+
+/* Document Multi-Files Swapping Logic */
+const DOC_GROUPS = {
+  shotLists: {
+    items: [
+      {
+        name: "Production Shot List",
+        preview: "https://docs.google.com/spreadsheets/d/1eFyC8MLowmSdnctUmsKq7h30Fyp70iMCa3I4wGnU9Ms/preview",
+        edit: "https://docs.google.com/spreadsheets/d/1eFyC8MLowmSdnctUmsKq7h30Fyp70iMCa3I4wGnU9Ms/edit?usp=drive_link"
+      },
+      {
+        name: "The Void",
+        subItems: [
+          {
+            name: "The Void",
+            preview: "https://docs.google.com/document/d/1FJyU9fGRAudfiix0Skyen6mVMi6srB6s/preview",
+            edit: "https://docs.google.com/document/d/1FJyU9fGRAudfiix0Skyen6mVMi6srB6s/edit?usp=drive_link"
+          },
+          {
+            name: "Additional Shot List",
+            preview: "https://docs.google.com/document/d/1i4cfh9cR8ZOq4aC9K8-5Uu_608_cqz9i/preview",
+            edit: "https://docs.google.com/document/d/1i4cfh9cR8ZOq4aC9K8-5Uu_608_cqz9i/edit?usp=drive_link"
+          }
+        ]
+      }
+    ]
+  }
+};
+
+let currentDocGroup = null;
+let currentDocIndex = 0;
+let currentSubDocIndex = 0;
+
+function playDocGroup(groupKey) {
+  currentDocGroup = groupKey;
+  currentDocIndex = 0;
+  currentSubDocIndex = 0;
+  openDocGroupItem();
+}
+
+function openDocGroupItem() {
+  if (!currentDocGroup || !DOC_GROUPS[currentDocGroup]) return;
+  const group = DOC_GROUPS[currentDocGroup];
+  const mainItem = group.items[currentDocIndex];
+  
+  let itemToLoad = mainItem;
+  const hasSubs = mainItem.subItems && mainItem.subItems.length > 0;
+  
+  if (hasSubs) {
+    if (currentSubDocIndex >= mainItem.subItems.length) {
+      currentSubDocIndex = 0;
+    }
+    itemToLoad = mainItem.subItems[currentSubDocIndex];
+  }
+  
+  // Open current target preview via Core Modal
+  play(itemToLoad.preview, itemToLoad.name, 'doc', itemToLoad.edit);
+  
+  // Render Main Navigation Level Tabs
+  const docNav = document.getElementById('mDocNav');
+  if (docNav) {
+    docNav.style.display = 'flex';
+    docNav.innerHTML = group.items.map((doc, idx) => `
+      <button class="doc-tab ${idx === currentDocIndex ? 'active' : ''}" onclick="switchMainDoc(${idx})">
+        ${doc.name}
+      </button>
+    `).join('');
+  }
+  
+  // Render Secondary Sub-navigation Level Toggles
+  const docSubNav = document.getElementById('mDocSubNav');
+  if (docSubNav) {
+    if (hasSubs) {
+      docSubNav.style.display = 'flex';
+      docSubNav.innerHTML = mainItem.subItems.map((subDoc, idx) => `
+        <button class="doc-sub-tab ${idx === currentSubDocIndex ? 'active' : ''}" onclick="switchSubDoc(${idx})">
+          ${subDoc.name}
+        </button>
+      `).join('');
+    } else {
+      docSubNav.style.display = 'none';
+    }
+  }
+}
+
+function switchMainDoc(idx) {
+  currentDocIndex = idx;
+  currentSubDocIndex = 0; // Reset sub-index when swapping main tabs
+  openDocGroupItem();
+}
+
+function switchSubDoc(idx) {
+  currentSubDocIndex = idx;
+  openDocGroupItem();
 }
 
 // Global Keyboard Navigation
