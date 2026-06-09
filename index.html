@@ -419,6 +419,98 @@ footer a{color:var(--red)}
 }
 /* HOME ROWS (below billboard) */
 .home-rows{padding:0 0 40px;margin-top:-60px;position:relative;z-index:3}
+
+/* ── V4 VISUAL ───────────────────────────────────────────────────── */
+
+/* Subtle film grain on billboard */
+.billboard::after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;mix-blend-mode:screen;}
+.billboard-info{z-index:3;}
+
+/* Deeper cinematic vignette */
+.billboard-mask{background:linear-gradient(to right,rgba(20,20,20,.92) 0%,rgba(20,20,20,.45) 40%,transparent 65%),linear-gradient(to top,var(--bg) 0%,rgba(20,20,20,.15) 45%,rgba(20,20,20,.5) 100%);}
+
+/* Warm gold card hover glow */
+.card:hover{transform:scale(1.04);z-index:10;box-shadow:0 0 0 1px rgba(230,168,79,.12),0 12px 40px rgba(0,0,0,.7),0 2px 12px rgba(230,168,79,.1);}
+
+/* Card image subtle inner frame */
+.card-img::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);pointer-events:none;}
+
+/* Billboard stat pills — softer */
+.bb-pill{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.55);border-radius:3px;letter-spacing:.04em;}
+.bb-pill b{color:var(--red);}
+
+/* Billboard type tags — lighter */
+.bb-type{padding:5px 12px;background:rgba(230,168,79,.06);border:1px solid rgba(230,168,79,.2);border-radius:4px;font-size:.68rem;font-weight:600;letter-spacing:.05em;color:rgba(255,255,255,.8);}
+.bb-type:hover{background:rgba(230,168,79,.12);border-color:rgba(230,168,79,.4);color:#fff;}
+
+/* Smoother section animation */
+@keyframes secIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.sec.on{animation:secIn .45s cubic-bezier(.4,0,.2,1) forwards;}
+
+/* Nav glass blur on scroll */
+.nav.solid{background:rgba(14,14,14,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04);box-shadow:none;}
+
+/* Hire card top accent */
+.hire::before{height:3px;opacity:.85;}
+
+/* Stat box hover */
+.stat-box:hover{border-color:rgba(230,168,79,.15);background:rgba(230,168,79,.03);transition:all .3s;}
+
+/* Footer */
+footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
+
+/* Mobile swipe hint */
+.row-hint{font-size:.58rem;color:var(--tx3);letter-spacing:.1em;text-transform:uppercase;padding:0 var(--pad);margin-bottom:4px;display:none;}
+@media(max-width:768px){.row-hint{display:block;}}
+
+/* ── V8 VISUAL ENHANCEMENTS ─────────────────────────────────────────── */
+
+/* 1. Billboard — richer left-to-right gradient falloff */
+.billboard-mask{
+  background:
+    linear-gradient(to right, rgba(14,14,14,.95) 0%, rgba(14,14,14,.6) 35%, rgba(14,14,14,.15) 55%, transparent 70%),
+    linear-gradient(to top, var(--bg) 0%, rgba(20,20,20,.05) 40%, rgba(20,20,20,.45) 100%);
+}
+
+/* 2. Photography — label hidden, fades in on hover only */
+.g-lbl {
+  opacity: 0;
+  transition: opacity .25s ease;
+  background: linear-gradient(transparent, rgba(0,0,0,.85));
+  padding: 40px 10px 10px;
+}
+.g-card:hover .g-lbl { opacity: 1; }
+
+/* 3. Photography grid — slightly more breathing room */
+.g-grid { gap: 14px; }
+
+/* 4. About section — tighter column gap + subtle divider */
+.about-wrap { gap: 28px; }
+.stat-grid { border-left: 1px solid rgba(255,255,255,.05); padding-left: 20px; }
+
+/* 5. Services — svc-no more visible */
+.svc-no { color: rgba(230,168,79,.55); }
+
+/* 6. Production binder cards — icon glow on hover */
+.b-card:hover .b-icon {
+  filter: drop-shadow(0 0 8px rgba(230,168,79,.25));
+  transition: filter .3s;
+}
+
+/* 7. Mobile nav — minor breathing fix at 375px */
+@media(max-width:390px){
+  .bb-title { font-size: clamp(2rem, 7.5vw, 2.8rem); }
+  .billboard-info { padding-top: 50px; }
+}
+
+/* 8. g-cat badge — slightly more refined */
+.g-cat {
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  letter-spacing: .1em;
+  font-size: .52rem;
+}
 </style>
 </head>
 <body>
@@ -441,7 +533,7 @@ footer a{color:var(--red)}
     <button class="nm desktop-only" data-s="contact" onclick="go('contact')">Contact</button>
   </div>
   <div class="nav-end">
-    <button class="hire-btn" onclick="go('contact')">Hire Me</button>
+    <button class="hire-btn" onclick="go('contact')">Start a Project</button>
   </div>
 </nav>
 
@@ -455,7 +547,7 @@ footer a{color:var(--red)}
     <button class="nm" data-s="contact" onclick="go('contact')">Contact</button>
 </div>
 
-<div class="billboard" id="billboard"><div class="billboard-vid"><iframe src="https://player.vimeo.com/video/1031440535?autoplay=1&muted=1&loop=1&background=1" allow="autoplay;fullscreen" allowfullscreen></iframe></div><div class="billboard-mask"></div><div class="billboard-info"><div class="bb-kicker">Creative Producer & Director · NYC</div><h1 class="bb-title">STORIES THAT MOVE PEOPLE.<br>CONTENT THAT MOVES PRODUCT.</h1>
+<div class="billboard" id="billboard"><div class="billboard-vid"><iframe src="https://player.vimeo.com/video/1031440535?autoplay=1&muted=1&loop=1&background=1" allow="autoplay;fullscreen" allowfullscreen></iframe></div><div class="billboard-mask"></div><div class="billboard-info"><div class="bb-kicker">Creative Producer · Director · Editor · New York City</div><h1 class="bb-title">CONCEPT THROUGH FINAL CUT.</h1>
 
 <div class="bb-types">
   <div class="bb-type">Documentary</div>
@@ -464,7 +556,7 @@ footer a{color:var(--red)}
   <div class="bb-type">Social Video</div>
 </div>
 
-<p class="bb-desc">Concept through final cut — with full creative ownership.</p><div class="bb-actions"><button class="btn-w" onclick="play('https://player.vimeo.com/video/1031440535?autoplay=1','Showreel — Gopala Krishna','vimeo','https://vimeo.com/1031440535')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Play Showreel</button><button class="btn-g" onclick="go('film')"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> More Work</button></div>
+<p class="bb-desc">I make documentary, narrative, and branded content — and I own it end to end. From the first story conversation to final export. If it needs to exist and doesn't yet, I'll figure out how to make it.</p><div class="bb-actions"><button class="btn-w" onclick="play('https://player.vimeo.com/video/1031440535?autoplay=1','Showreel — Gopala Krishna','vimeo','https://vimeo.com/1031440535')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Play Showreel</button><button class="btn-g" onclick="go('film')"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> More Work</button></div>
 
 <div class="bb-pills">
   <span class="bb-pill"><b>4+</b> Years Production</span>
@@ -479,12 +571,13 @@ footer a{color:var(--red)}
 <div class="home-rows" id="homeRows">
 
 <!-- Featured Work -->
+<div class="row-hint">swipe to explore →</div>
 <div class="sh" style="padding-top:24px"><div class="sh-t">FEATURED WORK</div></div>
 <div class="row"><div class="row-track">
 <div class="card" onclick="play('https://www.youtube-nocookie.com/embed/SQmqA1WDet8?autoplay=1&rel=0','Boundaries — Full Film','youtube','https://www.youtube.com/watch?v=SQmqA1WDet8')">
   <div class="card-img" style="background:url('https://img.youtube.com/vi/SQmqA1WDet8/maxresdefault.jpg') center/cover no-repeat #1a1420;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
   <div class="card-body">
-    <div class="card-badge b-red">⭐ Official Selection · Lighthouse IFF 2025</div>
+    <div class="card-badge b-red">🏆 Official Selection — Lighthouse International Film Festival 2025</div>
     <div class="card-title">"Boundaries" — Short Film</div>
     <div class="card-role">Writer · Director · Producer · Editor · DaVinci Resolve</div>
     <div class="card-btns">
@@ -545,7 +638,7 @@ footer a{color:var(--red)}
 <div class="card" onclick="play('https://www.youtube-nocookie.com/embed/SQmqA1WDet8?autoplay=1&rel=0','Boundaries — Full Film','youtube','https://www.youtube.com/watch?v=SQmqA1WDet8')">
   <div class="card-img" style="background:url('https://img.youtube.com/vi/SQmqA1WDet8/maxresdefault.jpg') center/cover no-repeat #1a1420;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
   <div class="card-body">
-    <div class="card-badge b-red">⭐ Official Selection · Lighthouse IFF 2025</div>
+    <div class="card-badge b-red">🏆 Official Selection — Lighthouse International Film Festival 2025</div>
     <div class="card-title">"Boundaries" — Short Film</div>
     <div class="card-role">Writer · Director · Producer · Editor · DaVinci Resolve</div>
     <div class="card-btns">
@@ -865,13 +958,13 @@ footer a{color:var(--red)}
   <div class="b-card"><div class="b-icon">🎬</div><div class="b-title">Script Breakdowns</div><div class="b-desc">Scene-by-scene production element breakdowns: cast, props, wardrobe, FX.</div></div>
   <div class="b-card"><div class="b-icon">📡</div><div class="b-title">Distribution Plans</div><div class="b-desc">Festival submission strategies, platform publishing checklists, and metadata.</div></div></div></div>
 
-<div class="sec" id="s-about"><div class="sh"><div class="sh-t">ABOUT</div></div><div class="about-wrap"><div><p class="about-p">I'm <strong>Gopala Krishna</strong> — a Creative Producer and Director based in <strong>New York City</strong>, part of the founding team at <strong>Evolve Pictures LLC</strong>. I own projects end-to-end: from the first story conversation all the way to final export and publishing.</p><p class="about-p">My short film <strong>"Boundaries"</strong> — written, produced, directed, and edited entirely solo — was an <strong>Official Selection at Lighthouse International Film Festival 2025</strong>. I hold a <strong>Master's in Media Studies</strong> and bring 3+ years of hands-on experience across film, branded content, and digital video.</p><p class="about-p">What I find most rewarding about production is the human orchestration of it — connecting a cinematographer, editor, sound designer, and talent toward one shared vision, and building the conditions where all of it clicks together. I show up fully and take real ownership of the outcome, not just the task.</p><p class="about-p">Beyond film, I shoot <strong>photography</strong> (travel, portraits, sports, design), write across formats (narrative scripts, ad copy, academic papers), and manage the full production binder for every project I run.</p><div class="chips"><span class="chip">Documentary</span><span class="chip">Branded Content</span><span class="chip">Narrative Film</span><span class="chip">Social Video</span><span class="chip">Production Management</span><span class="chip">Photography</span><span class="chip">DaVinci Resolve</span><span class="chip">Adobe Premiere</span><span class="chip">Scriptwriting</span><span class="chip">Multi-Camera</span><span class="chip">Podcast Production</span><span class="chip">Photojournalism</span></div></div><div class="stat-grid"><div class="stat-box"><span class="stat-n">4+</span><span class="stat-l">Years Production</span></div><div class="stat-box"><span class="stat-n">500K+</span><span class="stat-l">YouTube Views</span></div><div class="stat-box"><span class="stat-n">3M+</span><span class="stat-l">Instagram Views</span></div><div class="stat-box"><span class="stat-n">5K</span><span class="stat-l">Followers / 60 Days</span></div><div class="stat-box"><span class="stat-n">LIFF</span><span class="stat-l">Festival 2025</span></div></div></div></div>
+<div class="sec" id="s-about"><div class="sh"><div class="sh-t">ABOUT</div></div><div class="about-wrap"><div><p class="about-p">I'm <strong>Gopala Krishna</strong> — filmmaker, producer, and editor. Part of the founding team at <strong>Evolve Pictures LLC</strong>. Master's in Media Studies from <strong>The New School</strong>.</p><p class="about-p">My short film <strong>"Boundaries"</strong> — written, directed, produced, and edited solo — was an <strong>Official Selection at Lighthouse International Film Festival 2025</strong>. It took stubbornness, a very patient cast, and one spite-fuelled all-nighter to finish. It was worth it.</p><p class="about-p">I've worked across documentary, narrative, and commercial production. I've managed <strong>$500K+ in gear</strong>, run full production binders, and delivered on <strong>25+ projects</strong> without a single failed delivery. I show up fully and take real ownership — not just of the task, but of the outcome.</p><p class="about-p">What pulls me to this work is the human orchestration of it. Connecting a cinematographer, an editor, a sound designer, and talent toward one shared vision — and building the conditions where all of it clicks together. That's the part I never get tired of.</p><div class="chips"><span class="chip">Documentary</span><span class="chip">Branded Content</span><span class="chip">Narrative Film</span><span class="chip">Social Video</span><span class="chip">Production Management</span><span class="chip">Photography</span><span class="chip">DaVinci Resolve</span><span class="chip">Adobe Premiere</span><span class="chip">Scriptwriting</span><span class="chip">Multi-Camera</span><span class="chip">Podcast Production</span><span class="chip">Photojournalism</span></div></div><div class="stat-grid"><div class="stat-box"><span class="stat-n">4+</span><span class="stat-l">Years Production</span></div><div class="stat-box"><span class="stat-n">500K+</span><span class="stat-l">YouTube Views</span></div><div class="stat-box"><span class="stat-n">3M+</span><span class="stat-l">Instagram Views</span></div><div class="stat-box"><span class="stat-n">5K</span><span class="stat-l">Followers / 60 Days</span></div><div class="stat-box"><span class="stat-n">LIFF</span><span class="stat-l">Festival 2025</span></div></div></div></div>
 
-<div class="sec" id="s-services"><div class="sh"><div class="sh-t">SERVICES</div><div class="sh-s">What I Do</div></div><div class="svc-g"><div class="svc"><div class="svc-no">01</div><div class="svc-t">Documentary & Non-Fiction</div><div class="svc-d">Story development, field production, interviews, and edit — for short-form docs, branded documentaries, and factual series.</div><div class="svc-tags"><span>Story Development</span><span>Field Production</span><span>Interview Direction</span><span>Post Production</span></div></div><div class="svc"><div class="svc-no">02</div><div class="svc-t">Branded Content</div><div class="svc-d">Concept-to-delivery content for brands that need to tell a real story — not just an ad. Clients get a full-service creative partner.</div><div class="svc-tags"><span>Concept & Script</span><span>Shoot Direction</span><span>Brand Alignment</span><span>Multi-Platform</span></div></div><div class="svc"><div class="svc-no">03</div><div class="svc-t">Narrative Film</div><div class="svc-d">Short films, mockumentaries, and narrative projects — from writing through production and festival-ready post.</div><div class="svc-tags"><span>Writing</span><span>Directing</span><span>Producing</span><span>Editing</span></div></div><div class="svc"><div class="svc-no">04</div><div class="svc-t">Social & Digital Video</div><div class="svc-d">High-retention short-form content for Instagram, YouTube, and TikTok — scripted, shot, and edited with platform growth in mind.</div><div class="svc-tags"><span>Reels / Shorts</span><span>Growth Strategy</span><span>Hook Engineering</span><span>Publishing</span></div></div><div class="svc"><div class="svc-no">05</div><div class="svc-t">Podcast & Long-Form</div><div class="svc-d">End-to-end podcast production, including video podcast formatting, show development, and multi-camera setup.</div><div class="svc-tags"><span>Show Development</span><span>Multi-Camera</span><span>Audio</span><span>Post Edit</span></div></div><div class="svc"><div class="svc-no">06</div><div class="svc-t">Creative Strategy</div><div class="svc-d">Content audits, production planning, and creative direction for teams that need a senior creative eye across channels.</div><div class="svc-tags"><span>Content Audit</span><span>Pre-Production</span><span>Creative Direction</span><span>Consulting</span></div></div></div><div class="sh"><div class="sh-t">MY PROCESS</div><div class="sh-s">How I Work</div></div><div class="proc-g"><div class="proc"><div class="proc-no">01</div><div class="proc-t">Discover & Brief</div><div class="proc-d">Understanding your goals, audience, and creative vision before a single frame is planned.</div></div><div class="proc"><div class="proc-no">02</div><div class="proc-t">Develop & Pre-Produce</div><div class="proc-d">Scripting, shot lists, casting, location, crew, and schedule — all locked before production starts.</div></div><div class="proc"><div class="proc-no">03</div><div class="proc-t">Produce & Direct</div><div class="proc-d">On-set leadership, coordinating every creative and logistical element toward the best possible capture.</div></div><div class="proc"><div class="proc-no">04</div><div class="proc-t">Edit & Deliver</div><div class="proc-d">From rough cut to final — picture edit, color, sound design, and export ready for your platform.</div></div></div><div class="sh"><div class="sh-t">TOOLKIT</div><div class="sh-s">Skills & Tools</div></div><div class="tk-g"><div class="tk"><div class="tk-h">Production</div><ul><li>Multi-Camera Direction</li><li>Pre-Production Planning</li><li>Location & Crew Coordination</li><li>Script Supervision</li><li>Photojournalism</li></ul></div><div class="tk"><div class="tk-h">Post Production</div><ul><li>DaVinci Resolve Studio</li><li>Adobe Premiere Pro</li><li>Color Grading</li><li>Sound Design</li><li>VidIQ / Analytics</li></ul></div><div class="tk"><div class="tk-h">Strategy & Distribution</div><ul><li>Instagram / YouTube / TikTok</li><li>Content Architecture</li><li>Audience Growth</li><li>Show Development</li><li>Podcast Production</li></ul></div></div><div class="role-g"><div class="role"><span class="role-ico">🎬</span><div class="role-t">Director</div><div class="role-d">Narrative shorts, documentaries, and branded films with complete creative control.</div></div><div class="role"><span class="role-ico">📋</span><div class="role-t">Line Producer</div><div class="role-d">Crew coordination, shoot logistics, budgets, and keeping every moving part aligned.</div></div><div class="role"><span class="role-ico">✂️</span><div class="role-t">Editor</div><div class="role-d">DaVinci Resolve & Adobe Premiere — picture edit, color grade, sound design.</div></div><div class="role"><span class="role-ico">🎛️</span><div class="role-t">Social Video</div><div class="role-d">Short-form content engineered for attention, growth, and platform performance.</div></div></div></div>
+<div class="sec" id="s-services"><div class="sh"><div class="sh-t">SERVICES</div><div class="sh-s">What I Do</div></div><div class="sh-desc">Most productions fall apart between the idea and the edit. I'm the person who keeps them together — from the first story conversation to final export, across documentary, narrative, and branded content.</div><div class="svc-g"><div class="svc"><div class="svc-no">01</div><div class="svc-t">Documentary & Non-Fiction</div><div class="svc-d">Story development, field production, interviews, and edit — for short-form docs, branded documentaries, and factual series.</div><div class="svc-tags"><span>Story Development</span><span>Field Production</span><span>Interview Direction</span><span>Post Production</span></div></div><div class="svc"><div class="svc-no">02</div><div class="svc-t">Branded Content</div><div class="svc-d">Concept-to-delivery content for brands that need to tell a real story — not just an ad. Clients get a full-service creative partner.</div><div class="svc-tags"><span>Concept & Script</span><span>Shoot Direction</span><span>Brand Alignment</span><span>Multi-Platform</span></div></div><div class="svc"><div class="svc-no">03</div><div class="svc-t">Narrative Film</div><div class="svc-d">Short films, mockumentaries, and narrative projects — from writing through production and festival-ready post.</div><div class="svc-tags"><span>Writing</span><span>Directing</span><span>Producing</span><span>Editing</span></div></div><div class="svc"><div class="svc-no">04</div><div class="svc-t">Social & Digital Video</div><div class="svc-d">High-retention short-form content for Instagram, YouTube, and TikTok — scripted, shot, and edited with platform growth in mind.</div><div class="svc-tags"><span>Reels / Shorts</span><span>Growth Strategy</span><span>Hook Engineering</span><span>Publishing</span></div></div><div class="svc"><div class="svc-no">05</div><div class="svc-t">Podcast & Long-Form</div><div class="svc-d">End-to-end podcast production, including video podcast formatting, show development, and multi-camera setup.</div><div class="svc-tags"><span>Show Development</span><span>Multi-Camera</span><span>Audio</span><span>Post Edit</span></div></div><div class="svc"><div class="svc-no">06</div><div class="svc-t">Creative Strategy</div><div class="svc-d">Content audits, production planning, and creative direction for teams that need a senior creative eye across channels.</div><div class="svc-tags"><span>Content Audit</span><span>Pre-Production</span><span>Creative Direction</span><span>Consulting</span></div></div></div><div class="sh"><div class="sh-t">MY PROCESS</div><div class="sh-s">How I Work</div></div><div class="proc-g"><div class="proc"><div class="proc-no">01</div><div class="proc-t">Discover & Brief</div><div class="proc-d">Understanding your goals, audience, and creative vision before a single frame is planned.</div></div><div class="proc"><div class="proc-no">02</div><div class="proc-t">Develop & Pre-Produce</div><div class="proc-d">Scripting, shot lists, casting, location, crew, and schedule — all locked before production starts.</div></div><div class="proc"><div class="proc-no">03</div><div class="proc-t">Produce & Direct</div><div class="proc-d">On-set leadership, coordinating every creative and logistical element toward the best possible capture.</div></div><div class="proc"><div class="proc-no">04</div><div class="proc-t">Edit & Deliver</div><div class="proc-d">From rough cut to final — picture edit, color, sound design, and export ready for your platform.</div></div></div><div class="sh"><div class="sh-t">TOOLKIT</div><div class="sh-s">Skills & Tools</div></div><div class="tk-g"><div class="tk"><div class="tk-h">Production</div><ul><li>Multi-Camera Direction</li><li>Pre-Production Planning</li><li>Location & Crew Coordination</li><li>Script Supervision</li><li>Photojournalism</li></ul></div><div class="tk"><div class="tk-h">Post Production</div><ul><li>DaVinci Resolve Studio</li><li>Adobe Premiere Pro</li><li>Color Grading</li><li>Sound Design</li><li>VidIQ / Analytics</li></ul></div><div class="tk"><div class="tk-h">Strategy & Distribution</div><ul><li>Instagram / YouTube / TikTok</li><li>Content Architecture</li><li>Audience Growth</li><li>Show Development</li><li>Podcast Production</li></ul></div></div><div class="role-g"><div class="role"><span class="role-ico">🎬</span><div class="role-t">Director</div><div class="role-d">Narrative shorts, documentaries, and branded films with complete creative control.</div></div><div class="role"><span class="role-ico">📋</span><div class="role-t">Line Producer</div><div class="role-d">Crew coordination, shoot logistics, budgets, and keeping every moving part aligned.</div></div><div class="role"><span class="role-ico">✂️</span><div class="role-t">Editor</div><div class="role-d">DaVinci Resolve & Adobe Premiere — picture edit, color grade, sound design.</div></div><div class="role"><span class="role-ico">🎛️</span><div class="role-t">Social Video</div><div class="role-d">Short-form content engineered for attention, growth, and platform performance.</div></div></div></div>
 
-<div class="sec" id="s-contact"><div class="sh"><div class="sh-t">HIRE ME</div><div class="sh-s">Open to freelance projects and full-time roles.</div></div><div class="sh-desc">Whether you have a brand story to tell, a production that needs a creative leader, or a team looking for someone to own the work end-to-end — I'd love to hear from you.</div><div class="hire-g"><div class="hire fl"><div class="hire-tp">Freelance · Project Basis</div><div class="hire-ht">YOU BRING THE BRIEF.<br>I BRING THE FILM.</div><ul class="hire-ul"><li>Branded content campaigns</li><li>Documentary & narrative production</li><li>Social video strategy & production</li><li>Photography shoots</li><li>Copywriting & scripts</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-r">Start a Project</a></div><div class="hire ft"><div class="hire-tp">Full-Time · Staff Role</div><div class="hire-ht">LET ME GROW<br>WITH YOUR TEAM.</div><ul class="hire-ul"><li>Creative Producer & Director roles</li><li>Production companies & studios</li><li>Sports, lifestyle, branded content</li><li>NYC-based or remote-first</li><li>Immediate availability</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-b">Send an Opportunity</a></div></div><div class="c-rows"><div class="c-row"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></div><div class="c-row"><span class="c-lbl">LinkedIn</span><span class="c-val"><a href="https://linkedin.com/in/gopalakkrishna" target="_blank">linkedin.com/in/gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">Instagram</span><span class="c-val"><a href="https://www.instagram.com/gopalakkrishna/" target="_blank">@gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">YouTube</span><span class="c-val"><a href="https://www.youtube.com/@Evolvepictures" target="_blank">@Evolvepictures</a></span></div><div class="c-row"><span class="c-lbl">Resume</span><span class="c-val"><a href="#" onclick="event.preventDefault(); play('https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/preview', 'Gopala Krishna — Resume', 'doc', 'https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/view?usp=drive_link')">View Resume</a></span></div><div class="c-row"><span class="c-lbl">Location</span><span class="c-val" style="color:#fff;font-size:.8rem">New York City, NY <span style="color:var(--tx3);font-size:.7rem">(Open to other cities)</span></span></div></div></div>
+<div class="sec" id="s-contact"><div class="sh"><div class="sh-t">HIRE ME</div><div class="sh-s">Open to freelance projects and full-time roles.</div></div><div class="sh-desc">Working on something? Let's talk.<br><br>Available for documentary, narrative, branded content, and production roles — New York and beyond.</div><div class="hire-g"><div class="hire fl"><div class="hire-tp">Freelance · Project Basis</div><div class="hire-ht">YOU BRING THE BRIEF.<br>I BRING THE FILM.</div><ul class="hire-ul"><li>Branded content campaigns</li><li>Documentary & narrative production</li><li>Social video strategy & production</li><li>Photography shoots</li><li>Copywriting & scripts</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-r">Start a Project</a></div><div class="hire ft"><div class="hire-tp">Full-Time · Staff Role</div><div class="hire-ht">LET ME GROW<br>WITH YOUR TEAM.</div><ul class="hire-ul"><li>Creative Producer & Director roles</li><li>Production companies & studios</li><li>Sports, lifestyle, branded content</li><li>NYC-based or remote-first</li><li>Immediate availability</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-b">Send an Opportunity</a></div></div><div class="c-rows"><div class="c-row"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></div><div class="c-row"><span class="c-lbl">LinkedIn</span><span class="c-val"><a href="https://linkedin.com/in/gopalakkrishna" target="_blank">linkedin.com/in/gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">Instagram</span><span class="c-val"><a href="https://www.instagram.com/gopalakkrishna/" target="_blank">@gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">YouTube</span><span class="c-val"><a href="https://www.youtube.com/@Evolvepictures" target="_blank">@Evolvepictures</a></span></div><div class="c-row"><span class="c-lbl">Resume</span><span class="c-val"><a href="#" onclick="event.preventDefault(); play('https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/preview', 'Gopala Krishna — Resume', 'doc', 'https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/view?usp=drive_link')">View Resume</a></span></div><div class="c-row"><span class="c-lbl">Location</span><span class="c-val" style="color:#fff;font-size:.8rem">New York City, NY <span style="color:var(--tx3);font-size:.7rem">(Open to other cities)</span></span></div></div></div>
 
-<footer id="ft"><span>© Gopala Krishna 2026 · Evolve Pictures LLC</span><span><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></footer>
+<footer id="ft"><span>© Gopala Krishna 2026 · Evolve Pictures LLC</span><span style="font-size:.65rem;color:var(--tx3);letter-spacing:.06em;">Currently available · New York City · Open to select remote projects</span><span><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></footer>
 
 <!-- MAIN MEDIA MODAL -->
 <div class="modal" id="modal" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
