@@ -1076,7 +1076,12 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
     <div class="b-desc">APBITV and The Cape Youth — talent, location, and crew release documentation.</div>
     <div class="card-ext"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> Preview release forms</div>
   </div>
-  <div class="b-card"><div class="b-icon">🎬</div><div class="b-title">Script Breakdowns</div><div class="b-desc">Scene-by-scene production element breakdowns: cast, props, wardrobe, FX.</div></div>
+  <div class="b-card" onclick="playDocGroup('scriptBreakdowns')">
+    <div class="b-icon">🎬</div>
+    <div class="b-title">Script Breakdowns</div>
+    <div class="b-desc">APBITV — scene-by-scene production elements, cast, props, wardrobe, and FX.</div>
+    <div class="card-ext"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> Preview project folder</div>
+  </div>
   <div class="b-card"><div class="b-icon">📡</div><div class="b-title">Distribution Plans</div><div class="b-desc">Festival submission strategies, platform publishing checklists, and metadata.</div></div></div></div>
 
 <div class="sec" id="s-about"><div class="sh"><div class="sh-t">ABOUT</div></div><div class="about-wrap"><div><p class="about-p">I'm <strong>Gopala Krishna</strong> — filmmaker, producer, and editor. Part of the founding team at <strong>Evolve Pictures LLC</strong>. Master's in Media Studies from <strong>The New School</strong>.</p><p class="about-p">My short film <strong>"Boundaries"</strong> — written, directed, produced, and edited solo — was an <strong>Official Selection at Lighthouse International Film Festival 2025</strong>. It took stubbornness, a very patient cast, and one spite-fuelled all-nighter to finish. It was worth it.</p><p class="about-p">I've worked across documentary, narrative, and commercial production. I've managed <strong>$500K+ in gear</strong>, run full production binders, and delivered on <strong>25+ projects</strong> without a single failed delivery. I show up fully and take real ownership — not just of the task, but of the outcome.</p><p class="about-p">What pulls me to this work is the human orchestration of it. Connecting a cinematographer, an editor, a sound designer, and talent toward one shared vision — and building the conditions where all of it clicks together. That's the part I never get tired of.</p><div class="chips"><span class="chip">Documentary</span><span class="chip">Branded Content</span><span class="chip">Narrative Film</span><span class="chip">Social Video</span><span class="chip">Production Management</span><span class="chip">Photography</span><span class="chip">DaVinci Resolve</span><span class="chip">Adobe Premiere</span><span class="chip">Scriptwriting</span><span class="chip">Multi-Camera</span><span class="chip">Podcast Production</span><span class="chip">Photojournalism</span></div></div><div class="stat-grid"><div class="stat-box"><span class="stat-n">4+</span><span class="stat-l">Years Production</span></div><div class="stat-box"><span class="stat-n">500K+</span><span class="stat-l">YouTube Views</span></div><div class="stat-box"><span class="stat-n">3M+</span><span class="stat-l">Instagram Views</span></div><div class="stat-box"><span class="stat-n">5K</span><span class="stat-l">Followers / 60 Days</span></div><div class="stat-box"><span class="stat-n">LIFF</span><span class="stat-l">Festival 2025</span></div></div></div></div>
@@ -1409,6 +1414,15 @@ const DOC_GROUPS = {
         name: "The Void",
         preview: "https://drive.google.com/embeddedfolderview?id=1BxdHynkEDhJSQEIK_cl99nNwSecGIUZ_#grid",
         edit: "https://drive.google.com/drive/folders/1BxdHynkEDhJSQEIK_cl99nNwSecGIUZ_?usp=drive_link"
+      }
+    ]
+  },
+  scriptBreakdowns: {
+    items: [
+      {
+        name: "APBITV",
+        preview: "https://drive.google.com/embeddedfolderview?id=1gvZPcYqGYxAxoXLsQL8C0eRApF66u8-5#grid",
+        edit: "https://drive.google.com/drive/folders/1gvZPcYqGYxAxoXLsQL8C0eRApF66u8-5?usp=drive_link"
       }
     ]
   },
