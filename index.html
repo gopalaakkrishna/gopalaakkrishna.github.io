@@ -1070,7 +1070,12 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
     <div class="b-title">Budgets</div>
     <div class="b-desc">Line-item production budgets covering crew, gear, locations, and post.</div>
   </div>
-  <div class="b-card"><div class="b-icon">📝</div><div class="b-title">Release Forms</div><div class="b-desc">Talent releases, location agreements, and crew deal memos.</div></div>
+  <div class="b-card" onclick="playDocGroup('releaseForms')">
+    <div class="b-icon">📝</div>
+    <div class="b-title">Release Forms</div>
+    <div class="b-desc">APBITV and The Cape Youth — talent, location, and crew release documentation.</div>
+    <div class="card-ext"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> Preview release forms</div>
+  </div>
   <div class="b-card"><div class="b-icon">🎬</div><div class="b-title">Script Breakdowns</div><div class="b-desc">Scene-by-scene production element breakdowns: cast, props, wardrobe, FX.</div></div>
   <div class="b-card"><div class="b-icon">📡</div><div class="b-title">Distribution Plans</div><div class="b-desc">Festival submission strategies, platform publishing checklists, and metadata.</div></div></div></div>
 
@@ -1404,6 +1409,50 @@ const DOC_GROUPS = {
         name: "The Void",
         preview: "https://drive.google.com/embeddedfolderview?id=1BxdHynkEDhJSQEIK_cl99nNwSecGIUZ_#grid",
         edit: "https://drive.google.com/drive/folders/1BxdHynkEDhJSQEIK_cl99nNwSecGIUZ_?usp=drive_link"
+      }
+    ]
+  },
+  releaseForms: {
+    items: [
+      {
+        name: "APBITV",
+        subItems: [
+          {
+            name: "Crew Release",
+            preview: "https://drive.google.com/file/d/18dPB0agCSclqSsr0tcZroNddTt7nsd91/preview",
+            edit: "https://drive.google.com/file/d/18dPB0agCSclqSsr0tcZroNddTt7nsd91/view?usp=drive_link"
+          },
+          {
+            name: "Location Release",
+            preview: "https://drive.google.com/file/d/1MhIN7zZnNjLkFkOwg32XMeAUvLE8qrTA/preview",
+            edit: "https://drive.google.com/file/d/1MhIN7zZnNjLkFkOwg32XMeAUvLE8qrTA/view?usp=drive_link"
+          },
+          {
+            name: "Talent Release",
+            preview: "https://drive.google.com/file/d/1PesLyEIAnM_-MlKEASa6cBXQFcIdKC70/preview",
+            edit: "https://drive.google.com/file/d/1PesLyEIAnM_-MlKEASa6cBXQFcIdKC70/view?usp=drive_link"
+          }
+        ]
+      },
+      {
+        name: "The Cape Youth",
+        subItems: [
+          {
+            name: "Talent Release",
+            preview: "https://drive.google.com/file/d/1dTuMAU9TNAfXiD0L5xV31Tofxyj8gGxh/preview",
+            edit: "https://drive.google.com/file/d/1dTuMAU9TNAfXiD0L5xV31Tofxyj8gGxh/view?usp=drive_link"
+          },
+          {
+            name: "Location Release",
+            preview: "https://drive.google.com/file/d/1T_16g6E0rDzqa6Z-8Hxhoq5P70QP3j7d/preview",
+            edit: "https://drive.google.com/file/d/1T_16g6E0rDzqa6Z-8Hxhoq5P70QP3j7d/view?usp=drive_link"
+          },
+          {
+            name: "Crew Release",
+            preview: "https://drive.google.com/file/d/1TpLZFcQZdbdD7gnYyk7kTBbVi3EBu-4V/preview",
+            edit: "https://drive.google.com/file/d/1TpLZFcQZdbdD7gnYyk7kTBbVi3EBu-4V/view?usp=drive_link"
+          }
+        ]
       }
     ]
   }
