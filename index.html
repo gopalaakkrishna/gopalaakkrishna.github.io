@@ -572,6 +572,19 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 /* Embedded content is sandboxed: clicks stay inside the preview frame. */
 .modal .m-link{display:none!important;}
 .modal.document .m-note::after{content:' · Browse files in this window';}
+
+/* ── V21 WRITING PREVIEWS ───────────────────────────────────────────── */
+.t-card{cursor:pointer;position:relative;}
+.tc-preview{margin-top:14px;color:rgba(255,255,255,.36);font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;}
+.tc-preview span{color:var(--red);margin-left:4px;transition:transform .2s;display:inline-block;}
+.t-card:hover .tc-preview{color:rgba(255,255,255,.7);}
+.t-card:hover .tc-preview span{transform:translateX(3px);}
+.t-card[data-c="narrative"]{border-left:2px solid rgba(100,140,230,.3);}
+.t-card[data-c="promo"]{border-left:2px solid rgba(230,168,79,.32);}
+.t-card[data-c="analytical"]{border-left:2px solid rgba(100,180,100,.32);}
+.t-card:hover[data-c="narrative"]{border-left-color:rgba(100,140,230,.7);}
+.t-card:hover[data-c="promo"]{border-left-color:rgba(230,168,79,.7);}
+.t-card:hover[data-c="analytical"]{border-left-color:rgba(100,180,100,.7);}
 </style>
 </head>
 <body>
@@ -1012,33 +1025,44 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 <div class="sec" id="s-writing">
   <div class="sh">
     <div class="sh-t">WRITING</div>
-    <div class="sh-s">Narrative · Advertising · Copywriting</div>
+    <div class="sh-s">Narrative · Promo · Analytical Papers</div>
   </div>
   <div class="fbar" id="wF">
     <button class="fb on" onclick="fil('w','all',this)">All</button>
     <button class="fb" onclick="fil('w','narrative',this)">Narrative</button>
-    <button class="fb" onclick="fil('w','ads',this)">Ads & Copy</button>
+    <button class="fb" onclick="fil('w','promo',this)">Promo</button>
+    <button class="fb" onclick="fil('w','analytical',this)">Analytical Papers</button>
   </div>
   <div class="t-cards" id="wG">
-    <div class="t-card" data-c="narrative">
-      <div class="tc-cat">Narrative · Short Film Script</div>
-      <div class="tc-title">"Boundaries" — Original Screenplay</div>
-      <div class="tc-desc">An original short film script written, produced, and directed solo. Selected at Lighthouse International Film Festival 2025.</div>
+    <div class="t-card" data-c="narrative" onclick="play('https://drive.google.com/file/d/1zv3OaxJj4_rPRvQ55Kz9C-i6CJOuTEPa/preview', '“Boundaries” — Screenplay', 'doc', 'https://drive.google.com/file/d/1zv3OaxJj4_rPRvQ55Kz9C-i6CJOuTEPa/view?usp=drive_link')" role="button" tabindex="0">
+      <div class="tc-cat">Narrative · Screenplay</div>
+      <div class="tc-title">“Boundaries” — Screenplay</div>
+      <div class="tc-desc">Original screenplay for Boundaries — a short film written, directed, produced, and edited solo.</div>
+      <div class="tc-preview">Preview document <span>→</span></div>
     </div>
-    <div class="t-card" data-c="narrative">
-      <div class="tc-cat">Narrative · Mockumentary</div>
-      <div class="tc-title">Mockumentary Series — Treatment & Scripts</div>
-      <div class="tc-desc">Genre-blending scripts that merge documentary format with scripted narrative arcs.</div>
+    <div class="t-card" data-c="narrative" onclick="play('https://drive.google.com/file/d/1-6gvu0nty7wIdF_3FO3j3wl3I6ueM14o/preview', '“Cadence” — Screenplay', 'doc', 'https://drive.google.com/file/d/1-6gvu0nty7wIdF_3FO3j3wl3I6ueM14o/view?usp=drive_link')" role="button" tabindex="0">
+      <div class="tc-cat">Narrative · Screenplay</div>
+      <div class="tc-title">“Cadence” — Screenplay</div>
+      <div class="tc-desc">Original narrative screenplay.</div>
+      <div class="tc-preview">Preview document <span>→</span></div>
     </div>
-    <div class="t-card" data-c="ads">
-      <div class="tc-cat">Advertising Copy · Branded Content</div>
-      <div class="tc-title">PhysioRX — Brand Script & On-Screen Copy</div>
-      <div class="tc-desc">Commercial scripts, on-screen text, and brand messaging for a physiotherapy client campaign.</div>
+    <div class="t-card" data-c="promo" onclick="play('https://drive.google.com/file/d/1GtsYbXTWz2u0Skppfv-3i2ih5kjHJXIj/preview', 'Coke — Promo Script', 'doc', 'https://drive.google.com/file/d/1GtsYbXTWz2u0Skppfv-3i2ih5kjHJXIj/view?usp=drive_link')" role="button" tabindex="0">
+      <div class="tc-cat">Promo · Commercial Script</div>
+      <div class="tc-title">Coke — Promo Script</div>
+      <div class="tc-desc">Promotional script developed for Coca-Cola.</div>
+      <div class="tc-preview">Preview document <span>→</span></div>
     </div>
-    <div class="t-card" data-c="ads">
-      <div class="tc-cat">Copywriting · Social Media</div>
-      <div class="tc-title">Instagram Campaign Copy — 10.5K → 15.5K Growth</div>
-      <div class="tc-desc">Caption writing, hook engineering, and CTA copy strategy that drove follower growth from 10.5K to 15.5K in under 60 days.</div>
+    <div class="t-card" data-c="analytical" onclick="play('https://docs.google.com/document/d/1vlDBAVx7ehoTywh4VQ_BupaB0zIZ8eGiTQC2iBQ9KBQ/preview', '“Tamasha” — Analytical Paper', 'doc', 'https://docs.google.com/document/d/1vlDBAVx7ehoTywh4VQ_BupaB0zIZ8eGiTQC2iBQ9KBQ/edit?usp=drive_link')" role="button" tabindex="0">
+      <div class="tc-cat">Analytical Paper · Film Studies</div>
+      <div class="tc-title">“Tamasha” — Analytical Paper</div>
+      <div class="tc-desc">A critical analytical paper on Tamasha.</div>
+      <div class="tc-preview">Preview document <span>→</span></div>
+    </div>
+    <div class="t-card" data-c="analytical" onclick="play('https://drive.google.com/file/d/14qhWZ1saZGDfxfObR_wHCe5Y0qp85_Am/preview', '“Justice League” — Analytical Paper', 'doc', 'https://drive.google.com/file/d/14qhWZ1saZGDfxfObR_wHCe5Y0qp85_Am/view?usp=drive_link')" role="button" tabindex="0">
+      <div class="tc-cat">Analytical Paper · Film Studies</div>
+      <div class="tc-title">“Justice League” — Analytical Paper</div>
+      <div class="tc-desc">A critical analytical paper on Justice League.</div>
+      <div class="tc-preview">Preview document <span>→</span></div>
     </div>
   </div>
 </div>
