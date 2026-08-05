@@ -563,6 +563,10 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 @media(prefers-reduced-motion:reduce){
   .sec.on .g-card,.sec.on .t-card,.sec.on .b-card,.sec.on .svc,.sec.on .role,.sec.on .hire,.modal.open .m-box{animation:none!important;}
 }
+
+/* ── V17 PREVIEW-FIRST BEHAVIOR ─────────────────────────────────────── */
+.modal.document .m-link.doc{opacity:.72;}
+.modal.document .m-link.doc:hover{opacity:1;}
 </style>
 </head>
 <body>
@@ -773,7 +777,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 <div class="sec" id="s-photo">
   <div class="sh">
     <div class="sh-t">PHOTOGRAPHY</div>
-    <div class="sh-s">Travel · Portraits · Sports · Design <a href="https://www.cosmos.so/gopalakkrishna" target="_blank" style="color:var(--gold); margin-left:8px; text-decoration:underline;">↗ View Cosmos Board</a></div>
+    <div class="sh-s">Travel · Portraits · Sports · Design <a href="https://www.cosmos.so/gopalakkrishna" style="color:var(--gold); margin-left:8px; text-decoration:underline;">↗ View Cosmos Board</a></div>
   </div>
   <div class="fbar" id="pF">
     <button class="fb on" onclick="fil('p','all',this)">All</button>
@@ -1050,7 +1054,12 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
     <div class="b-title">Production Schedules</div>
     <div class="b-desc">Pre-production to post timelines, milestone tracking, and delivery calendars.</div>
   </div>
-  <div class="b-card"><div class="b-icon">📍</div><div class="b-title">Location Scouts</div><div class="b-desc">Location reports, photo references, permits, and logistics documentation.</div></div>
+  <div class="b-card" onclick="playDocGroup('locationScouts')">
+    <div class="b-icon">📍</div>
+    <div class="b-title">Location Scouts</div>
+    <div class="b-desc">The Cape Youth & The Void — location references, scouts, and logistics documentation.</div>
+    <div class="card-ext"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> Preview folders here</div>
+  </div>
   <div class="b-card" onclick="play('https://docs.google.com/spreadsheets/d/1u91ZM4sjwvbXvcJHy6dn_wD1-0bfuvMD3iypwQd5Ovg/preview', 'Production Budget', 'doc', 'https://docs.google.com/spreadsheets/d/1u91ZM4sjwvbXvcJHy6dn_wD1-0bfuvMD3iypwQd5Ovg/edit?usp=drive_link')">
     <div class="b-icon">💰</div>
     <div class="b-title">Budgets</div>
@@ -1064,7 +1073,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 
 <div class="sec" id="s-services"><div class="sh"><div class="sh-t">SERVICES</div><div class="sh-s">What I Do</div></div><div class="sh-desc">For teams that need a story-led production partner — not just an extra pair of hands. From first conversation to final export, across documentary, narrative, and branded content.</div><div class="svc-g"><div class="svc"><div class="svc-no">01</div><div class="svc-t">Documentary & Non-Fiction</div><div class="svc-d">Story development, field production, interviews, and edit — for short-form docs, branded documentaries, and factual series.</div><div class="svc-tags"><span>Story Development</span><span>Field Production</span><span>Interview Direction</span><span>Post Production</span></div></div><div class="svc"><div class="svc-no">02</div><div class="svc-t">Branded Content</div><div class="svc-d">Concept-to-delivery content for brands that need to tell a real story — not just an ad. Clients get a full-service creative partner.</div><div class="svc-tags"><span>Concept & Script</span><span>Shoot Direction</span><span>Brand Alignment</span><span>Multi-Platform</span></div></div><div class="svc"><div class="svc-no">03</div><div class="svc-t">Narrative Film</div><div class="svc-d">Short films, mockumentaries, and narrative projects — from writing through production and festival-ready post.</div><div class="svc-tags"><span>Writing</span><span>Directing</span><span>Producing</span><span>Editing</span></div></div><div class="svc"><div class="svc-no">04</div><div class="svc-t">Social & Digital Video</div><div class="svc-d">High-retention short-form content for Instagram, YouTube, and TikTok — scripted, shot, and edited with platform growth in mind.</div><div class="svc-tags"><span>Reels / Shorts</span><span>Growth Strategy</span><span>Hook Engineering</span><span>Publishing</span></div></div><div class="svc"><div class="svc-no">05</div><div class="svc-t">Podcast & Long-Form</div><div class="svc-d">End-to-end podcast production, including video podcast formatting, show development, and multi-camera setup.</div><div class="svc-tags"><span>Show Development</span><span>Multi-Camera</span><span>Audio</span><span>Post Edit</span></div></div><div class="svc"><div class="svc-no">06</div><div class="svc-t">Creative Strategy</div><div class="svc-d">Content audits, production planning, and creative direction for teams that need a senior creative eye across channels.</div><div class="svc-tags"><span>Content Audit</span><span>Pre-Production</span><span>Creative Direction</span><span>Consulting</span></div></div></div><div class="sh"><div class="sh-t">MY PROCESS</div><div class="sh-s">How I Work</div></div><div class="proc-g"><div class="proc"><div class="proc-no">01</div><div class="proc-t">Discover & Brief</div><div class="proc-d">Understanding your goals, audience, and creative vision before a single frame is planned.</div></div><div class="proc"><div class="proc-no">02</div><div class="proc-t">Develop & Pre-Produce</div><div class="proc-d">Scripting, shot lists, casting, location, crew, and schedule — all locked before production starts.</div></div><div class="proc"><div class="proc-no">03</div><div class="proc-t">Produce & Direct</div><div class="proc-d">On-set leadership, coordinating every creative and logistical element toward the best possible capture.</div></div><div class="proc"><div class="proc-no">04</div><div class="proc-t">Edit & Deliver</div><div class="proc-d">From rough cut to final — picture edit, color, sound design, and export ready for your platform.</div></div></div><div class="sh"><div class="sh-t">TOOLKIT</div><div class="sh-s">Skills & Tools</div></div><div class="tk-g"><div class="tk"><div class="tk-h">Production</div><ul><li>Multi-Camera Direction</li><li>Pre-Production Planning</li><li>Location & Crew Coordination</li><li>Script Supervision</li><li>Photojournalism</li></ul></div><div class="tk"><div class="tk-h">Post Production</div><ul><li>DaVinci Resolve Studio</li><li>Adobe Premiere Pro</li><li>Color Grading</li><li>Sound Design</li><li>VidIQ / Analytics</li></ul></div><div class="tk"><div class="tk-h">Strategy & Distribution</div><ul><li>Instagram / YouTube / TikTok</li><li>Content Architecture</li><li>Audience Growth</li><li>Show Development</li><li>Podcast Production</li></ul></div></div><div class="role-g"><div class="role"><span class="role-ico">🎬</span><div class="role-t">Director</div><div class="role-d">Narrative shorts, documentaries, and branded films with complete creative control.</div></div><div class="role"><span class="role-ico">📋</span><div class="role-t">Line Producer</div><div class="role-d">Crew coordination, shoot logistics, budgets, and keeping every moving part aligned.</div></div><div class="role"><span class="role-ico">✂️</span><div class="role-t">Editor</div><div class="role-d">DaVinci Resolve & Adobe Premiere — picture edit, color grade, sound design.</div></div><div class="role"><span class="role-ico">🎛️</span><div class="role-t">Social Video</div><div class="role-d">Short-form content engineered for attention, growth, and platform performance.</div></div></div></div>
 
-<div class="sec" id="s-contact"><div class="sh"><div class="sh-t">HIRE ME</div><div class="sh-s">Open to freelance projects and full-time roles.</div></div><div class="sh-desc">Working on something? Let's talk.<br><br>Available for select documentary, narrative, branded-content, and production collaborations in New York and remotely.</div><div class="hire-g"><div class="hire fl"><div class="hire-tp">Freelance · Project Basis</div><div class="hire-ht">YOU BRING THE BRIEF.<br>I BRING THE FILM.</div><ul class="hire-ul"><li>Branded content campaigns</li><li>Documentary & narrative production</li><li>Social video strategy & production</li><li>Photography shoots</li><li>Copywriting & scripts</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-r">Start a Project</a></div><div class="hire ft"><div class="hire-tp">Full-Time · Staff Role</div><div class="hire-ht">LET ME GROW<br>WITH YOUR TEAM.</div><ul class="hire-ul"><li>Creative Producer & Director roles</li><li>Production companies & studios</li><li>Sports, lifestyle, branded content</li><li>NYC-based or remote-first</li><li>Immediate availability</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-b">Send an Opportunity</a></div></div><div class="c-rows"><div class="c-row"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></div><div class="c-row"><span class="c-lbl">LinkedIn</span><span class="c-val"><a href="https://linkedin.com/in/gopalakkrishna" target="_blank">linkedin.com/in/gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">Instagram</span><span class="c-val"><a href="https://www.instagram.com/gopalakkrishna/" target="_blank">@gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">YouTube</span><span class="c-val"><a href="https://www.youtube.com/@Evolvepictures" target="_blank">@Evolvepictures</a></span></div><div class="c-row"><span class="c-lbl">Resume</span><span class="c-val"><a href="#" onclick="event.preventDefault(); play('https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/preview', 'Gopala Krishna — Resume', 'doc', 'https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/view?usp=drive_link')">View Resume</a></span></div><div class="c-row"><span class="c-lbl">Location</span><span class="c-val" style="color:#fff;font-size:.8rem">New York City, NY <span style="color:var(--tx3);font-size:.7rem">(Open to other cities)</span></span></div></div></div>
+<div class="sec" id="s-contact"><div class="sh"><div class="sh-t">HIRE ME</div><div class="sh-s">Open to freelance projects and full-time roles.</div></div><div class="sh-desc">Working on something? Let's talk.<br><br>Available for select documentary, narrative, branded-content, and production collaborations in New York and remotely.</div><div class="hire-g"><div class="hire fl"><div class="hire-tp">Freelance · Project Basis</div><div class="hire-ht">YOU BRING THE BRIEF.<br>I BRING THE FILM.</div><ul class="hire-ul"><li>Branded content campaigns</li><li>Documentary & narrative production</li><li>Social video strategy & production</li><li>Photography shoots</li><li>Copywriting & scripts</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-r">Start a Project</a></div><div class="hire ft"><div class="hire-tp">Full-Time · Staff Role</div><div class="hire-ht">LET ME GROW<br>WITH YOUR TEAM.</div><ul class="hire-ul"><li>Creative Producer & Director roles</li><li>Production companies & studios</li><li>Sports, lifestyle, branded content</li><li>NYC-based or remote-first</li><li>Immediate availability</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-b">Send an Opportunity</a></div></div><div class="c-rows"><div class="c-row"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></div><div class="c-row"><span class="c-lbl">LinkedIn</span><span class="c-val"><a href="https://linkedin.com/in/gopalakkrishna">linkedin.com/in/gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">Instagram</span><span class="c-val"><a href="https://www.instagram.com/gopalakkrishna/">@gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">YouTube</span><span class="c-val"><a href="https://www.youtube.com/@Evolvepictures">@Evolvepictures</a></span></div><div class="c-row"><span class="c-lbl">Resume</span><span class="c-val"><a href="#" onclick="event.preventDefault(); play('https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/preview', 'Gopala Krishna — Resume', 'doc', 'https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/view?usp=drive_link')">View Resume</a></span></div><div class="c-row"><span class="c-lbl">Location</span><span class="c-val" style="color:#fff;font-size:.8rem">New York City, NY <span style="color:var(--tx3);font-size:.7rem">(Open to other cities)</span></span></div></div></div>
 
 <footer id="ft"><span>© Gopala Krishna 2026 · Evolve Pictures LLC</span><span style="font-size:.65rem;color:var(--tx3);letter-spacing:.06em;">Currently available · New York City · Open to select remote projects</span><span><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></footer>
 
@@ -1072,7 +1081,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 <div class="modal" id="modal" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
   <iframe id="mF" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
   <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/>
-</div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="doc-nav" id="mDocNav" style="display:none"></div><div class="doc-sub-nav" id="mDocSubNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">Platform Preview</div><a class="m-link yt" id="mL" href="#" target="_blank"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
+</div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="doc-nav" id="mDocNav" style="display:none"></div><div class="doc-sub-nav" id="mDocSubNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">Platform Preview</div><a class="m-link yt" id="mL" href="#"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
 
 <script>
 addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>50));
@@ -1156,7 +1165,7 @@ function play(url,title,plat,href){
   l.href=href;
   const isIg=plat==='ig', isVimeo=plat==='vimeo', isDoc=plat==='doc';
   l.className='m-link '+(isVimeo?'vm':isIg?'ig':isDoc?'doc':'yt');
-  document.getElementById('mLT').textContent='Open '+(isDoc?'File':isVimeo?'on Vimeo':isIg?'on Instagram':'on YouTube');
+  document.getElementById('mLT').textContent=isDoc?'Open source':'View on '+(isVimeo?'Vimeo':isIg?'Instagram':'YouTube');
   const platEl=document.getElementById('mPlat');
   const label=isVimeo?'Vimeo':isIg?'Instagram':isDoc?'Document':'YouTube';
   platEl.innerHTML=PLAT_ICONS[isVimeo?'vimeo':isIg?'ig':isDoc?'doc':'yt']+'<span id="mPN">'+label+'</span>';
@@ -1358,7 +1367,7 @@ const DOC_GROUPS = {
   shotLists: {
     items: [
       {
-        name: "Production Shot List",
+        name: "The Cape Youth",
         preview: "https://docs.google.com/spreadsheets/d/1eFyC8MLowmSdnctUmsKq7h30Fyp70iMCa3I4wGnU9Ms/preview",
         edit: "https://docs.google.com/spreadsheets/d/1eFyC8MLowmSdnctUmsKq7h30Fyp70iMCa3I4wGnU9Ms/edit?usp=drive_link"
       },
@@ -1376,6 +1385,20 @@ const DOC_GROUPS = {
             edit: "https://docs.google.com/document/d/1FJyU9fGRAudfiix0Skyen6mVMi6srB6s/edit?usp=drive_link"
           }
         ]
+      }
+    ]
+  },
+  locationScouts: {
+    items: [
+      {
+        name: "The Cape Youth",
+        preview: "https://drive.google.com/embeddedfolderview?id=1l6BHkIooh1phnMvlm1Sm8bifA62mhy84#grid",
+        edit: "https://drive.google.com/drive/folders/1l6BHkIooh1phnMvlm1Sm8bifA62mhy84?usp=drive_link"
+      },
+      {
+        name: "The Void",
+        preview: "https://drive.google.com/embeddedfolderview?id=1BxdHynkEDhJSQEIK_cl99nNwSecGIUZ_#grid",
+        edit: "https://drive.google.com/drive/folders/1BxdHynkEDhJSQEIK_cl99nNwSecGIUZ_?usp=drive_link"
       }
     ]
   }
