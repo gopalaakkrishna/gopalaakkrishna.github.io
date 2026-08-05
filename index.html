@@ -567,6 +567,11 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 /* ── V17 PREVIEW-FIRST BEHAVIOR ─────────────────────────────────────── */
 .modal.document .m-link.doc{opacity:.72;}
 .modal.document .m-link.doc:hover{opacity:1;}
+
+/* ── V18 LOCKED IN-PAGE PREVIEWS ────────────────────────────────────── */
+/* Embedded content is sandboxed: clicks stay inside the preview frame. */
+.modal .m-link{display:none!important;}
+.modal.document .m-note::after{content:' · Browse files in this window';}
 </style>
 </head>
 <body>
@@ -1079,9 +1084,9 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 
 <!-- MAIN MEDIA MODAL -->
 <div class="modal" id="modal" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
-  <iframe id="mF" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
+  <iframe id="mF" src="" sandbox="allow-scripts allow-forms allow-same-origin allow-downloads" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
   <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/>
-</div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="doc-nav" id="mDocNav" style="display:none"></div><div class="doc-sub-nav" id="mDocSubNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">Platform Preview</div><a class="m-link yt" id="mL" href="#"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
+</div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="doc-nav" id="mDocNav" style="display:none"></div><div class="doc-sub-nav" id="mDocSubNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">In-page preview</div><a class="m-link yt" id="mL" href="#"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
 
 <script>
 addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>50));
