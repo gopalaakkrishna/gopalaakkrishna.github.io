@@ -140,6 +140,13 @@ html{scroll-behavior:auto}
 .bb-pills::after{content:'';padding-right:var(--pad);flex-shrink:0}
 .bb-pill{font-size:.75rem;padding:6px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;color:rgba(255,255,255,0.6);white-space:nowrap;display:flex;align-items:center;line-height:1;flex-shrink:0}
 .bb-pill b{color:var(--red);font-weight:700;margin-right:4px}
+/* bb-pills wrap on desktop: the horizontal scroll strip is a mobile pattern.
+   On a wide screen it has no scrollbar and no swipe hint, so the last pills
+   (incl. the festival selection) were silently clipped at the 800px info box. */
+@media (min-width:900px){
+  .bb-pills{flex-wrap:wrap;overflow-x:visible;row-gap:8px}
+  .bb-pills::after{display:none}
+}
 
 /* SECTIONS */
 .sec{display:none;padding:100px 0 60px;animation:secIn .4s ease}.sec.on{display:block}
