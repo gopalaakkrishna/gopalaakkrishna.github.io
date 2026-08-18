@@ -85,6 +85,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);overf
 ::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:9px}
 a{color:inherit;text-decoration:none}button{font-family:inherit}
 :focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:3px}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:400;background:var(--red);color:#111;padding:12px 20px;font-weight:700;font-size:.8rem;border-radius:0 0 4px 0}
+.skip-link:focus{left:0}
+.card[role="button"],.g-card[role="button"],.b-card[role="button"]{cursor:pointer}
 @media (prefers-reduced-motion:reduce){
 html{scroll-behavior:auto}
 *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
@@ -665,6 +668,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <nav class="nav" id="nav">
   <a class="logo" href="#home" aria-label="Gopala Krishna — home">
     <span class="logo-full">Gopala Krishna</span>
@@ -674,7 +678,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
     <a class="nm on" data-s="home" href="#home">Home</a>
     <a class="nm" data-s="film" href="#film">Film & Video</a>
     <a class="nm" data-s="photo" href="#photo">Photography</a>
-    <button class="nm mobile-browse" id="browseBtn" onclick="toggleBrowse(event)">Browse ▾</button>
+    <button class="nm mobile-browse" id="browseBtn" aria-expanded="false" aria-controls="browseDropdown" onclick="toggleBrowse(event)">Browse ▾</button>
     
     <a class="nm desktop-only" data-s="social" href="#social">Social Posts</a>
     <a class="nm desktop-only" data-s="writing" href="#writing">Writing</a>
@@ -698,7 +702,8 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
     <a class="nm" data-s="contact" href="#contact">Contact</a>
 </div>
 
-<div class="billboard" id="billboard"><div class="billboard-vid"><iframe src="https://player.vimeo.com/video/1031440535?autoplay=1&muted=1&loop=1&background=1" allow="autoplay;fullscreen" allowfullscreen></iframe></div><div class="billboard-mask"></div><div class="billboard-info"><div class="bb-kicker">Creative Producer · Director · Editor · New York City</div><h1 class="bb-title">CONCEPT THROUGH FINAL CUT.</h1>
+<main id="main" tabindex="-1">
+<div class="billboard" id="billboard"><div class="billboard-vid"><iframe src="https://player.vimeo.com/video/1031440535?autoplay=1&muted=1&loop=1&background=1" title="Showreel background video" aria-hidden="true" tabindex="-1" allow="autoplay;fullscreen" allowfullscreen></iframe></div><div class="billboard-mask"></div><div class="billboard-info"><div class="bb-kicker">Creative Producer · Director · Editor · New York City</div><h1 class="bb-title">CONCEPT THROUGH FINAL CUT.</h1>
 
 <div class="bb-types">
   <div class="bb-type">Documentary</div>
@@ -1191,11 +1196,13 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 
 <div class="sec" id="s-contact"><div class="sh"><div class="sh-t">HIRE ME</div><div class="sh-s">Open to freelance projects and full-time roles.</div></div><div class="sh-desc">Working on something? Let's talk.<br><br>Available for select documentary, narrative, branded-content, and production collaborations in New York and remotely.</div><div class="hire-g"><div class="hire fl"><div class="hire-tp">Freelance · Project Basis</div><div class="hire-ht">YOU BRING THE BRIEF.<br>I BRING THE FILM.</div><ul class="hire-ul"><li>Branded content campaigns</li><li>Documentary & narrative production</li><li>Social video strategy & production</li><li>Photography shoots</li><li>Copywriting & scripts</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-r">Start a Project</a></div><div class="hire ft"><div class="hire-tp">Full-Time · Staff Role</div><div class="hire-ht">LET ME GROW<br>WITH YOUR TEAM.</div><ul class="hire-ul"><li>Creative Producer & Director roles</li><li>Production companies & studios</li><li>Sports, lifestyle, branded content</li><li>NYC-based or remote-first</li><li>Immediate availability</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-b">Send an Opportunity</a></div></div><div class="c-rows"><div class="c-row"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></div><div class="c-row"><span class="c-lbl">LinkedIn</span><span class="c-val"><a href="https://linkedin.com/in/gopalakkrishna">linkedin.com/in/gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">Instagram</span><span class="c-val"><a href="https://www.instagram.com/gopalakkrishna/">@gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">YouTube</span><span class="c-val"><a href="https://www.youtube.com/@Evolvepictures">@Evolvepictures</a></span></div><div class="c-row"><span class="c-lbl">Resume</span><span class="c-val"><a href="#" onclick="event.preventDefault(); play('https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/preview', 'Gopala Krishna — Resume', 'doc', 'https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/view?usp=drive_link')">View Resume</a></span></div><div class="c-row"><span class="c-lbl">Location</span><span class="c-val" style="color:#fff;font-size:.8rem">New York City, NY <span style="color:var(--tx3);font-size:.7rem">(Open to other cities)</span></span></div></div></div>
 
+</main>
+
 <footer id="ft"><span>© Gopala Krishna 2026 · Evolve Pictures LLC</span><span style="font-size:.65rem;color:var(--tx3);letter-spacing:.06em;">Currently available · New York City · Open to select remote projects</span><span><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></footer>
 
 <!-- MAIN MEDIA MODAL -->
-<div class="modal" id="modal" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
-  <iframe id="mF" src="" sandbox="allow-scripts allow-forms allow-same-origin allow-downloads" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mT" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
+  <iframe id="mF" title="Embedded media player" src="" sandbox="allow-scripts allow-forms allow-same-origin allow-downloads" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
   <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/>
 </div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="doc-nav" id="mDocNav" style="display:none"></div><div class="doc-sub-nav" id="mDocSubNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">In-page preview</div><a class="m-link yt" id="mL" href="#"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
 
@@ -1204,7 +1211,9 @@ addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s
 
 function toggleBrowse(e) {
     if(e) e.stopPropagation();
-    document.getElementById('browseDropdown').classList.toggle('open');
+    const open = document.getElementById('browseDropdown').classList.toggle('open');
+    const btn = document.getElementById('browseBtn');
+    if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 
 document.addEventListener('click', (e) => {
@@ -1266,6 +1275,57 @@ function render(s,instant){
 }
 
 window.addEventListener('hashchange', () => render(sectionFromHash()));
+
+/* ---- Accessibility: make clickable cards real buttons ------------------- */
+(function(){
+  function upgradeCards(){
+    document.querySelectorAll('.card[onclick],.g-card[onclick],.b-card[onclick]').forEach(el => {
+      if(!el.hasAttribute('role')) el.setAttribute('role','button');
+      if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
+    });
+  }
+  if(document.readyState === 'loading') addEventListener('DOMContentLoaded', upgradeCards);
+  else upgradeCards();
+
+  /* Enter / Space activate anything exposed as a button */
+  document.addEventListener('keydown', e => {
+    if(e.key !== 'Enter' && e.key !== ' ') return;
+    const t = e.target;
+    if(!(t instanceof Element) || !t.matches('[role="button"]')) return;
+    if(t.closest('a,button')) return;
+    e.preventDefault();
+    t.click();
+  });
+
+  /* Modal focus: move in on open, restore on close, trap Tab while open */
+  const modal = document.getElementById('modal');
+  let lastFocused = null;
+
+  new MutationObserver(() => {
+    const open = modal.classList.contains('open');
+    if(open && !modal.dataset.wasOpen){
+      modal.dataset.wasOpen = '1';
+      lastFocused = document.activeElement;
+      const close = modal.querySelector('.m-x');
+      if(close) close.focus();
+    } else if(!open && modal.dataset.wasOpen){
+      delete modal.dataset.wasOpen;
+      if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      lastFocused = null;
+    }
+  }).observe(modal, {attributes:true, attributeFilter:['class']});
+
+  document.addEventListener('keydown', e => {
+    if(e.key !== 'Tab' || !modal.classList.contains('open')) return;
+    const f = [...modal.querySelectorAll('a[href],button:not([disabled]),iframe,[tabindex]:not([tabindex="-1"])')]
+      .filter(el => el.offsetParent !== null || el === document.activeElement);
+    if(!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+})();
+
 render(sectionFromHash(), true);
 
 
