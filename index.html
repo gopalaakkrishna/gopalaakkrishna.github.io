@@ -190,6 +190,11 @@ html{scroll-behavior:auto}
 .g-card:hover{transform:scale(1.02);border-color:rgba(255,255,255,.1);box-shadow:0 8px 24px rgba(0,0,0,.5);z-index: 5;position: relative;}
 .g-img{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .g-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;}
+.g-img[data-lqip]{background-size:cover;background-position:center;background-repeat:no-repeat}
+.g-img[data-lqip]::before{content:'';position:absolute;inset:0;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:0}
+.g-img img{position:relative;z-index:1;opacity:0;transition:opacity .45s ease,transform .4s ease}
+.g-img img.lqip-done{opacity:1}
+@media (prefers-reduced-motion:reduce){.g-img img{transition:none}}
 .g-card:hover .g-img img{transform:scale(1.08);}
 .g-lbl{position:absolute;bottom:0;left:0;right:0;padding:32px 10px 10px;background:linear-gradient(transparent,rgba(0,0,0,.9));font-size:0.6875rem;color:rgba(255,255,255,.95);letter-spacing:.1em;text-transform:uppercase;font-weight:600;pointer-events:none;}
 .g-cat{position:absolute;top:6px;left:6px;font-size:.6875rem;background:rgba(0,0,0,.6);color:rgba(255,255,255,.9);padding:4px 8px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none;backdrop-filter:blur(4px);}
@@ -293,6 +298,7 @@ html{scroll-behavior:auto}
 .m-stage{width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;position:relative;flex-shrink:0}
 .m-stage iframe{width:100%;height:100%;border:none;position:absolute;inset:0;}
 .m-stage img.m-img-view{width:100%;height:100%;object-fit:contain;background:#050505;display:none;position:absolute;inset:0;}
+.m-stage video.m-vid-view{width:100%;height:100%;object-fit:contain;background:#000;display:none;position:absolute;inset:0;}
 .modal.portrait .m-box{width:min(440px,94vw); max-height:95vh;}
 .modal.portrait .m-stage{aspect-ratio:auto; height:740px; max-height:calc(95vh - 120px);}
 
@@ -832,7 +838,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 
 <div class="sh"><div class="sh-t">PODCAST CLIPS</div><div class="sh-s">3 clips</div></div>
 <div class="row"><div class="row-track">
-<div class="card" onclick="play('https://drive.google.com/file/d/1Xq_SufppaF0YyIWomXTBvCqZM31d9lzI/preview','“Is It Just Zapier?” — Omniscient','drivevert','https://drive.google.com/file/d/1Xq_SufppaF0YyIWomXTBvCqZM31d9lzI/view?usp=drive_link')">
+<div class="card" onclick="playVideo('work/omniscient-clip1.mp4','work/omniscient-clip1-poster.jpg','“Is It Just Zapier?” — Omniscient',true,'https://drive.google.com/file/d/1Xq_SufppaF0YyIWomXTBvCqZM31d9lzI/view?usp=drive_link')">
   <div class="card-img" style="background:url('work/omniscient-clip1.jpg') center/cover no-repeat #101418;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
   <div class="card-body">
     <div class="card-badge b-blue">Podcast Clip · Vertical</div>
@@ -842,7 +848,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
   </div>
 </div>
 
-<div class="card" onclick="play('https://drive.google.com/file/d/1uI2l60fueQmbOhxX3mokat-af_cDp3T7/preview','“He Writes His Novels By Hand” — Omniscient','drivevert','https://drive.google.com/file/d/1uI2l60fueQmbOhxX3mokat-af_cDp3T7/view?usp=drive_link')">
+<div class="card" onclick="playVideo('work/omniscient-clip2.mp4','work/omniscient-clip2-poster.jpg','“He Writes His Novels By Hand” — Omniscient',true,'https://drive.google.com/file/d/1uI2l60fueQmbOhxX3mokat-af_cDp3T7/view?usp=drive_link')">
   <div class="card-img" style="background:url('work/omniscient-clip2.jpg') center/cover no-repeat #141018;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
   <div class="card-body">
     <div class="card-badge b-blue">Podcast Clip · Vertical</div>
@@ -852,7 +858,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
   </div>
 </div>
 
-<div class="card" onclick="play('https://drive.google.com/file/d/1wYbrS6Aq6U8JMVggqzFHarHt-SL_VxNq/preview','“Left Behind” — Omniscient','drive','https://drive.google.com/file/d/1wYbrS6Aq6U8JMVggqzFHarHt-SL_VxNq/view?usp=drive_link')">
+<div class="card" onclick="playVideo('work/omniscient-clip3.mp4','work/omniscient-clip3-poster.jpg','“Left Behind” — Omniscient',false,'https://drive.google.com/file/d/1wYbrS6Aq6U8JMVggqzFHarHt-SL_VxNq/view?usp=drive_link')">
   <div class="card-img" style="background:url('work/omniscient-clip3.jpg') center/cover no-repeat #101814;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
   <div class="card-body">
     <div class="card-badge b-blue">Podcast Clip · Landscape</div>
@@ -931,77 +937,77 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
   <div class="g-grid" id="pG">
     <!-- NEW TRAVEL IMAGES -->
     <div class="g-card" data-c="travel" data-url="NY_New%20Yorker.jpg" data-title="The New Yorker" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAQCAwX/xAAhEAACAQMEAwEAAAAAAAAAAAABAgMAETEEBRIhE0Fhcf/EABUBAQEAAAAAAAAAAAAAAAAAAAIA/8QAGxEAAgIDAQAAAAAAAAAAAAAAAQIAAxESUTH/2gAMAwEAAhEDEQA/AF2lQxh1NwcWqkeV3UIDc+sUpt+rOmkKt3E5t9U1rAk7kVAFil/3FGyxiZU1qo8yZODSc05TCzk4XFFJybrPDI0aKgCm3dFHZ+xFK+T/2Q==)">
         <img src="thumbs/NY_New%20Yorker.jpg" alt="The New Yorker hotel sign rising above the street in Manhattan" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">New York</span>
       </div>
     </div>
     <div class="g-card" data-c="travel" data-url="NY_Union%20Square.jpg" data-title="Union Square" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBAgQF/8QAHxAAAgICAwADAAAAAAAAAAAAAQIAEQMSBCFBMVFh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgT/xAAcEQACAgIDAAAAAAAAAAAAAAABAgARAyEEFCL/2gAMAwEAAhEDEQA/AOYwK5Qo8+ZcgXrYv6uQOVjyYGdl1IYDqPXj4yg2W/2Htso9DcB4Ss1qdTMV7hHjDYtDsvhMJSudCLuRtgdWIE//2Q==)">
         <img src="thumbs/NY_Union%20Square.jpg" alt="Golden-hour light across historic buildings at Union Square, New York" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">New York</span>
       </div>
     </div>
     <div class="g-card" data-c="travel" data-url="Coorg_Mountain.jpg" data-title="Coorg Mountains" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAABQAEBv/EACAQAAICAQMFAAAAAAAAAAAAAAECAAMRBAVBEiFRYYH/xAAVAQEBAAAAAAAAAAAAAAAAAAAAA//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oADAMBAAIRAxEAPwBKm0kr1sAD4Im5tKGrOLe55nA06w1MCS2BwDERvly1YUn6ZVGkdSjpey5Jx6lAn3a4tksZRSP/2Q==)">
         <img src="thumbs/Coorg_Mountain.jpg" alt="Light breaking through mist over the hills of Coorg, India" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">Landscape</span>
       </div>
     </div>
     <div class="g-card" data-c="travel" data-url="Coorg_Mountain2.jpg" data-title="Coorg Valley" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIGBf/EACIQAAICAQEJAAAAAAAAAAAAAAECAAMRIRITM0JDUYGRkv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABcRAQADAAAAAAAAAAAAAAAAAAABEiH/2gAMAwEAAhEDEQA/ANTe1Z4q+DFa+oddPci1utYErY2g1zELWczy2hnVkbVJyL6/oQkWdvsIRaDX/9k=)">
         <img src="thumbs/Coorg_Mountain2.jpg" alt="Layered ridgelines and low cloud across the Coorg valley" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">Mountains</span>
       </div>
     </div>
     <div class="g-card" data-c="travel" data-url="Pondicherry_Beach.jpg" data-title="Pondicherry Beach" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAQCAwX/xAAjEAABBAEEAQUAAAAAAAAAAAABAAIDEVEEEhMhBRQiQYGh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAZEQADAAMAAAAAAAAAAAAAAAAAARICAyL/2gAMAwEAAhEDEQA/AM9kM7/I8zNt7q3HsXlM6sSvld7KAwFc7WQ8wo01rehXzag7WQk9uJ+iqcFJHs6EhG7BQm/VwZ/EJKBhn//Z)">
         <img src="thumbs/Pondicherry_Beach.jpg" alt="A palm leaning over the empty seafront at Pondicherry" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">Coast</span>
       </div>
     </div>
     <div class="g-card" data-c="travel" data-url="Miami_Beach.jpg" data-title="Miami Beach" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIFBP/EACIQAAEDBAAHAAAAAAAAAAAAAAABAgMFERMhEiJCUXGBkv/EABcBAAMBAAAAAAAAAAAAAAAAAAABAgP/xAAWEQEBAQAAAAAAAAAAAAAAAAAAEgH/2gAMAwEAAhEDEQA/AN7Yu6DYSG2sSInMy/hR0rkfVxt9XKpnGq6w7AjrV4l3kd8gOhL/2Q==)">
         <img src="thumbs/Miami_Beach.jpg" alt="Distant figures along the shoreline under a wide pale sky at Miami Beach" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">Beach</span>
       </div>
     </div>
     <div class="g-card" data-c="travel" data-url="City_Murudeshwar.jpg" data-title="Murudeshwar City" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMFAQT/xAAiEAABAwIGAwAAAAAAAAAAAAABAAIDERIEBQYTITFBYYH/xAAVAQEBAAAAAAAAAAAAAAAAAAACAf/EABgRAAMBAQAAAAAAAAAAAAAAAAABEwIS/9oADAMBAAIRAxEAPwDG5+89uJ+J41AfAU/MGRiSxo27eqBLw2B3BdJI5tBXgAhWmg8pFQ6geT2hcGHgFhEclGhxpUcn2hGopn//2Q==)">
         <img src="thumbs/City_Murudeshwar.jpg" alt="Aerial view of Murudeshwar town along the Karnataka coastline" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">Aerial</span>
       </div>
     </div>
     <div class="g-card" data-c="travel" data-url="Sea_Murudeshwar.jpg" data-title="Murudeshwar Sea" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMFAf/EACUQAAICAgADCQAAAAAAAAAAAAECAAMEEQUTUhQhMTJBUWHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAAC/8QAFhEBAQEAAAAAAAAAAAAAAAAAABES/9oADAMBAAIRAxEAPwDauK8Vcd2KNe7DUpY+Zeawb1AfpGv2INzrSbVUFSPU/UU1+HWic0WOzLvYl1EUTk2HwNevkwkztdTeSpQB1DZhGiP/2Q==)">
         <img src="thumbs/Sea_Murudeshwar.jpg" alt="Waves breaking along the Murudeshwar coast, seen from above" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">Ocean</span>
       </div>
     </div>
     <div class="g-card" data-c="travel" data-url="Night_Moon.jpg" data-title="Night Moon" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAUBAgP/xAAeEAABBAIDAQAAAAAAAAAAAAABAAIEEQMFEjFBYf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwBDB1ObYEtw0CB6stjqZWuycJDPLtpsKY+3kRGkYXV9rpXk72VLY9sji8OFdUgVoRaEH//Z)">
         <img src="thumbs/Night_Moon.jpg" alt="The moon breaking through heavy night cloud" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">Night Sky</span>
       </div>
     </div>
     <div class="g-card" data-c="travel" data-url="Waterview.jpg" data-title="Water View" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAgP/xAAlEAABAwMDAwUAAAAAAAAAAAABAAIDBBExBRIhExRRM0FxodH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAQP/xAAYEQEAAwEAAAAAAAAAAAAAAAAAAREhAv/aAAwDAQACEQMRAD8ApiniPpTObfIyFrTquGpjl6NiI3ljvBt7pKkmL9oz54XDR4XQd01mHSbh8c/inWFGrdwMM+0JIPcMlCzs6f/Z)">
         <img src="thumbs/Waterview.jpg" alt="A lone silhouetted figure standing on a pier at dusk" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">Silhouette</span>
       </div>
     </div>
     <div class="g-card" data-c="travel" data-url="IMG_20201003_075959-2.jpg" data-title="Ancient Temple Interior" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EACAQAAICAgEFAQAAAAAAAAAAAAECAAMRITEEIjJBUYH/xAAWAQEBAQAAAAAAAAAAAAAAAAABAAL/xAAWEQEBAQAAAAAAAAAAAAAAAAAAERL/2gAMAwEAAhEDEQA/AMa+hlqLhdA+f2TVF7WG+N8TYtQ31iqpe0EknP2LToDQSxGP3PuGVopOnJUHS59GEtTD5I7RngwhGq//2Q==)">
         <img src="thumbs/IMG_20201003_075959-2.jpg" alt="Carved stone columns receding through an ancient temple interior" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Travel</span>
         <span class="g-lbl">Heritage</span>
@@ -1011,49 +1017,49 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 
     <!-- NEW PORTRAIT IMAGES -->
     <div class="g-card" data-c="portrait" data-url="100mm%20Portrait-2.jpg" data-title="100mm B&W Portrait" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAwQA/8QAIhAAAgEDAwUBAAAAAAAAAAAAAQIEAAMTBREhEiIxUWFx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AI487Uo/VikKbhA7WTzS3JUyXjfrVZJHkjYflQzZbNIRnAyLwW90DyGygMxK2+4D7QNelajZusj3k3HytUzxrs45jc5PB3rUH//Z)">
         <img src="thumbs/100mm%20Portrait-2.jpg" alt="Black and white portrait shot on a 100mm lens" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Portrait</span>
         <span class="g-lbl">B&W</span>
       </div>
     </div>
     <div class="g-card" data-c="portrait" data-url="Experiment_Drag_Ghost-2.jpg" data-title="Abstract Ghost Portrait" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAgb/xAAdEAACAgIDAQAAAAAAAAAAAAABAgADBBESITFR/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AOMlvCwqXxA7K3I9HzRkVRsx9b3THCbPGAvfSq2sFBUfDCYe4u229hA//9k=)">
         <img src="thumbs/Experiment_Drag_Ghost-2.jpg" alt="Long-exposure portrait experiment blurring the face into motion" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Portrait</span>
         <span class="g-lbl">Creative</span>
       </div>
     </div>
     <div class="g-card" data-c="portrait" data-url="Hands.jpg" data-title="Hands Ritual" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQFA//EACAQAAICAQQDAQAAAAAAAAAAAAEDAAIRBAUSITFBUYH/xAAVAQEBAAAAAAAAAAAAAAAAAAADBP/EABgRAAMBAQAAAAAAAAAAAAAAAAABEQIx/9oADAMBAAIRAxEAPwDd9srsxBqyuRnJ8+j3FdVuJVo3Ba+NqjFbff2Q9sswm6+Z4EAkR4MbdttKK17Joc/IHNQdK5pILmsJsbEk+4Sq7aW6dhWHEAeOhCUQnP/Z)">
         <img src="thumbs/Hands.jpg" alt="Close-up of hands tying a ceremonial thread during a ritual" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Portrait</span>
         <span class="g-lbl">Details</span>
       </div>
     </div>
     <div class="g-card" data-c="portrait" data-url="IMG_0862.jpg" data-title="Bird on Balcony" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMCBAX/xAAjEAABAwMCBwAAAAAAAAAAAAABAAIDESExEyIEEiNRcYGx/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAECA//EABoRAAICAwAAAAAAAAAAAAAAAAABAhESITH/2gAMAwEAAhEDEQA/AMMbpZPXxVeJPUNb2TnP0pZQa3olSkHnoMd1C6aSeh7DsGMIUG6hAo23lCVBkj//2Q==)">
         <img src="thumbs/IMG_0862.jpg" alt="A bird perched on a weathered balcony rail" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Portrait</span>
         <span class="g-lbl">Wildlife</span>
       </div>
     </div>
     <div class="g-card" data-c="portrait" data-url="IMG_1826.jpg" data-title="Colorful Portrait" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIFBAb/xAAgEAACAQQCAwEAAAAAAAAAAAACAwEABBEhEjEFE0FR/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgED/8QAGxEAAgMBAQEAAAAAAAAAAAAAAhIAASEDMbH/2gAMAwEAAhEDEQA/AILVSqJkh7j71TPW4PGJklwI8u8bqvbAt9on2BBFz3n7ut99u1MCASDGKjCejGp87U/ZzAW3IYJrhXM7xP5RS3QwFwQLjIjrdFBzvWmlBzrF+z//2Q==)">
         <img src="thumbs/IMG_1826.jpg" alt="Portrait against a brightly painted multi-coloured mural" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Portrait</span>
         <span class="g-lbl">Portrait</span>
       </div>
     </div>
     <div class="g-card" data-c="portrait" data-url="IMG_4467-2.jpg" data-title="Graduation Portrait" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAgP/xAAhEAACAgICAQUAAAAAAAAAAAABAgADBBESITEFM0FCcf/EABQBAQAAAAAAAAAAAAAAAAAAAAP/xAAXEQADAQAAAAAAAAAAAAAAAAAAAQIx/9oADAMBAAIRAxEAPwCK6VhGK1ozctAa8zpdRdXiYwIZiF2eugD1qN4orptSs0rZY5Oi3x1GWz0pps5Aha20R5MC6axCyiBnKEsrXiPbWE16qxfL5H7ID+QirA3p/9k=)">
         <img src="thumbs/IMG_4467-2.jpg" alt="Graduation portrait in cap and gown, holding a bouquet" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Portrait</span>
         <span class="g-lbl">Graduation</span>
       </div>
     </div>
     <div class="g-card" data-c="portrait" data-url="IMG_6179-2.jpg" data-title="Travel Portrait" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAABAACA//EACEQAAICAgIBBQAAAAAAAAAAAAECAAMRIQQSBRMxUWFx/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQAC/8QAGREAAwEBAQAAAAAAAAAAAAAAAAERAhIh/9oADAMBAAIRAxEAPwAtHLazA6Pn9nTk8opoL1I98nOYWtLwwY2bHwBC+SdvUAdyzP8AUK34SlGC2+0ZKMca1KaqDpWq60JTPWhmT//Z)">
         <img src="thumbs/IMG_6179-2.jpg" alt="Travel portrait in front of rows of colourful prayer flags" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Portrait</span>
         <span class="g-lbl">Portrait</span>
@@ -1063,21 +1069,21 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 
     <!-- NEW SPORTS IMAGES -->
     <div class="g-card" data-c="sports" data-url="IMG_6206-2.jpg" data-title="Archery Practice" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAABQACA//EAB8QAAICAgMAAwAAAAAAAAAAAAECABEDIQQSEwUxQf/EABUBAQEAAAAAAAAAAAAAAAAAAAIB/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAERQf/aAAwDAQACEQMRAD8AB80XP5u4XdGxOrcbqzMGU2p+pn5FweWdlqA2RUTwYOK2DGxQ2y7isiTehfGvy5Rg4FUkYnCreh1uUBP/2Q==)">
         <img src="thumbs/IMG_6206-2.jpg" alt="An archer drawing a bow during outdoor practice" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Sports</span>
         <span class="g-lbl">Archery</span>
       </div>
     </div>
     <div class="g-card" data-c="sports" data-url="IMG_6427-2.jpg" data-title="Skiing Portrait" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAQL/xAAiEAACAQMEAgMAAAAAAAAAAAABAgMABBEFEiFRFCIxgZH/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//EABkRAAIDAQAAAAAAAAAAAAAAAAABAhEhMf/aAAwDAQACEQMRAD8Ajw+JbJv5mlwCB8Ad5rrTkkaOV4HMbDqtTSrqJsGIEdbhTC2MsVvMpQozDgBqUe6CbaWEwPJj2f8ARmimU064C8rj7FFCylH/2Q==)">
         <img src="thumbs/IMG_6427-2.jpg" alt="A skier standing among snow-covered trees" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Sports</span>
         <span class="g-lbl">Skiing</span>
       </div>
     </div>
     <div class="g-card" data-c="sports" data-url="IMG_6438-2.jpg" data-title="Skiing Action" onclick="openGalleryModal(this)">
-      <div class="g-img">
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAABQAEBv/EACMQAAEEAgEDBQAAAAAAAAAAAAIAAQMRBAUSITFBIiRSkaH/xAAWAQEBAQAAAAAAAAAAAAAAAAADAgT/xAAZEQACAwEAAAAAAAAAAAAAAAAAAQIREzL/2gAMAwEAAhEDEQA/AEtxspcOxiDlY96vqiddKQ5z5HA5GN6kf435XSbKhwJuncUZpBD3FNbWP2lXLM8r0QkMsItQm1MpaPS3j8UoGP/Z)">
         <img src="thumbs/IMG_6438-2.jpg" alt="A skier mid-run across fresh snow" loading="lazy" decoding="async" width="800" height="600">
         <span class="g-cat">Sports</span>
         <span class="g-lbl">Skiing</span>
@@ -1101,46 +1107,46 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
   </div>
   <div class="g-grid" id="spG">
     <div class="g-card sp-card" data-c="carousel" onclick="openSocialModal('https://www.instagram.com/p/DTjbVWYE0oJ/embed/','ig','Carousel Post','https://www.instagram.com/p/DTjbVWYE0oJ/')">
-      <div class="g-img sp-ig-thumb" style="background:#0a0a0a;"><img src="social/DTjbVWYE0oJ.jpg" alt="PhysioRX carousel: “3 Reasons your back still hurts”" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Carousel</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Carousel Post</span></div>
+      <div class="g-img sp-ig-thumb" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAIBAwQG/8QAHxAAAQQCAgMAAAAAAAAAAAAAAQACAxEEYSGREyNB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AOiyJJBOQx7268dhVtyJyDbn69S3kc/e1IGz2gWOzG0uNmuTVIToQf/Z);background:#0a0a0a;"><img src="social/DTjbVWYE0oJ.jpg" alt="PhysioRX carousel: “3 Reasons your back still hurts”" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Carousel</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Carousel Post</span></div>
     </div>
     <div class="g-card sp-card" data-c="carousel" onclick="openSocialModal('https://www.instagram.com/p/DTQ3gd-kWd1/embed/','ig','Carousel Post','https://www.instagram.com/p/DTQ3gd-kWd1/')">
-      <div class="g-img sp-ig-thumb" style="background:#0a0a0a;"><img src="social/DTQ3gd-kWd1.jpg" alt="PhysioRX carousel: “What is Hybrid Coaching?”" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Carousel</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Carousel Post</span></div>
+      <div class="g-img sp-ig-thumb" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAECBAb/xAAeEAACAgICAwAAAAAAAAAAAAABAgADERIxQQQTUf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDovItsS06uwHQ9eYqa+4nS3GOdq8TUwJPJkhe8mAQMEAdst2fsS0QP/9k=);background:#0a0a0a;"><img src="social/DTQ3gd-kWd1.jpg" alt="PhysioRX carousel: “What is Hybrid Coaching?”" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Carousel</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Carousel Post</span></div>
     </div>
     <div class="g-card sp-card" data-c="carousel" onclick="openSocialModal('https://www.instagram.com/p/DTBoDTcERH-/embed/','ig','Carousel Post','https://www.instagram.com/p/DTBoDTcERH-/')">
-      <div class="g-img sp-ig-thumb" style="background:#0a0a0a;"><img src="social/DTBoDTcERH-.jpg" alt="PhysioRX carousel: “New Year, Stronger You?”" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Carousel</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Carousel Post</span></div>
+      <div class="g-img sp-ig-thumb" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAECBAb/xAAcEAACAwEAAwAAAAAAAAAAAAABAgADETESQVH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A6O57FubDb4fFQERTdYo11tcHmpmTSy6fckIO9gWiIgf/2Q==);background:#0a0a0a;"><img src="social/DTBoDTcERH-.jpg" alt="PhysioRX carousel: “New Year, Stronger You?”" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Carousel</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Carousel Post</span></div>
     </div>
     <div class="g-card sp-card" data-c="design" onclick="openDriveImage('https://drive.google.com/thumbnail?id=1zQNi5ViXwdfovSF4OiYueW-6MBojLfb7&sz=w600','The Sauna Place')">
-      <div class="g-img" style="background:#111;"><img src="social/sauna-place.jpg" alt="The Sauna Place" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Ad Creative</span><span class="g-lbl">The Sauna Place</span></div>
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMCBAX/xAAiEAABAwMDBQAAAAAAAAAAAAABAAIDBBESBRMxISJBcYH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAAP/xAAaEQABBQEAAAAAAAAAAAAAAAAAAQIREkED/9oADAMBAAIRAxEAPwDBM0mXa9w+p1XDPSluct8h4JSqiERVbogSQHWuVY1Ocz7ZxDcSQLHkI2wcEqZhkhDi/r6KE/Tww0rci4G54Qq/TEMla2T/2Q==);background:#111;"><img src="social/sauna-place.jpg" alt="The Sauna Place" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Ad Creative</span><span class="g-lbl">The Sauna Place</span></div>
     </div>
     <div class="g-card sp-card" data-c="design" onclick="openDriveImage('https://drive.google.com/thumbnail?id=1oXkuaT-OTAximp4BZdP7Ftt28gm0S52S&sz=w600','Party Invitation')">
-      <div class="g-img" style="background:#111;"><img src="social/party-invitation.jpg" alt="Party Invitation" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Ad Creative</span><span class="g-lbl">Party Invitation</span></div>
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAECBAX/xAAhEAACAgEEAgMAAAAAAAAAAAABAgADEQQSIUEjUTGBkf/EABUBAQEAAAAAAAAAAAAAAAAAAAQD/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECESESMf/aAAwDAQACEQMRAD8A39SCWsVTtYjhvX1Fp6A1Smxi1g4Y47k718hOR+QrfaME5yfUHGEunccv0Q3mMsIoVAo6EI1IKgj4hFpUqJn/2Q==);background:#111;"><img src="social/party-invitation.jpg" alt="Party Invitation" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Ad Creative</span><span class="g-lbl">Party Invitation</span></div>
     </div>
     <div class="g-card sp-card" data-c="posters" onclick="openDriveImage('https://drive.google.com/thumbnail?id=1D9QLI99SQu632CGgxE6sKS1ECyBko9j1&sz=w600','Boundaries — YouTube Poster')">
-      <div class="g-img" style="background:#111;"><img src="social/boundaries-youtube-poster.jpg" alt="Boundaries — YouTube Poster" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Poster</span><span class="g-lbl">Boundaries — YouTube Poster</span></div>
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIFAwT/xAAhEAADAAEEAQUAAAAAAAAAAAABAgMABAUREiEiI0FCUf/EABYBAQEBAAAAAAAAAAAAAAAAAAIAAf/EABcRAAMBAAAAAAAAAAAAAAAAAAABERL/2gAMAwEAAhEDEQA/AJMdHAwVqzPZvzgAY237ZK8rUdGZVfqCDwMQ6vRyX2mo55+w48ZppN2jp5WkquEq/Yn5AwOjqpPtERqyeggHwThnS1dudizNbk4ZsZaR/9k=);background:#111;"><img src="social/boundaries-youtube-poster.jpg" alt="Boundaries — YouTube Poster" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Poster</span><span class="g-lbl">Boundaries — YouTube Poster</span></div>
     </div>
     <div class="g-card sp-card" data-c="posters" onclick="openDriveImage('https://drive.google.com/thumbnail?id=16u43zttiky6--W35dj1ui2QeWBgE_Axe&sz=w600','Boundaries — Film Poster')">
-      <div class="g-img" style="background:#111;"><img src="social/boundaries-film-poster.jpg" alt="Boundaries — Film Poster" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Poster</span><span class="g-lbl">Boundaries — Film Poster</span></div>
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EAB0QAAICAgMBAAAAAAAAAAAAAAECAAMEERIhQRP/xAAVAQEBAAAAAAAAAAAAAAAAAAACAf/EABcRAQEBAQAAAAAAAAAAAAAAAAABEiH/2gAMAwEAAhEDEQA/AMbH+jLcy6Br2e/ZRTTc+Mb+ahzs8TH52IKzoqg5AnYJmdiu/wBHrZyQBsQWnJxRjX2pWV2ej5CMrbSnv2Euhy//2Q==);background:#111;"><img src="social/boundaries-film-poster.jpg" alt="Boundaries — Film Poster" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Poster</span><span class="g-lbl">Boundaries — Film Poster</span></div>
     </div>
     <div class="g-card sp-card" data-c="informative" onclick="openDriveImage('https://drive.google.com/thumbnail?id=1Zw1HsSTL9GabFS1sPFUg_-55MTZib-DF&sz=w600','Casting Call')">
-      <div class="g-img" style="background:#111;"><img src="social/casting-call.jpg" alt="Casting Call" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Informative</span><span class="g-lbl">Casting Call</span></div>
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGQAAAQUAAAAAAAAAAAAAAAAAAAEDBAUG/8QAHhAAAQQCAwEAAAAAAAAAAAAAAQACESEEEgNBUbH/xAAWAQEBAQAAAAAAAAAAAAAAAAABAgP/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDK8IdrX1Ota+z4PUmLBMjpScgaY7oMl1ClqlVvMuJQgi0IL//Z);background:#111;"><img src="social/casting-call.jpg" alt="Casting Call" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Informative</span><span class="g-lbl">Casting Call</span></div>
     </div>
     <div class="g-card sp-card" data-c="informative" onclick="openDriveImage('https://drive.google.com/thumbnail?id=1n-ySjoFQ_r_QzseSIPgW17FmAXcdTgBe&sz=w600','Did You Know?')">
-      <div class="g-img" style="background:#111;"><img src="social/did-you-know.jpg" alt="Did You Know?" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Informative</span><span class="g-lbl">Did You Know?</span></div>
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIDAQT/xAAdEAACAgIDAQAAAAAAAAAAAAAAAQIDEUESE1GR/8QAFgEBAQEAAAAAAAAAAAAAAAAABAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A4a4RlDLWx+qHhKuzhod3rS+gTEprE2kBjeXkCa//2Q==);background:#111;"><img src="social/did-you-know.jpg" alt="Did You Know?" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#181210,#100a08)';"><span class="g-cat">Informative</span><span class="g-lbl">Did You Know?</span></div>
     </div>
     <div class="g-card sp-card" data-c="informative" onclick="openSocialModal('https://www.instagram.com/p/DRNSRYLEiEF/embed/','ig','Informative Post','https://www.instagram.com/p/DRNSRYLEiEF/')">
-      <div class="g-img sp-ig-thumb" style="background:#0a0a0a;"><img src="social/DRNSRYLEiEF.jpg" alt="PhysioRX post: gaining muscle compared to paying into a 401k" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Informative</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Informative Post</span></div>
+      <div class="g-img sp-ig-thumb" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAECAwb/xAAeEAACAgICAwAAAAAAAAAAAAABAgADBBEScSExUf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDqLci2vKrqWgtWykmzkAFPybq2x50D3IesOdkmFrCnfvuBeIiB/9k=);background:#0a0a0a;"><img src="social/DRNSRYLEiEF.jpg" alt="PhysioRX post: gaining muscle compared to paying into a 401k" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Informative</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Informative Post</span></div>
     </div>
     <div class="g-card sp-card" data-c="reviews" onclick="openSocialModal('https://www.instagram.com/p/DSgFKAxkXp_/embed/','ig','Review Post','https://www.instagram.com/p/DSgFKAxkXp_/')">
-      <div class="g-img sp-ig-thumb" style="background:#0a0a0a;"><img src="social/DSgFKAxkXp_.jpg" alt="Five-star PhysioRX client review from Robert K" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Review</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Review Post</span></div>
+      <div class="g-img sp-ig-thumb" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBv/EAB4QAAICAgIDAAAAAAAAAAAAAAECAAMRIRIxBFFx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8A6x7QGIPHXszUtLEAcT8MHx1LszbzKSlKzlRuMgsdRC9RA//Z);background:#0a0a0a;"><img src="social/DSgFKAxkXp_.jpg" alt="Five-star PhysioRX client review from Robert K" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Review</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Review Post</span></div>
     </div>
     <div class="g-card sp-card" data-c="reviews" onclick="openSocialModal('https://www.instagram.com/p/DToOZ7HE1jW/embed/','ig','Review Post','https://www.instagram.com/p/DToOZ7HE1jW/')">
-      <div class="g-img sp-ig-thumb" style="background:#0a0a0a;"><img src="social/DToOZ7HE1jW.jpg" alt="Five-star PhysioRX client review from Nadine Y" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Review</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Review Post</span></div>
+      <div class="g-img sp-ig-thumb" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMG/8QAHBAAAgMBAAMAAAAAAAAAAAAAAQIAAxExIVFx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8A1tjEOQBsLY2gZ4+RZSzuSHwQtDA6bCR6jIKjkQvIgf/Z);background:#0a0a0a;"><img src="social/DToOZ7HE1jW.jpg" alt="Five-star PhysioRX client review from Nadine Y" loading="lazy" decoding="async" width="800" height="600" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#1a1014,#0f0a12)';"><span class="g-cat">Review</span><div class="sp-play"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span class="g-lbl">Review Post</span></div>
     </div>
     <div class="g-card sp-card" data-c="plan" onclick="play('https://drive.google.com/file/d/1FckpJdz8GYHIPF-xpsjIeKCqqp0SfmMX/preview','Controls NYC — Social Strategy','doc','https://drive.google.com/file/d/1FckpJdz8GYHIPF-xpsjIeKCqqp0SfmMX/view?usp=drive_link')">
-      <div class="g-img" style="background:#111820;"><img src="social/controls-nyc-strategy.jpg" alt="Controls NYC — Social Strategy" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.7;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#111820,#0d1218)';"><div class="sp-doc-overlay"><span style="font-size:1.2rem;">📋</span><span>View Doc</span></div><span class="g-cat">Strategy</span><span class="g-lbl">Controls NYC — Social Strategy</span></div>
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAEDBv/EACEQAAIBAwMFAAAAAAAAAAAAAAABEQIDEiExMkFRcYHB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANZcjJvx0Ch6/Bdayalz2IUU7tr2BdRxAo4oAf/Z);background:#111820;"><img src="social/controls-nyc-strategy.jpg" alt="Controls NYC — Social Strategy" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.7;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#111820,#0d1218)';"><div class="sp-doc-overlay"><span style="font-size:1.2rem;">📋</span><span>View Doc</span></div><span class="g-cat">Strategy</span><span class="g-lbl">Controls NYC — Social Strategy</span></div>
     </div>
     <div class="g-card sp-card" data-c="plan" onclick="play('https://drive.google.com/file/d/1Ug26NK1ilKf4p29XFVurS1WXIQpMCkNo/preview','The Sauna Place — Social Strategy','doc','https://drive.google.com/file/d/1Ug26NK1ilKf4p29XFVurS1WXIQpMCkNo/view?usp=drive_link')">
-      <div class="g-img" style="background:#111820;"><img src="social/sauna-place-strategy.jpg" alt="The Sauna Place — Social Strategy" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.7;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#111820,#0d1218)';"><div class="sp-doc-overlay"><span style="font-size:1.2rem;">📋</span><span>View Doc</span></div><span class="g-cat">Strategy</span><span class="g-lbl">The Sauna Place — Social Strategy</span></div>
+      <div class="g-img" data-lqip="1" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAECBv/EABwQAQACAgMBAAAAAAAAAAAAAAEAAgMRE1KRYf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A01staunfkXNT75KcdV21Fi4qdSQUJYEhACpqpohA/9k=);background:#111820;"><img src="social/sauna-place-strategy.jpg" alt="The Sauna Place — Social Strategy" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;opacity:.7;" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,#111820,#0d1218)';"><div class="sp-doc-overlay"><span style="font-size:1.2rem;">📋</span><span>View Doc</span></div><span class="g-cat">Strategy</span><span class="g-lbl">The Sauna Place — Social Strategy</span></div>
     </div>
   </div>
 </div>
@@ -1247,7 +1253,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 <!-- MAIN MEDIA MODAL -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mT" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
   <iframe id="mF" title="Embedded media player" src="" sandbox="allow-scripts allow-forms allow-same-origin allow-downloads" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
-  <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/>
+  <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/><video id="mVid" class="m-vid-view" controls playsinline preload="none" title="Video player"></video>
 </div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="doc-nav" id="mDocNav" style="display:none"></div><div class="doc-sub-nav" id="mDocSubNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">In-page preview</div><a class="m-link yt" id="mL" href="#"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
 
 <script>
@@ -1319,6 +1325,21 @@ function render(s,instant){
 }
 
 window.addEventListener('hashchange', () => render(sectionFromHash()));
+
+
+/* ---- Blur-up: reveal each grid image once it has decoded ---------------- */
+(function(){
+  function reveal(img){ img.classList.add('lqip-done'); }
+  function wire(){
+    document.querySelectorAll('.g-img[data-lqip] img').forEach(img => {
+      if(img.complete && img.naturalWidth) reveal(img);
+      else img.addEventListener('load', () => reveal(img), {once:true});
+      img.addEventListener('error', () => reveal(img), {once:true});
+    });
+  }
+  if(document.readyState === 'loading') addEventListener('DOMContentLoaded', wire);
+  else wire();
+})();
 
 /* ---- Accessibility: make clickable cards real buttons ------------------- */
 (function(){
@@ -1429,6 +1450,31 @@ function play(url,title,plat,href){
   document.body.style.overflow='hidden';
 }
 
+// Native video playback for self-hosted clips
+function playVideo(src, poster, title, vertical, href){
+  const f=document.getElementById('mF'), img=document.getElementById('mImg'), vid=document.getElementById('mVid');
+  f.style.display='none'; f.src='';
+  img.style.display='none';
+  document.getElementById('mBot').style.display='flex';
+
+  vid.style.display='block';
+  vid.poster=poster||'';
+  vid.src=src;
+  document.getElementById('mT').textContent=title;
+
+  const l=document.getElementById('mL');
+  l.href=href; l.className='m-link doc';
+  document.getElementById('mLT').textContent='Open in Drive';
+  document.getElementById('mPlat').innerHTML=PLAT_ICONS['video']+'<span id="mPN">Video</span>';
+
+  const m=document.getElementById('modal');
+  m.classList.remove('portrait','document','image-view','social-view');
+  if(vertical) m.classList.add('portrait');
+  m.classList.add('open');
+  document.body.style.overflow='hidden';
+  vid.play().catch(()=>{});   /* autoplay may be refused; controls are there */
+}
+
 // New Image Viewing Setup with Gallery Navigation
 let currentGallery = [];
 let currentGalleryIndex = 0;
@@ -1523,6 +1569,8 @@ function xPlay(){
   m.removeAttribute('data-ig');
   document.getElementById('mF').src='';
   document.getElementById('mImg').src='';
+  const _v=document.getElementById('mVid');
+  if(_v){_v.pause();_v.removeAttribute('src');_v.load();_v.style.display='none';}
   document.getElementById('mIgNav').style.display='none';
   const mDocNav = document.getElementById('mDocNav');
   if (mDocNav) mDocNav.style.display='none';
