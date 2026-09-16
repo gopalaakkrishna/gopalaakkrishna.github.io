@@ -1446,7 +1446,7 @@ function play(url,title,plat,href){
   document.getElementById('mF').src=url;
   document.getElementById('mT').textContent=title;
   const l=document.getElementById('mL');
-  l.href=href;
+  l.href=href; l.onclick=null;
   const isIg=plat==='ig', isVimeo=plat==='vimeo', isDoc=plat==='doc';
   const isDrive=plat==='drive'||plat==='drivevert';
   l.className='m-link '+(isVimeo?'vm':isIg?'ig':(isDoc||isDrive)?'doc':'yt');
@@ -1475,7 +1475,7 @@ function playVideo(src, poster, title, vertical, href){
   document.getElementById('mT').textContent=title;
 
   const l=document.getElementById('mL');
-  l.href=href; l.className='m-link doc';
+  l.href=href; l.onclick=null; l.className='m-link doc';
   document.getElementById('mLT').textContent='Open in Drive';
   document.getElementById('mPlat').innerHTML=PLAT_ICONS['video']+'<span id="mPN">Video</span>';
 
@@ -1615,9 +1615,10 @@ function openIgModal(k, title) {
   const platEl = document.getElementById('mPlat');
   platEl.innerHTML = PLAT_ICONS['ig'] + '<span id="mPN">Instagram</span>';
   document.getElementById('mT').textContent = title;
-  document.getElementById('mLT').textContent = 'Watch Full Reel on Instagram';
+  document.getElementById('mLT').textContent = 'Reload Reel in Preview';
   document.querySelector('#mBot .m-note').textContent = 'Instagram preview · Full reel below';
   document.getElementById('mL').className = 'm-link ig';
+  document.getElementById('mL').onclick = (e) => { e.preventDefault(); renderModalReel(); };
 
   m.classList.remove('document', 'image-view');
   m.classList.add('portrait');
@@ -1851,7 +1852,7 @@ function openSocialModal(embedUrl, plat, title, href) {
   document.getElementById('mF').src = embedUrl;
   document.getElementById('mT').textContent = title;
   const l = document.getElementById('mL');
-  l.href = href;
+  l.href = href; l.onclick = null;
   l.className = 'm-link ig';
   document.getElementById('mLT').textContent = 'Open on Instagram';
   document.querySelector('#mBot .m-note').textContent = 'In-page preview';
