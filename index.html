@@ -671,6 +671,8 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 .modal .m-link{display:none!important;}
 .modal .m-link.ig{display:inline-flex!important;background:linear-gradient(135deg,#f58529,#dd2a7b);}
 .modal .m-link.ig:hover{opacity:.86;}
+.modal.portrait .m-box{width:min(520px,94vw);max-height:96vh;}
+.modal.portrait .m-stage{height:min(800px,calc(100vh - 220px));max-height:calc(100vh - 220px);}
 .modal.document .m-note::after{content:' · Browse files in this window';}
 
 /* ── V21 WRITING PREVIEWS ───────────────────────────────────────────── */
@@ -1264,7 +1266,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 
 <!-- MAIN MEDIA MODAL -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mT" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
-  <iframe id="mF" title="Embedded media player" src="" sandbox="allow-scripts allow-forms allow-same-origin allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
+  <iframe id="mF" title="Embedded media player" src="" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
   <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/><video id="mVid" class="m-vid-view" controls playsinline preload="none" title="Video player"></video>
 </div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="doc-nav" id="mDocNav" style="display:none"></div><div class="doc-sub-nav" id="mDocSubNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">In-page preview</div><a class="m-link yt" id="mL" href="#"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
 
@@ -1446,7 +1448,7 @@ function play(url,title,plat,href){
   document.getElementById('mF').src=url;
   document.getElementById('mT').textContent=title;
   const l=document.getElementById('mL');
-  l.href=href; l.onclick=null;
+  l.href=href; l.onclick=null; l.removeAttribute('target'); l.removeAttribute('rel');
   const isIg=plat==='ig', isVimeo=plat==='vimeo', isDoc=plat==='doc';
   const isDrive=plat==='drive'||plat==='drivevert';
   l.className='m-link '+(isVimeo?'vm':isIg?'ig':(isDoc||isDrive)?'doc':'yt');
@@ -1475,7 +1477,7 @@ function playVideo(src, poster, title, vertical, href){
   document.getElementById('mT').textContent=title;
 
   const l=document.getElementById('mL');
-  l.href=href; l.onclick=null; l.className='m-link doc';
+  l.href=href; l.onclick=null; l.removeAttribute('target'); l.removeAttribute('rel'); l.className='m-link doc';
   document.getElementById('mLT').textContent='Open in Drive';
   document.getElementById('mPlat').innerHTML=PLAT_ICONS['video']+'<span id="mPN">Video</span>';
 
@@ -1615,10 +1617,12 @@ function openIgModal(k, title) {
   const platEl = document.getElementById('mPlat');
   platEl.innerHTML = PLAT_ICONS['ig'] + '<span id="mPN">Instagram</span>';
   document.getElementById('mT').textContent = title;
-  document.getElementById('mLT').textContent = 'Reload Reel in Preview';
+  document.getElementById('mLT').textContent = 'Open Reel on Instagram';
   document.querySelector('#mBot .m-note').textContent = 'Instagram preview · Full reel below';
   document.getElementById('mL').className = 'm-link ig';
-  document.getElementById('mL').onclick = (e) => { e.preventDefault(); renderModalReel(); };
+  document.getElementById('mL').target = '_blank';
+  document.getElementById('mL').rel = 'noopener noreferrer';
+  document.getElementById('mL').onclick = null;
 
   m.classList.remove('document', 'image-view');
   m.classList.add('portrait');
@@ -1852,7 +1856,7 @@ function openSocialModal(embedUrl, plat, title, href) {
   document.getElementById('mF').src = embedUrl;
   document.getElementById('mT').textContent = title;
   const l = document.getElementById('mL');
-  l.href = href; l.onclick = null;
+  l.href = href; l.onclick = null; l.removeAttribute('target'); l.removeAttribute('rel');
   l.className = 'm-link ig';
   document.getElementById('mLT').textContent = 'Open on Instagram';
   document.querySelector('#mBot .m-note').textContent = 'In-page preview';
