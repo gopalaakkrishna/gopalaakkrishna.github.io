@@ -667,8 +667,10 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 .modal.document .m-link.doc:hover{opacity:1;}
 
 /* ── V18 LOCKED IN-PAGE PREVIEWS ────────────────────────────────────── */
-/* Embedded content is sandboxed: clicks stay inside the preview frame. */
+/* Keep external links hidden for locked previews, but expose the Instagram handoff. */
 .modal .m-link{display:none!important;}
+.modal .m-link.ig{display:inline-flex!important;background:linear-gradient(135deg,#f58529,#dd2a7b);}
+.modal .m-link.ig:hover{opacity:.86;}
 .modal.document .m-note::after{content:' · Browse files in this window';}
 
 /* ── V21 WRITING PREVIEWS ───────────────────────────────────────────── */
@@ -1262,7 +1264,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 
 <!-- MAIN MEDIA MODAL -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mT" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
-  <iframe id="mF" title="Embedded media player" src="" sandbox="allow-scripts allow-forms allow-same-origin allow-downloads" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
+  <iframe id="mF" title="Embedded media player" src="" sandbox="allow-scripts allow-forms allow-same-origin allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
   <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/><video id="mVid" class="m-vid-view" controls playsinline preload="none" title="Video player"></video>
 </div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="doc-nav" id="mDocNav" style="display:none"></div><div class="doc-sub-nav" id="mDocSubNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">In-page preview</div><a class="m-link yt" id="mL" href="#"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
 
@@ -1613,7 +1615,8 @@ function openIgModal(k, title) {
   const platEl = document.getElementById('mPlat');
   platEl.innerHTML = PLAT_ICONS['ig'] + '<span id="mPN">Instagram</span>';
   document.getElementById('mT').textContent = title;
-  document.getElementById('mLT').textContent = 'Open Reel on Instagram';
+  document.getElementById('mLT').textContent = 'Watch Full Reel on Instagram';
+  document.querySelector('#mBot .m-note').textContent = 'Instagram preview · Full reel below';
   document.getElementById('mL').className = 'm-link ig';
 
   m.classList.remove('document', 'image-view');
@@ -1631,7 +1634,7 @@ function renderModalReel() {
     const ids = IG[k].r;
     const currentId = ids[index];
     
-    document.getElementById('mF').src = `https://www.instagram.com/reel/${currentId}/embed`;
+    document.getElementById('mF').src = `https://www.instagram.com/reel/${currentId}/embed/captioned/`;
     document.getElementById('mL').href = `https://www.instagram.com/reel/${currentId}/`;
 
     const nav = document.getElementById('mIgNav');
@@ -1851,6 +1854,7 @@ function openSocialModal(embedUrl, plat, title, href) {
   l.href = href;
   l.className = 'm-link ig';
   document.getElementById('mLT').textContent = 'Open on Instagram';
+  document.querySelector('#mBot .m-note').textContent = 'In-page preview';
   const platEl = document.getElementById('mPlat');
   platEl.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg><span>Instagram</span>';
   const m = document.getElementById('modal');
