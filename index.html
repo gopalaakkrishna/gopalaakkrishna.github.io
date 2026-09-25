@@ -162,6 +162,10 @@ html{scroll-behavior:auto}
 .card{flex:0 0 var(--card-w);max-width:85vw;border-radius:10px;overflow:hidden;background:var(--bg2);box-shadow:0 1px 3px rgba(0,0,0,.4);transition:transform .28s cubic-bezier(.22,1,.36,1),box-shadow .28s cubic-bezier(.22,1,.36,1);position:relative;scroll-snap-align:start;cursor:pointer}
 .card:hover{transform:translateY(-6px) scale(1.05);z-index:10;box-shadow:0 22px 48px rgba(0,0,0,.8),0 0 0 1px rgba(230,168,79,.14)}
 .card-img{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;background-color:#1a1a1a;}
+.card-img.collection-cover{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;background:#0b0b0b}
+.card-img.collection-cover.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.collection-cover img{width:100%;height:100%;min-width:0;object-fit:cover;object-position:center;display:block}
+.collection-count{position:absolute;top:10px;right:10px;padding:5px 9px;border-radius:100px;background:rgba(0,0,0,.78);color:#fff;font-size:.6875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;z-index:1}
 .card-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.4rem}
 .card-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.55) 100%);opacity:0;transition:opacity .25s;cursor:pointer}
 .card:hover .card-play{opacity:1}
@@ -398,6 +402,8 @@ html{scroll-behavior:auto}
 .modal[data-ig="physio"] .ig-dot.active{background:var(--gold);border-color:var(--gold)}
 .modal[data-ig="biryani"] .ig-dot.active{background:#5a9e5a;border-color:#5a9e5a}
 .modal[data-ig="growth"] .ig-dot.active{background:#b070b0;border-color:#b070b0}
+.modal[data-ig="yiming"] .ig-dot.active{background:var(--gold);border-color:var(--gold)}
+.modal[data-gallery="podcast"] .ig-dot.active{background:#8af;border-color:#8af}
 .m-bot{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid rgba(255,255,255,.04)}
 .m-note{font-size:0.6875rem;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase}
 .m-link{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;font-size:.72rem;font-weight:600;color:#fff;transition:all .2s}
@@ -845,36 +851,11 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 </div>
 </div></div>
 
-<div class="sh"><div class="sh-t">PODCAST CLIPS</div><div class="sh-s">3 clips</div></div>
+<div class="sh"><div class="sh-t">PODCAST CLIPS</div><div class="sh-s">3 clips · 1 collection</div></div>
 <div class="row"><div class="row-track">
-<div class="card" onclick="playVideo('work/omniscient-clip1.mp4','work/omniscient-clip1-poster.jpg','“Is It Just Zapier?” — Omniscient',true,'https://drive.google.com/file/d/1Xq_SufppaF0YyIWomXTBvCqZM31d9lzI/view?usp=drive_link')">
-  <div class="card-img" style="background:url('work/omniscient-clip1.jpg') center/cover no-repeat #101418;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body">
-    <div class="card-badge b-blue">Podcast Clip · Vertical</div>
-    <div class="card-title">“Is It Just Zapier?”</div>
-    <div class="card-role">Editor · Short-Form Repurposing · Omniscient</div>
-    <div class="card-context">Vertical cut with typographic caption cards.</div>
-  </div>
-</div>
-
-<div class="card" onclick="playVideo('work/omniscient-clip2.mp4','work/omniscient-clip2-poster.jpg','“He Writes His Novels By Hand” — Omniscient',true,'https://drive.google.com/file/d/1uI2l60fueQmbOhxX3mokat-af_cDp3T7/view?usp=drive_link')">
-  <div class="card-img" style="background:url('work/omniscient-clip2.jpg') center/cover no-repeat #141018;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body">
-    <div class="card-badge b-blue">Podcast Clip · Vertical</div>
-    <div class="card-title">“He Writes His Novels By Hand”</div>
-    <div class="card-role">Editor · Short-Form Repurposing · Omniscient</div>
-    <div class="card-context">Vertical cut with typographic caption cards.</div>
-  </div>
-</div>
-
-<div class="card" onclick="playVideo('work/omniscient-clip3.mp4','work/omniscient-clip3-poster.jpg','“Left Behind” — Omniscient',false,'https://drive.google.com/file/d/1wYbrS6Aq6U8JMVggqzFHarHt-SL_VxNq/view?usp=drive_link')">
-  <div class="card-img" style="background:url('work/omniscient-clip3.jpg') center/cover no-repeat #101814;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body">
-    <div class="card-badge b-blue">Podcast Clip · Landscape</div>
-    <div class="card-title">“Left Behind”</div>
-    <div class="card-role">Editor · Short-Form Repurposing · Omniscient</div>
-    <div class="card-context">Landscape cut from the long-form episode.</div>
-  </div>
+<div class="card" role="button" tabindex="0" aria-label="Open Omniscient podcast clips gallery, 3 clips" onclick="openPodcastGallery()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openPodcastGallery()}">
+  <div class="card-img collection-cover three"><img src="work/omniscient-clip1.jpg" alt="" loading="lazy"><img src="work/omniscient-clip2.jpg" alt="" loading="lazy"><img src="work/omniscient-clip3.jpg" alt="" loading="lazy"><span class="collection-count">3 clips</span><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-blue">Podcast · Video Gallery</div><div class="card-title">Omniscient — Podcast Clips</div><div class="card-role">Editor · Short-Form Repurposing</div><div class="card-context">Three clips: two vertical cuts and one landscape edit.</div><div style="font-size:0.6875rem;color:#8af;margin-top:6px;letter-spacing:.06em">▶ Browse Clips</div></div>
 </div>
 </div></div>
 
@@ -893,7 +874,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 </div>
 </div></div>
 
-<div class="sh"><div class="sh-t">BRANDED CONTENT</div><div class="sh-s">5 projects</div></div>
+<div class="sh"><div class="sh-t">BRANDED CONTENT</div><div class="sh-s">4 projects</div></div>
 <div class="row"><div class="row-track">
 <div class="card" onclick="play('https://www.youtube-nocookie.com/embed/zf3PclBSFVk?autoplay=1&rel=0','DYCD Summer Leagues Promo','youtube','https://www.youtube.com/watch?v=zf3PclBSFVk')">
   <div class="card-img" style="background:url('https://img.youtube.com/vi/zf3PclBSFVk/maxresdefault.jpg') center/cover no-repeat #2a2210;"><div class="card-play"><div class="card-play-c"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
@@ -917,14 +898,9 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
   <div class="card-body"><div class="card-badge b-green">Short Documentary</div><div class="card-title">Delhi Mughlai Biryani</div><div class="card-role">Field & Post Producer · Full Pipeline</div><div style="font-size:0.6875rem;color:#8c8;margin-top:6px;letter-spacing:.06em">▶ Play Reel</div></div>
 </div>
 
-<div class="card" onclick="openIgModal('falafel', 'Syrian Korean Pizza Reel')">
-  <div class="card-img" style="background:url('work/falafel-pizza-reel.jpg') center/cover no-repeat #201510;"><div class="card-play"><div class="card-play-c" style="background:rgba(224,151,73,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body"><div class="card-badge b-gold">Food Story · Instagram Reel</div><div class="card-title">Syrian Korean Pizza Reel</div><div class="card-role">Videographer · Editor Collaboration</div><div class="card-context">Brooklyn food story featuring a scallion-pancake crust, Syrian falafel, and kimchi.</div><div style="font-size:0.6875rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Open Reel</div></div>
-</div>
-
-<div class="card" onclick="openIgModal('sake', 'Kato Sake Works Reel')">
-  <div class="card-img" style="background:url('work/kato-sake-reel.jpg') center/cover no-repeat #201510;"><div class="card-play"><div class="card-play-c" style="background:rgba(224,151,73,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body"><div class="card-badge b-gold">Food Story · Instagram Reel</div><div class="card-title">Kato Sake Works Reel</div><div class="card-role">Videographer</div><div class="card-context">A look at rice preparation for sake at Kato Sake Works in Brooklyn.</div><div style="font-size:0.6875rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Open Reel</div></div>
+<div class="card" role="button" tabindex="0" aria-label="Open Yiming Lin food reels gallery, 2 reels" onclick="openIgModal('yiming', 'Yiming Lin — Food Creator')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openIgModal('yiming', 'Yiming Lin — Food Creator')}">
+  <div class="card-img collection-cover"><img src="work/falafel-pizza-reel.jpg" alt="" loading="lazy"><img src="work/kato-sake-reel.jpg" alt="" loading="lazy"><span class="collection-count">2 reels</span><div class="card-play"><div class="card-play-c" style="background:rgba(224,151,73,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-gold">Food Stories · Instagram Gallery</div><div class="card-title">Yiming Lin — Food Creator</div><div class="card-role">Videographer · Editor Collaboration on Pizza Reel</div><div class="card-context">Syrian Korean Pizza · Kato Sake Works</div><div style="font-size:0.6875rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Browse Reels</div></div>
 </div>
 </div></div>
 
@@ -1475,7 +1451,10 @@ function playVideo(src, poster, title, vertical, href){
   f.style.display='none'; f.src='';
   img.style.display='none';
   document.getElementById('mBot').style.display='flex';
+  document.getElementById('mIgNav').style.display='none';
+  document.querySelector('#mBot .m-note').textContent='In-page video';
 
+  vid.pause();
   vid.style.display='block';
   vid.poster=poster||'';
   vid.src=src;
@@ -1492,6 +1471,42 @@ function playVideo(src, poster, title, vertical, href){
   m.classList.add('open');
   document.body.style.overflow='hidden';
   vid.play().catch(()=>{});   /* autoplay may be refused; controls are there */
+}
+
+const PODCAST_CLIPS=[
+  {title:'“Is It Just Zapier?”',src:'work/omniscient-clip1.mp4',poster:'work/omniscient-clip1-poster.jpg',vertical:true,href:'https://drive.google.com/file/d/1Xq_SufppaF0YyIWomXTBvCqZM31d9lzI/view?usp=drive_link'},
+  {title:'“He Writes His Novels By Hand”',src:'work/omniscient-clip2.mp4',poster:'work/omniscient-clip2-poster.jpg',vertical:true,href:'https://drive.google.com/file/d/1uI2l60fueQmbOhxX3mokat-af_cDp3T7/view?usp=drive_link'},
+  {title:'“Left Behind”',src:'work/omniscient-clip3.mp4',poster:'work/omniscient-clip3-poster.jpg',vertical:false,href:'https://drive.google.com/file/d/1wYbrS6Aq6U8JMVggqzFHarHt-SL_VxNq/view?usp=drive_link'}
+];
+let currentPodcastIndex=0;
+
+function openPodcastGallery(){
+  currentPodcastIndex=0;
+  renderPodcastClip();
+}
+
+function renderPodcastClip(){
+  const clip=PODCAST_CLIPS[currentPodcastIndex];
+  playVideo(clip.src,clip.poster,clip.title+' — Omniscient',clip.vertical,clip.href);
+  const m=document.getElementById('modal');
+  m.dataset.gallery='podcast';
+  document.querySelector('#mBot .m-note').textContent=`Clip ${currentPodcastIndex+1} of ${PODCAST_CLIPS.length} · Editor · Short-Form Repurposing`;
+  const nav=document.getElementById('mIgNav');
+  nav.style.display='flex';
+  nav.innerHTML=`
+    <button class="ig-btn" onclick="navPodcast(-1)" ${currentPodcastIndex===0?'disabled':''}>← Prev</button>
+    <div class="ig-dots">${PODCAST_CLIPS.map((_,i)=>`<button class="ig-dot ${i===currentPodcastIndex?'active':''}" aria-label="Show podcast clip ${i+1}" aria-current="${i===currentPodcastIndex?'true':'false'}" onclick="gotoPodcast(${i})"></button>`).join('')}</div>
+    <button class="ig-btn" onclick="navPodcast(1)" ${currentPodcastIndex===PODCAST_CLIPS.length-1?'disabled':''}>Next →</button>`;
+}
+
+function navPodcast(direction){
+  gotoPodcast(Math.max(0,Math.min(PODCAST_CLIPS.length-1,currentPodcastIndex+direction)));
+}
+
+function gotoPodcast(index){
+  if(index===currentPodcastIndex||index<0||index>=PODCAST_CLIPS.length)return;
+  currentPodcastIndex=index;
+  renderPodcastClip();
 }
 
 // New Image Viewing Setup with Gallery Navigation
@@ -1586,6 +1601,7 @@ function xPlay(){
   const m=document.getElementById('modal');
   m.classList.remove('open','portrait','document','image-view','social-view');
   m.removeAttribute('data-ig');
+  m.removeAttribute('data-gallery');
   document.getElementById('mF').src='';
   document.getElementById('mImg').src='';
   const _v=document.getElementById('mVid');
@@ -1605,16 +1621,17 @@ const IG={
   physio:{r:['DVoKY8ejDLV','DVbMAuxjM9c','DTa0jPQk_5b','DQ5RmrSjfze','DRPdSZVDRBZ','DSXYkwgjWQB']},
   growth:{r:['DSAG-FkDtAO','DTNFp9JkWT6','DSHszuKDj3n','DR7B0QoDtAA']},
   biryani:{r:['DM_Hi8rR22y']},
-  falafel:{r:['Dc_n8utT8PS']},
-  sake:{r:['DdrRDk_x4Jc']}
+  yiming:{r:['Dc_n8utT8PS','DdrRDk_x4Jc'],titles:['Syrian Korean Pizza Reel','Kato Sake Works Reel'],credits:['Videographer · Editor Collaboration','Videographer']}
 };
-const IX={physio:0, growth:0, biryani:0, falafel:0, sake:0};
+const IX={physio:0, growth:0, biryani:0, yiming:0};
 let currentIgKey=null;
 
 function openIgModal(k, title) {
   currentIgKey = k;
+  IX[k]=0;
   const m = document.getElementById('modal');
   m.dataset.ig = k;
+  m.removeAttribute('data-gallery');
   
   document.getElementById('mF').style.display = 'block';
   document.getElementById('mImg').style.display = 'none';
@@ -1644,6 +1661,10 @@ function renderModalReel() {
     const index = IX[k];
     const ids = IG[k].r;
     const currentId = ids[index];
+    if(IG[k].titles){
+      document.getElementById('mT').textContent=IG[k].titles[index]+' — Yiming Lin';
+      document.querySelector('#mBot .m-note').textContent=IG[k].credits[index]+' · Instagram preview';
+    }
     
     document.getElementById('mF').src = `https://www.instagram.com/reel/${currentId}/embed/captioned/`;
     document.getElementById('mL').href = `https://www.instagram.com/reel/${currentId}/`;
@@ -1655,7 +1676,7 @@ function renderModalReel() {
         nav.style.display = 'flex';
         let dotsHtml = '';
         for(let i=0; i<ids.length; i++) {
-            dotsHtml += `<button class="ig-dot ${i === index ? 'active' : ''}" onclick="gotoReel(${i})"></button>`;
+            dotsHtml += `<button class="ig-dot ${i === index ? 'active' : ''}" aria-label="Show reel ${i+1}" aria-current="${i===index?'true':'false'}" onclick="gotoReel(${i})"></button>`;
         }
         nav.innerHTML = `
             <button class="ig-btn" onclick="navReel(-1)" ${index === 0 ? 'disabled' : ''}>← Prev</button>
