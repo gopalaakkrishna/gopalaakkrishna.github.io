@@ -1,0 +1,60 @@
+name: Publish portfolio
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: portfolio-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Read website from GitHub
+        uses: actions/checkout@v6
+
+      - name: Check website scripts and local media
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const vm = require('node:vm');
+          const html = fs.readFileSync('index.html', 'utf8');
+          if (!html.includes('<html') || !html.includes('</html>')) throw new Error('Homepage HTML is incomplete');
+          for (const match of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/gi)) {
+            if (/\bsrc\s*=/.test(match[1])) continue;
+            if (/application\/ld\+json/.test(match[1])) JSON.parse(match[2]);
+            else new vm.Script(match[2]);
+          }
+          const refs = [...html.matchAll(/\b(?:src|poster)=["']([^"']+)["']/gi)].map(match => match[1]);
+          for (const ref of refs) {
+            if (/^(?:[a-z][a-z\d+.-]*:|\/\/|#)/i.test(ref)) continue;
+            const file = decodeURIComponent(ref.split(/[?#]/)[0]).replace(/^\//, '');
+            if (file && !fs.existsSync(path.resolve(file))) throw new Error('Missing media: ' + ref);
+          }
+          console.log('Homepage scripts, structured data, and local media checked.');
+          NODE
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Publish website
+        id: deployment
+        uses: actions/deploy-pages@v4
