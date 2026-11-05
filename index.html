@@ -694,6 +694,98 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:36px var(--pad) 28px;}
 .t-card:hover[data-c="promo"]{border-left-color:rgba(230,168,79,.7);}
 .t-card:hover[data-c="analytical"]{border-left-color:rgba(100,180,100,.7);}
 </style>
+<style>
+/* Roll Camera layer. Inert unless the page is opened with ?roll=1 (html gets .rc-on). */
+html.rc-on{--rc-rec:#ff4436;--rc-line:#34312c;--rc-panel:#171615;--rc-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace}
+.rc-navtools{position:fixed;left:16px;bottom:16px;z-index:900;display:flex;align-items:center;gap:10px;padding:6px 6px 6px 14px;background:rgba(20,20,20,.88);border:1px solid var(--rc-line);border-radius:100px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.rc-tc{display:flex;align-items:center;gap:7px;font-family:var(--rc-mono);font-size:.78rem;color:#ddd;white-space:nowrap;font-variant-numeric:tabular-nums}
+.rc-rec{width:8px;height:8px;border-radius:50%;background:var(--rc-rec);box-shadow:0 0 9px var(--rc-rec);animation:rcBlink 1.2s steps(1) infinite;flex:none}
+@keyframes rcBlink{50%{opacity:.25}}
+.rc-exit{width:28px;height:28px;border-radius:50%;border:1px solid var(--rc-line);background:#24221f;color:#ddd;font-size:15px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.rc-exit:hover{border-color:var(--red)}
+@media (max-width:480px){.rc-navtools{left:10px;bottom:10px}.rc-tc{font-size:.7rem}}
+.rc-toggle{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:0 var(--pad);margin:-4px 0 18px}
+.rc-seg{display:inline-flex;background:#1c1b19;border:1px solid var(--rc-line);border-radius:100px;padding:3px}
+.rc-seg button{border:0;background:none;color:var(--tx2);padding:7px 15px;border-radius:100px;font-size:.78rem;font-weight:600;cursor:pointer;min-height:34px}
+.rc-seg button[aria-pressed="true"]{background:#fff;color:#111}
+.rc-hint{font-family:var(--rc-mono);font-size:.7rem;color:var(--tx3)}
+#s-film.rc-tl-on > :not(.rc-keep){display:none!important}
+#s-photo.rc-vf-on > :not(.rc-keep):not(.sh){display:none!important}
+.rc-view{display:none;padding:0 var(--pad);min-width:0;max-width:100%}
+#s-film.rc-tl-on .rc-view.rc-tl,#s-photo.rc-vf-on .rc-view.rc-vfv{display:block}
+.rc-bay{background:var(--rc-panel);border:1px solid var(--rc-line);border-radius:12px;overflow:hidden}
+.rc-viewer{position:relative;aspect-ratio:16/9;max-height:62vh;width:100%;background:#000;overflow:hidden}
+.rc-frame{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity .35s ease}
+.rc-frame.off{opacity:0}
+.rc-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,transparent 28%,transparent 42%,rgba(0,0,0,.9) 100%);pointer-events:none}
+.rc-hud{position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;font-family:var(--rc-mono);font-size:.72rem;color:#fff;letter-spacing:.06em;z-index:2}
+.rc-info{position:absolute;left:clamp(14px,3vw,28px);right:clamp(14px,3vw,28px);bottom:clamp(14px,3vw,24px);z-index:2}
+.rc-info h3{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(1.8rem,4.6vw,3.4rem);line-height:.92;margin:8px 0 6px;letter-spacing:.02em}
+.rc-info .rc-role{color:#d9d2c5;font-size:clamp(.8rem,1.5vw,.95rem);margin-bottom:12px}
+.rc-viewer.cut .rc-info,.rc-viewer.cut .rc-frame{animation:rcCut .26s steps(3)}
+@keyframes rcCut{0%{transform:translateX(-6px);filter:drop-shadow(6px 0 0 rgba(63,227,232,.8)) drop-shadow(-6px 0 0 rgba(230,168,79,.8))}100%{transform:none;filter:none}}
+.rc-transport{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--rc-line);border-bottom:1px solid var(--rc-line);flex-wrap:wrap}
+.rc-tb{min-width:44px;height:38px;border-radius:8px;border:1px solid var(--rc-line);background:#24221f;color:#ddd;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 12px;cursor:pointer;font-family:var(--rc-mono);font-size:.76rem}
+.rc-tb:hover{border-color:var(--red)}
+.rc-tb[aria-pressed="true"]{background:var(--red);color:#111;border-color:var(--red)}
+.rc-tb svg{width:15px;height:15px}
+.rc-readout{margin-left:auto;font-family:var(--rc-mono);font-size:.95rem;color:var(--red);font-variant-numeric:tabular-nums}
+.rc-keys{font-family:var(--rc-mono);font-size:.7rem;color:var(--tx3)}
+@media (max-width:640px){.rc-keys{display:none}}
+.rc-tlwrap{position:relative;display:grid;grid-template-columns:46px minmax(0,1fr);background:#121110}
+.rc-labels{display:grid;grid-template-rows:24px 56px 56px;border-right:1px solid var(--rc-line);font-family:var(--rc-mono);font-size:.66rem;color:var(--tx3)}
+.rc-labels div{display:flex;align-items:center;justify-content:center;border-bottom:1px solid #1f1d1a}
+.rc-tl{overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#3a3631 transparent;cursor:grab;touch-action:pan-x}
+.rc-tl.drag{cursor:grabbing}
+.rc-inner{position:relative;height:136px}
+.rc-ruler{position:absolute;top:0;height:24px;border-bottom:1px solid var(--rc-line)}
+.rc-tick{position:absolute;top:13px;width:1px;height:11px;background:#4a453e}
+.rc-tick.major{top:5px;height:19px;background:#6b645a}
+.rc-tick span{position:absolute;top:-2px;left:5px;font-family:var(--rc-mono);font-size:.58rem;color:#8b8478;white-space:nowrap}
+.rc-flag{position:absolute;top:2px;font-family:var(--rc-mono);font-size:.58rem;color:#111;background:var(--red);padding:1px 6px;border-radius:3px;white-space:nowrap;transform:translateX(-50%)}
+.rc-track{position:absolute;height:56px}
+.rc-clip{position:absolute;top:5px;bottom:5px;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.18);cursor:pointer;display:flex;align-items:flex-end;padding:0;background:#222;color:#fff}
+.rc-clip .th{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.75}
+.rc-clip .nm{position:relative;z-index:1;font-size:.66rem;font-weight:700;padding:3px 7px;margin:4px;border-radius:4px;background:rgba(0,0,0,.65);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100% - 8px)}
+.rc-clip.v1{box-shadow:inset 0 3px 0 #6f9fff}.rc-clip.v2{box-shadow:inset 0 3px 0 #d06ad8}
+.rc-clip.on{border-color:var(--red);box-shadow:inset 0 3px 0 var(--red),0 0 0 2px var(--red)}
+.rc-clip.on .th{opacity:1}
+.rc-playhead{position:absolute;top:0;bottom:0;left:calc(46px + (100% - 46px)/2);width:2px;background:var(--rc-rec);z-index:6;pointer-events:none;box-shadow:0 0 12px rgba(255,68,54,.7)}
+.rc-playhead::before{content:"";position:absolute;top:0;left:-7px;border:8px solid transparent;border-top:10px solid var(--rc-rec)}
+.rc-vfgrid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px}
+@media (max-width:860px){.rc-vfgrid{grid-template-columns:minmax(0,1fr)}}
+.rc-vf{position:relative;aspect-ratio:3/2;background:#000;border-radius:12px;overflow:hidden;touch-action:none;cursor:crosshair;border:1px solid var(--rc-line)}
+@media (max-width:560px){.rc-vf{aspect-ratio:4/5}}
+.rc-wall{position:absolute;left:0;top:0;display:grid;grid-template-columns:repeat(5,var(--rc-tile));gap:10px;will-change:transform;transform-origin:0 0}
+.rc-ph{width:var(--rc-tile);aspect-ratio:4/3;background-size:cover;background-position:center;border-radius:3px}
+.rc-vfui{position:absolute;inset:0;pointer-events:none;z-index:2}
+.rc-br{position:absolute;width:32px;height:32px;border:2px solid #fff;opacity:.9}
+.rc-br.a{top:16px;left:16px;border-right:0;border-bottom:0}.rc-br.b{top:16px;right:16px;border-left:0;border-bottom:0}
+.rc-br.c{bottom:16px;left:16px;border-right:0;border-top:0}.rc-br.d{bottom:16px;right:16px;border-left:0;border-top:0}
+.rc-thirds{position:absolute;inset:0;background:linear-gradient(90deg,transparent calc(33.33% - .5px),rgba(255,255,255,.22) calc(33.33% - .5px) calc(33.33% + .5px),transparent calc(33.33% + .5px) calc(66.66% - .5px),rgba(255,255,255,.22) calc(66.66% - .5px) calc(66.66% + .5px),transparent calc(66.66% + .5px)),linear-gradient(180deg,transparent calc(33.33% - .5px),rgba(255,255,255,.22) calc(33.33% - .5px) calc(33.33% + .5px),transparent calc(33.33% + .5px) calc(66.66% - .5px),rgba(255,255,255,.22) calc(66.66% - .5px) calc(66.66% + .5px),transparent calc(66.66% + .5px))}
+.rc-af{position:absolute;left:50%;top:50%;width:60px;height:60px;transform:translate(-50%,-50%);border:2px solid var(--red);border-radius:4px;transition:transform .15s,border-color .15s}
+.rc-vf.focus .rc-af{transform:translate(-50%,-50%) scale(.82);border-color:#55ff8a}
+.rc-vft,.rc-vfb{position:absolute;left:22px;right:22px;display:flex;justify-content:space-between;font-family:var(--rc-mono);font-size:.72rem;color:#fff;text-shadow:0 1px 3px #000}
+.rc-vft{top:22px}.rc-vfb{bottom:22px}
+.rc-vft .r{display:flex;align-items:center;gap:7px}
+.rc-side{display:flex;flex-direction:column;gap:12px}
+.rc-shutter{width:100%;height:60px;border-radius:12px;border:0;background:var(--rc-rec);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;cursor:pointer}
+.rc-box{background:var(--rc-panel);border:1px solid var(--rc-line);border-radius:12px;padding:11px 13px}
+.rc-box label{display:flex;justify-content:space-between;font-family:var(--rc-mono);font-size:.68rem;color:var(--tx2);margin-bottom:6px}
+.rc-box label b{color:#fff;font-weight:500}
+.rc-box input{width:100%;accent-color:var(--red)}
+.rc-side .note{font-size:.8rem;color:var(--tx2);line-height:1.5;margin:0}
+.rc-strip{margin-top:16px;display:flex;gap:6px;overflow-x:auto;padding:12px;background:#1c1a16;border-radius:10px;border:1px solid var(--rc-line);min-height:150px}
+.rc-strip:empty::before{content:"Your contact strip. Shoot a few frames.";font-family:var(--rc-mono);font-size:.74rem;color:var(--tx3);margin:auto}
+.rc-fr{flex:none;width:128px;position:relative;padding:10px 0 20px;cursor:pointer;border:0;color:inherit;background:radial-gradient(circle,#0d0d0c 3px,transparent 3.5px) 0 2px/14px 8px repeat-x,radial-gradient(circle,#0d0d0c 3px,transparent 3.5px) 0 calc(100% - 4px)/14px 8px repeat-x,#2b2621}
+.rc-fr .pic{display:block;height:86px;background-size:cover;background-position:center;margin:0 4px}
+.rc-fr .no{position:absolute;bottom:3px;left:6px;font-family:var(--rc-mono);font-size:.58rem;color:var(--red)}
+.rc-fr .t{position:absolute;bottom:3px;right:6px;font-size:.56rem;color:#cbbfa9;max-width:76px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rc-fr svg{position:absolute;inset:4px 0 16px;width:100%;height:calc(100% - 20px);pointer-events:none}
+.rc-copy{margin-left:10px;border:1px solid var(--rc-line);background:#24221f;color:#eee;border-radius:7px;padding:4px 10px;font-size:.72rem;font-weight:700;cursor:pointer}
+.rc-copy:hover{border-color:var(--red)}
+@media (prefers-reduced-motion:reduce){.rc-frame,.rc-af{transition:none}.rc-viewer.cut .rc-info,.rc-viewer.cut .rc-frame,.rc-rec{animation:none}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -1908,6 +2000,200 @@ function openDriveImage(url, title) {
   document.body.style.overflow = 'hidden';
 }
 
+</script>
+<script>
+/* Roll Camera layer. Does nothing unless the page is opened with ?roll=1 (kept for the tab session; ?roll=0 turns it off). */
+(function(){
+"use strict";
+var KEY = "rcRoll";
+function sget(){ try { return sessionStorage.getItem(KEY); } catch(e){ return null; } }
+function sset(v){ try { if (v) sessionStorage.setItem(KEY, "1"); else sessionStorage.removeItem(KEY); } catch(e){} }
+var q = new URLSearchParams(location.search).get("roll");
+if (q === "1") sset(true);
+if (q === "0") sset(false);
+if (q !== "1" && sget() !== "1") return;
+
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const film = $("#s-film"), photo = $("#s-photo"), navEnd = $(".nav-end");
+if (!film || !navEnd) return;
+document.documentElement.classList.add("rc-on");
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const FPS = 24;
+const tcFmt = sec => { sec = Math.max(0, sec); const h = 1 + Math.floor(sec/3600), m = Math.floor(sec/60)%60, s = Math.floor(sec)%60, f = Math.floor((sec%1)*FPS); return [h,m,s,f].map(n => String(n).padStart(2,"0")).join(":"); };
+const modalOpen = () => { const m = document.getElementById("modal"); return m && m.classList.contains("open"); };
+const typing = e => e.target.closest && e.target.closest("input,textarea,select");
+
+/* ---------- nav: REC + scroll timecode + exit ---------- */
+document.body.insertAdjacentHTML("beforeend", '<div class="rc-navtools"><span class="rc-tc" title="Roll Camera mode"><span class="rc-rec"></span><span class="lbl">REC</span><span id="rcTC">01:00:00:00</span></span><button class="rc-exit" id="rcExit" type="button" aria-label="Turn off Roll Camera mode" title="Turn off Roll Camera mode">&times;</button></div>');
+$("#rcExit").addEventListener("click", () => { sset(false); const u = new URL(location.href); u.searchParams.delete("roll"); location.replace(u.toString()); });
+function navTC(){ const max = document.documentElement.scrollHeight - innerHeight; $("#rcTC").textContent = tcFmt((max>0 ? scrollY/max : 0) * 180); }
+addEventListener("scroll", navTC, {passive:true}); addEventListener("hashchange", navTC); navTC();
+
+/* ---------- Film & Video: Rows | Timeline ---------- */
+film.insertAdjacentHTML("afterbegin",
+'<div class="rc-toggle rc-keep"><div class="rc-seg" role="group" aria-label="Film view"><button id="rcFilmRows" type="button" aria-pressed="true">Rows</button><button id="rcFilmTL" type="button" aria-pressed="false">Timeline</button></div><span class="rc-hint">Same work, laid out as an edit you can scrub.</span></div>' +
+'<div class="rc-view rc-tl rc-keep"><div class="rc-bay">' +
+ '<div class="rc-viewer" id="rcViewer"><div class="rc-frame" id="rcFrameA"></div><div class="rc-frame off" id="rcFrameB"></div><div class="rc-shade"></div>' +
+  '<div class="rc-hud"><span id="rcTrack">V1</span><span id="rcClipNo">CLIP 01</span></div>' +
+  '<div class="rc-info"><span class="card-badge b-red" id="rcBadge">Film</span><h3 id="rcTitle">Title</h3><div class="rc-role" id="rcRole"></div>' +
+  '<button class="btn-w" id="rcWatch" type="button"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Watch</button></div></div>' +
+ '<div class="rc-transport">' +
+  '<button class="rc-tb" id="rcPrev" type="button" aria-label="Previous clip"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 2h2v12H3zM14 2v12L6 8z"/></svg></button>' +
+  '<button class="rc-tb" id="rcPlay" type="button" aria-pressed="false"><svg id="rcPlayIco" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2l10 6-10 6z"/></svg><span id="rcPlayLbl">Play</span></button>' +
+  '<button class="rc-tb" id="rcNext" type="button" aria-label="Next clip"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11 2h2v12h-2zM2 2v12l8-6z"/></svg></button>' +
+  '<span class="rc-keys">J reverse · K stop · L play</span><span class="rc-readout" id="rcReadout">01:00:00:00</span></div>' +
+ '<div class="rc-tlwrap"><div class="rc-labels"><div>TC</div><div>V2</div><div>V1</div></div>' +
+  '<div class="rc-tl" id="rcTl" tabindex="0" aria-label="Timeline. Scroll to scrub."><div class="rc-inner" id="rcInner"><div class="rc-ruler" id="rcRuler"></div><div class="rc-track" id="rcTV2" style="top:24px"></div><div class="rc-track" id="rcTV1" style="top:80px"></div></div></div>' +
+  '<div class="rc-playhead" aria-hidden="true"></div></div>' +
+'</div></div>');
+
+function bindToggle(sec, cls, btnA, btnB, onShow, onHide){
+  const a = $(btnA), b = $(btnB);
+  const set = on => { sec.classList.toggle(cls, on); a.setAttribute("aria-pressed", on ? "false" : "true"); b.setAttribute("aria-pressed", on ? "true" : "false"); if (on) onShow(); else if (onHide) onHide(); };
+  a.addEventListener("click", () => set(false)); b.addEventListener("click", () => set(true));
+}
+
+const bgOf = el => { const m = (el && (el.style.backgroundImage || el.getAttribute("style")) || "").match(/url\(["']?([^"')]+)["']?\)/); return m ? m[1] : ""; };
+const seen = new Set(), clips = [];
+$$(".card", film).forEach(card => {
+  const t = ($(".card-title", card) || {}).textContent; if (!t || seen.has(t.trim())) return; seen.add(t.trim());
+  const badge = (($(".card-badge", card) || {}).textContent || "").replace(/^[^\w"“]+/, "").trim();
+  const role = (($(".card-role", card) || {}).textContent || "").trim();
+  const v1 = /film|documentar|narrative|music|mockumentary/i.test(badge);
+  clips.push({ title: t.trim(), badge, role, img: bgOf($(".card-img", card)), track: v1 ? "V1" : "V2", dur: /boundaries/i.test(t) ? 9 : (v1 ? 7 : 6), card, flag: /lighthouse|liff/i.test(badge + " " + role) ? "LIFF 2025" : null });
+});
+let tt = 0; clips.forEach(c => { c.start = tt; c.end = tt + c.dur; tt = c.end; });
+const TOTAL = tt, PPS = 34;
+const tl = $("#rcTl"), inner = $("#rcInner");
+let half = 0, built = false, dragMoved = false;
+function buildTL(){
+  if (!clips.length) return;
+  half = tl.clientWidth/2; if (!half) return;
+  const W = TOTAL*PPS; inner.style.width = (W + half*2) + "px";
+  const ruler = $("#rcRuler"); ruler.innerHTML = ""; ruler.style.left = half+"px"; ruler.style.width = W+"px";
+  for (let s=0;s<=TOTAL;s++){ const k = document.createElement("div"); k.className = "rc-tick" + (s%5===0 ? " major" : ""); k.style.left = (s*PPS)+"px"; if (s%5===0){ const sp = document.createElement("span"); sp.textContent = tcFmt(s).slice(0,8); k.appendChild(sp); } ruler.appendChild(k); }
+  clips.forEach(c => { if (c.flag){ const f = document.createElement("div"); f.className = "rc-flag"; f.textContent = c.flag; f.style.left = ((c.start + c.dur/2)*PPS)+"px"; ruler.appendChild(f); } });
+  ["V1","V2"].forEach(t => { const el = $("#rcT"+t); el.innerHTML = ""; el.style.left = half+"px"; el.style.width = W+"px"; });
+  clips.forEach(c => {
+    const el = document.createElement("button"); el.type = "button"; el.className = "rc-clip " + c.track.toLowerCase();
+    el.style.left = (c.start*PPS+1)+"px"; el.style.width = (c.dur*PPS-2)+"px";
+    el.setAttribute("aria-label", "Jump to " + c.title);
+    el.innerHTML = '<span class="th"></span><span class="nm"></span>';
+    el.querySelector(".th").style.backgroundImage = c.img ? "url(" + c.img + ")" : "none";
+    el.querySelector(".nm").textContent = c.title;
+    el.addEventListener("click", () => { if (dragMoved) return; stopPlay(); seek(c.start + 0.2, true); });
+    c.el = el; $("#rcT"+c.track).appendChild(el);
+  });
+  built = true;
+}
+let cur = -1, front = null;
+function show(i){
+  if (i === cur || !clips[i]) return; cur = i; const c = clips[i];
+  const fa = $("#rcFrameA"), fb = $("#rcFrameB"); front = front || fa;
+  const back = front === fa ? fb : fa;
+  back.style.backgroundImage = c.img ? "url(" + c.img + ")" : "none"; back.classList.remove("off"); front.classList.add("off"); front = back;
+  $("#rcBadge").textContent = c.badge || c.track; $("#rcTitle").textContent = c.title; $("#rcRole").textContent = c.role;
+  $("#rcTrack").textContent = c.track === "V1" ? "V1 · FILM & DOC" : "V2 · BRANDED & SOCIAL";
+  $("#rcClipNo").textContent = "CLIP " + String(i+1).padStart(2,"0") + "/" + String(clips.length).padStart(2,"0");
+  clips.forEach(k => k.el && k.el.classList.toggle("on", k === c));
+  if (!RM){ const v = $("#rcViewer"); v.classList.remove("cut"); void v.offsetWidth; v.classList.add("cut"); }
+}
+const tNow = () => tl.scrollLeft / PPS;
+function onScrub(){ const t = Math.min(TOTAL-0.001, tNow()); $("#rcReadout").textContent = tcFmt(t); const i = clips.findIndex(c => t>=c.start && t<c.end); if (i>=0) show(i); }
+function seek(t, smooth){ tl.scrollTo({left: t*PPS, behavior: smooth && !RM ? "smooth" : "auto"}); }
+tl.addEventListener("scroll", onScrub, {passive:true});
+let dragging = false, dX = 0, dS = 0;
+tl.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; dragging = true; dragMoved = false; dX = e.clientX; dS = tl.scrollLeft; tl.classList.add("drag"); stopPlay(); });
+addEventListener("pointermove", e => { if (!dragging) return; const dx = e.clientX - dX; if (Math.abs(dx) > 4) dragMoved = true; tl.scrollLeft = dS - dx; });
+addEventListener("pointerup", () => { if (!dragging) return; dragging = false; tl.classList.remove("drag"); setTimeout(() => dragMoved = false, 0); });
+tl.addEventListener("wheel", e => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)){ tl.scrollLeft += e.deltaY; e.preventDefault(); } }, {passive:false});
+let speed = 0, last = 0, raf = 0;
+function loop(ts){ if (!speed){ raf = 0; return; } const dt = last ? (ts-last)/1000 : 0; last = ts; let nx = tl.scrollLeft + speed*PPS*dt; const max = TOTAL*PPS - 1; if (nx > max) nx = 0; if (nx < 0) nx = max; tl.scrollLeft = nx; raf = requestAnimationFrame(loop); }
+function play(s){ speed = s; last = 0; $("#rcPlay").setAttribute("aria-pressed", s ? "true" : "false"); $("#rcPlayLbl").textContent = s ? (s<0 ? "Reverse" : (s>1.2 ? "Play x" + Math.round(s/1.2) : "Pause")) : "Play"; $("#rcPlayIco").innerHTML = s ? '<path d="M3 2h4v12H3zM9 2h4v12H9z"/>' : '<path d="M4 2l10 6-10 6z"/>'; if (s && !raf) raf = requestAnimationFrame(loop); }
+function stopPlay(){ if (speed) play(0); }
+$("#rcPlay").addEventListener("click", () => speed ? stopPlay() : play(1.2));
+$("#rcNext").addEventListener("click", () => { stopPlay(); if (clips.length) seek(clips[Math.min(clips.length-1, cur+1)].start + 0.2, true); });
+$("#rcPrev").addEventListener("click", () => { stopPlay(); if (clips.length) seek(clips[Math.max(0, cur-1)].start + 0.2, true); });
+$("#rcWatch").addEventListener("click", () => { stopPlay(); const c = clips[cur]; if (c) c.card.click(); });
+addEventListener("keydown", e => {
+  if (!film.classList.contains("rc-tl-on") || typing(e) || modalOpen() || e.ctrlKey || e.metaKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  if (k === "l") play(speed > 0 ? Math.min(4.8, speed*2) : 1.2);
+  else if (k === "k") stopPlay();
+  else if (k === "j") play(speed < 0 ? Math.max(-4.8, speed*2) : -1.2);
+  else if (k === " " && document.activeElement === tl){ e.preventDefault(); speed ? stopPlay() : play(1.2); }
+});
+bindToggle(film, "rc-tl-on", "#rcFilmRows", "#rcFilmTL", () => { requestAnimationFrame(() => { const t = built ? tNow() : 0.2; buildTL(); seek(t); onScrub(); }); }, stopPlay);
+
+/* ---------- Photography: Grid | Viewfinder ---------- */
+const pcards = $$("#pG .g-card"), pBar = $("#pF");
+let vf = null, wall = null;
+if (photo && pBar && pcards.length){
+  pBar.insertAdjacentHTML("beforebegin",
+  '<div class="rc-toggle rc-keep"><div class="rc-seg" role="group" aria-label="Photography view"><button id="rcPhotoGrid" type="button" aria-pressed="true">Grid</button><button id="rcPhotoVF" type="button" aria-pressed="false">Viewfinder</button></div><span class="rc-hint">Frame a shot and tap to shoot. Tap a frame on the strip to open it.</span></div>' +
+  '<div class="rc-view rc-vfv rc-keep"><div class="rc-vfgrid">' +
+   '<div class="rc-vf" id="rcVf"><div class="rc-wall" id="rcWall"></div><div class="rc-vfui"><div class="rc-thirds"></div><div class="rc-br a"></div><div class="rc-br b"></div><div class="rc-br c"></div><div class="rc-br d"></div><div class="rc-af"></div>' +
+    '<div class="rc-vft"><span class="r"><span class="rc-rec"></span>STBY</span><span id="rcShot">FRAME 01</span></div><div class="rc-vfb"><span id="rcLens">35mm · f/2.8</span><span>ISO 800 · 1/50</span></div></div></div>' +
+   '<div class="rc-side"><button class="rc-shutter" id="rcShutter" type="button">Shoot</button>' +
+    '<div class="rc-box"><label for="rcZoom">Focal length <b id="rcZoomOut">35mm</b></label><input type="range" id="rcZoom" min="24" max="85" value="35"></div>' +
+    '<div class="rc-box"><label for="rcAp">Aperture <b id="rcApOut">f/2.8</b></label><input type="range" id="rcAp" min="0" max="5" value="1"></div>' +
+    '<p class="note">Same photos as the grid. Your picks land on the contact strip.</p></div>' +
+  '</div><div class="rc-strip" id="rcStrip" aria-label="Contact strip"></div></div>');
+  vf = $("#rcVf"); wall = $("#rcWall");
+  pcards.forEach((card, i) => {
+    const im = $("img", card); if (!im) return;
+    const d = document.createElement("div"); d.className = "rc-ph";
+    d.style.backgroundImage = "url(" + (im.currentSrc || im.getAttribute("src")) + ")";
+    d.dataset.i = i; d.dataset.t = card.dataset.title || im.alt || "Frame";
+    wall.appendChild(d);
+  });
+  let tx = 0, ty = 0, zoomMM = 35, focusT = 0, frameNo = 1;
+  const sc = () => zoomMM/35;
+  const clampPan = () => { const s = sc(), ww = wall.scrollWidth*s, wh = wall.scrollHeight*s, vw = vf.clientWidth, vh = vf.clientHeight; tx = Math.max(Math.min(0, vw-ww-40), Math.min(40, tx)); ty = Math.max(Math.min(0, vh-wh-40), Math.min(40, ty)); };
+  const applyWall = () => { clampPan(); wall.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + sc() + ")"; vf.classList.add("focus"); clearTimeout(focusT); focusT = setTimeout(() => vf.classList.remove("focus"), 260); };
+  const layoutWall = () => wall.style.setProperty("--rc-tile", Math.max(150, vf.clientWidth*0.42)+"px");
+  const centerOn = () => { const s = sc(); tx = vf.clientWidth/2 - wall.scrollWidth*s/2; ty = vf.clientHeight/2 - wall.scrollHeight*s/2; applyWall(); };
+  let pdown = false, moved = false, sx = 0, sy = 0, stx = 0, sty = 0;
+  vf.addEventListener("pointerdown", e => { pdown = true; moved = false; sx = e.clientX; sy = e.clientY; stx = tx; sty = ty; vf.setPointerCapture(e.pointerId); });
+  vf.addEventListener("pointermove", e => {
+    if (pdown){ const dx = e.clientX - sx, dy = e.clientY - sy; if (Math.hypot(dx,dy) > 6) moved = true; tx = stx + dx; ty = sty + dy; applyWall(); }
+    else if (e.pointerType === "mouse" && !RM){ const r = vf.getBoundingClientRect(), s = sc(); tx = -(wall.scrollWidth*s - r.width) * ((e.clientX - r.left)/r.width); ty = -(wall.scrollHeight*s - r.height) * ((e.clientY - r.top)/r.height); applyWall(); }
+  });
+  vf.addEventListener("pointerup", () => { pdown = false; if (!moved) shoot(); });
+  vf.addEventListener("pointercancel", () => { pdown = false; });
+  $("#rcShutter").addEventListener("click", shoot);
+  const apVals = ["f/1.8","f/2.8","f/4","f/5.6","f/8","f/11"];
+  $("#rcZoom").addEventListener("input", e => { zoomMM = +e.target.value; $("#rcZoomOut").textContent = zoomMM + "mm"; $("#rcLens").textContent = zoomMM + "mm · " + apVals[$("#rcAp").value]; applyWall(); });
+  $("#rcAp").addEventListener("input", e => { const v = apVals[e.target.value]; $("#rcApOut").textContent = v; $("#rcLens").textContent = zoomMM + "mm · " + v; });
+  function shoot(){
+    const r = vf.getBoundingClientRect(), cx = r.left + r.width/2, cy = r.top + r.height/2;
+    let hit = null, best = 1e9;
+    $$(".rc-ph", wall).forEach(p => { const b = p.getBoundingClientRect(); const inside = cx>=b.left && cx<=b.right && cy>=b.top && cy<=b.bottom; const d = inside ? -1 : Math.hypot(b.left+b.width/2-cx, b.top+b.height/2-cy); if (d < best){ best = d; hit = p; } });
+    if (!hit) return;
+    const fr = document.createElement("button"); fr.type = "button"; fr.className = "rc-fr";
+    fr.setAttribute("aria-label", "Open " + hit.dataset.t);
+    fr.innerHTML = '<span class="pic"></span><span class="no"></span><span class="t"></span>';
+    fr.querySelector(".pic").style.backgroundImage = hit.style.backgroundImage;
+    fr.querySelector(".no").textContent = String(frameNo).padStart(2,"0") + " ▸";
+    fr.querySelector(".t").textContent = hit.dataset.t;
+    const card = pcards[+hit.dataset.i];
+    fr.addEventListener("click", () => { if (card && typeof window.openGalleryModal === "function") window.openGalleryModal(card); else if (card) card.click(); });
+    const strip = $("#rcStrip"); $$("svg", strip).forEach(s => s.remove());
+    strip.prepend(fr);
+    fr.insertAdjacentHTML("beforeend", '<svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="50" cy="30" rx="47" ry="27" fill="none" stroke="#ff4436" stroke-width="2.4" stroke-dasharray="4 1.5"/></svg>');
+    while (strip.children.length > 12) strip.lastChild.remove();
+    frameNo++; $("#rcShot").textContent = "FRAME " + String(frameNo).padStart(2,"0");
+  }
+  bindToggle(photo, "rc-vf-on", "#rcPhotoGrid", "#rcPhotoVF", () => { requestAnimationFrame(() => { layoutWall(); centerOn(); }); });
+  photo._rcRelayout = () => { layoutWall(); centerOn(); };
+}
+addEventListener("hashchange", () => setTimeout(() => { if (film.classList.contains("rc-tl-on") && tl.clientWidth && (!built || tl.clientWidth/2 !== half)){ const t = built ? tNow() : 0.2; buildTL(); seek(t); onScrub(); } if (photo && photo.classList.contains("rc-vf-on") && photo._rcRelayout) photo._rcRelayout(); }, 60));
+let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => {
+  if (film.classList.contains("rc-tl-on")){ const t = tNow(); buildTL(); seek(t); onScrub(); }
+  if (photo && photo.classList.contains("rc-vf-on") && photo._rcRelayout) photo._rcRelayout();
+}, 150); });
+})();
 </script>
 </body>
 </html>
