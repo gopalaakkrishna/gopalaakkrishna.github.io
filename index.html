@@ -406,6 +406,14 @@ html{scroll-behavior:auto}
 .modal[data-ig="bobos"] .ig-dot.active{background:var(--gold);border-color:var(--gold)}
 .modal[data-gallery="podcast"] .ig-dot.active{background:#8af;border-color:#8af}
 .modal[data-gallery="franck"] .ig-dot.active{background:var(--gold);border-color:var(--gold)}
+.ig-out{position:absolute;inset:0;display:none;align-items:flex-end;justify-content:center;text-decoration:none;color:#fff;background:#000;cursor:pointer}
+.ig-out img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ig-out::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.88) 100%)}
+.ig-out-body{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 24px 30px;text-align:center}
+.ig-out-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#f58529,#dd2a7b);padding:12px 22px;border-radius:999px;font-weight:700;font-size:.95rem;box-shadow:0 6px 24px rgba(0,0,0,.45);transition:transform .15s,filter .15s}
+.ig-out:hover .ig-out-cta,.ig-out:focus-visible .ig-out-cta{transform:translateY(-1px);filter:brightness(1.08)}
+.ig-out-cta svg{width:14px;height:14px;fill:currentColor}
+.ig-out-note{font-size:.78rem;color:rgba(255,255,255,.78);max-width:290px;line-height:1.45}
 .m-bot{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid rgba(255,255,255,.04)}
 .m-note{font-size:0.6875rem;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase}
 .m-link{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;font-size:.72rem;font-weight:600;color:#fff;transition:all .2s}
@@ -1306,7 +1314,7 @@ html.rc-on{--rc-rec:#ff4436;--rc-line:#34312c;--rc-panel:#171615;--rc-mono:"IBM 
 <!-- MAIN MEDIA MODAL -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mT" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
   <iframe id="mF" title="Embedded media player" src="" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen frameborder="0"></iframe>
-  <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/><video id="mVid" class="m-vid-view" controls playsinline preload="none" title="Video player"></video>
+  <img id="mImg" class="m-img-view" src="" alt="Gallery Image"/><video id="mVid" class="m-vid-view" controls playsinline preload="none" title="Video player"></video><a id="mIgOut" class="ig-out" href="#" target="_blank" rel="noopener noreferrer"><img alt="" src=""><span class="ig-out-body"><span class="ig-out-cta"><svg viewBox="0 0 24 24"><polygon points="7,4 20,12 7,20"/></svg>Watch on Instagram ↗</span><span class="ig-out-note">This reel uses licensed music, so Instagram only plays it on Instagram.</span></span></a>
 </div><div class="ig-nav" id="mIgNav" style="display:none"></div><div class="doc-nav" id="mDocNav" style="display:none"></div><div class="doc-sub-nav" id="mDocSubNav" style="display:none"></div><div class="m-bot" id="mBot"><div class="m-note">In-page preview</div><a class="m-link yt" id="mL" href="#"><svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg> <span id="mLT">Open on YouTube</span></a></div></div></div>
 
 <script>
@@ -1480,6 +1488,7 @@ const PLAT_ICONS={
 
 // Original Media Play Setup
 function play(url,title,plat,href){
+  const _o=document.getElementById('mIgOut'); if(_o) _o.style.display='none';
   document.getElementById('mF').style.display = 'block';
   document.getElementById('mImg').style.display = 'none';
   document.getElementById('mBot').style.display = 'flex';
@@ -1505,6 +1514,7 @@ function play(url,title,plat,href){
 
 // Native video playback for self-hosted clips
 function playVideo(src, poster, title, vertical, href){
+  const _o=document.getElementById('mIgOut'); if(_o) _o.style.display='none';
   const f=document.getElementById('mF'), img=document.getElementById('mImg'), vid=document.getElementById('mVid');
   f.style.display='none'; f.src='';
   img.style.display='none';
@@ -1675,6 +1685,7 @@ function xPlay(){
   m.removeAttribute('data-gallery');
   document.getElementById('mF').src='';
   document.getElementById('mImg').src='';
+  const _o=document.getElementById('mIgOut'); if(_o) _o.style.display='none';
   const _v=document.getElementById('mVid');
   if(_v){_v.pause();_v.removeAttribute('src');_v.load();_v.style.display='none';}
   document.getElementById('mIgNav').style.display='none';
@@ -1696,6 +1707,8 @@ const IG={
   yiming:{r:['Dc_n8utT8PS','DdrRDk_x4Jc'],titles:['Syrian Korean Pizza Reel','Kato Sake Works Reel'],credits:['Videographer · Editor Collaboration','Videographer']}
 };
 const IX={physio:0, growth:0, biryani:0, yiming:0, bobos:0};
+// Reels with licensed Instagram music: Instagram refuses to play these in an embed, so show a cover + link instead.
+const IG_OFFSITE=new Set(["DTa0jPQk_5b", "DSXYkwgjWQB", "DSAG-FkDtAO", "DTNFp9JkWT6", "DSHszuKDj3n", "DR7B0QoDtAA", "Dc_n8utT8PS"]);
 let currentIgKey=null;
 
 function openIgModal(k, title) {
@@ -1738,7 +1751,18 @@ function renderModalReel() {
       document.querySelector('#mBot .m-note').textContent=IG[k].credits[index]+' · Instagram preview';
     }
     
-    document.getElementById('mF').src = `https://www.instagram.com/reel/${currentId}/embed/captioned/`;
+    const mF=document.getElementById('mF'), out=document.getElementById('mIgOut');
+    if (IG_OFFSITE.has(currentId)) {
+        mF.src='about:blank'; mF.style.display='none';
+        out.href=`https://www.instagram.com/reel/${currentId}/`;
+        out.querySelector('img').src=`work/ig-${currentId}.jpg`;
+        out.setAttribute('aria-label', 'Watch this reel on Instagram (opens a new tab)');
+        out.style.display='flex';
+    } else {
+        out.style.display='none';
+        mF.style.display='block';
+        mF.src = `https://www.instagram.com/reel/${currentId}/embed/captioned/`;
+    }
     document.getElementById('mL').href = `https://www.instagram.com/reel/${currentId}/`;
 
     const nav = document.getElementById('mIgNav');
