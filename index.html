@@ -405,6 +405,7 @@ html{scroll-behavior:auto}
 .modal[data-ig="yiming"] .ig-dot.active{background:var(--gold);border-color:var(--gold)}
 .modal[data-ig="bobos"] .ig-dot.active{background:var(--gold);border-color:var(--gold)}
 .modal[data-gallery="podcast"] .ig-dot.active{background:#8af;border-color:#8af}
+.modal[data-gallery="franck"] .ig-dot.active{background:var(--gold);border-color:var(--gold)}
 .m-bot{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid rgba(255,255,255,.04)}
 .m-note{font-size:0.6875rem;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase}
 .m-link{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;font-size:.72rem;font-weight:600;color:#fff;transition:all .2s}
@@ -930,11 +931,16 @@ html.rc-on{--rc-rec:#ff4436;--rc-line:#34312c;--rc-panel:#171615;--rc-mono:"IBM 
 </div>
 </div></div>
 
-<div class="sh"><div class="sh-t">BRANDED &amp; SOCIAL</div><div class="sh-s">4 projects</div></div>
+<div class="sh"><div class="sh-t">BRANDED &amp; SOCIAL</div><div class="sh-s">5 projects</div></div>
 <div class="row"><div class="row-track">
 <div class="card" onclick="openIgModal('physio', 'PhysioRX Campaign')">
   <div class="card-img" style="background:url('work/physiorx-campaign.jpg') center/cover no-repeat #201810;"><div class="card-play"><div class="card-play-c" style="background:rgba(197,164,78,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
   <div class="card-body"><div class="card-badge b-gold">Branded Content · Instagram Reels</div><div class="card-title">PhysioRX Campaign</div><div class="card-role">Producer · Director · Editor · CapCut · DaVinci Resolve</div><div style="font-size:0.6875rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
+</div>
+
+<div class="card" role="button" tabindex="0" aria-label="Open Dr. Philipp Franck patient education reels gallery, 3 reels" onclick="openClipGallery('franck')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openClipGallery('franck')}">
+  <div class="card-img collection-cover three"><img src="work/franck-reel1.jpg" alt="" loading="lazy"><img src="work/franck-reel2.jpg" alt="" loading="lazy"><img src="work/franck-reel3.jpg" alt="" loading="lazy"><span class="collection-count">3 reels</span><div class="card-play"><div class="card-play-c" style="background:rgba(224,151,73,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-gold">Branded Content · Clinic Reels</div><div class="card-title">Dr. Philipp Franck — Patient Education Reels</div><div class="card-role">Director · Producer · Editor · Interviewer</div><div class="card-context">Three interview reels for a plastic surgeon: natural rhinoplasty, recommendations and the first consultation.</div><div style="font-size:0.6875rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Browse Reels</div></div>
 </div>
 
 <div class="card" role="button" tabindex="0" aria-label="Open Bobo’s Crab Shack reels gallery, 2 reels" onclick="openIgModal('bobos', 'Bobo’s Crab Shack — Social Reels')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openIgModal('bobos', 'Bobo’s Crab Shack — Social Reels')}">
@@ -1530,35 +1536,48 @@ const PODCAST_CLIPS=[
   {title:'“He Writes His Novels By Hand”',src:'work/omniscient-clip2.mp4',poster:'work/omniscient-clip2-poster.jpg',vertical:true,href:'https://drive.google.com/file/d/1uI2l60fueQmbOhxX3mokat-af_cDp3T7/view?usp=drive_link'},
   {title:'“Left Behind”',src:'work/omniscient-clip3.mp4',poster:'work/omniscient-clip3-poster.jpg',vertical:false,href:'https://drive.google.com/file/d/1wYbrS6Aq6U8JMVggqzFHarHt-SL_VxNq/view?usp=drive_link'}
 ];
-let currentPodcastIndex=0;
+const FRANCK_REELS=[
+  {title:'Natural Rhinoplasty',src:'work/franck-reel1.mp4',poster:'work/franck-reel1-poster.jpg',vertical:true,href:'https://drive.google.com/file/d/1h2R5MT5X7HZFX4K9Dc_dM61UKD6k2pHB/view'},
+  {title:'Recommendations',src:'work/franck-reel2.mp4',poster:'work/franck-reel2-poster.jpg',vertical:true,href:'https://drive.google.com/file/d/1wYfTwzEeqVRoqT_03ylTJjAvnu4SWaRc/view'},
+  {title:'First Consultation',src:'work/franck-reel3.mp4',poster:'work/franck-reel3-poster.jpg',vertical:true,href:'https://drive.google.com/file/d/187onsk8wEkMHDn43eVYjTwSKykZaQodV/view'}
+];
+const CLIP_GALLERIES={
+  podcast:{clips:PODCAST_CLIPS,suffix:' — Omniscient',unit:'Clip',credit:'Editor · Short-Form Repurposing',label:'podcast clip'},
+  franck:{clips:FRANCK_REELS,suffix:' — Dr. Philipp Franck',unit:'Reel',credit:'Director · Producer · Editor · Interviewer',label:'reel'}
+};
+let currentClipGallery='podcast', currentClipIndex=0;
 
-function openPodcastGallery(){
-  currentPodcastIndex=0;
-  renderPodcastClip();
+function openClipGallery(key){
+  currentClipGallery=key;
+  currentClipIndex=0;
+  renderClip();
 }
+function openPodcastGallery(){ openClipGallery('podcast'); }
 
-function renderPodcastClip(){
-  const clip=PODCAST_CLIPS[currentPodcastIndex];
-  playVideo(clip.src,clip.poster,clip.title+' — Omniscient',clip.vertical,clip.href);
+function renderClip(){
+  const g=CLIP_GALLERIES[currentClipGallery], clip=g.clips[currentClipIndex], last=g.clips.length-1;
+  playVideo(clip.src,clip.poster,clip.title+g.suffix,clip.vertical,clip.href);
   const m=document.getElementById('modal');
-  m.dataset.gallery='podcast';
-  document.querySelector('#mBot .m-note').textContent=`Clip ${currentPodcastIndex+1} of ${PODCAST_CLIPS.length} · Editor · Short-Form Repurposing`;
+  m.dataset.gallery=currentClipGallery;
+  document.querySelector('#mBot .m-note').textContent=`${g.unit} ${currentClipIndex+1} of ${g.clips.length} · ${g.credit}`;
   const nav=document.getElementById('mIgNav');
   nav.style.display='flex';
   nav.innerHTML=`
-    <button class="ig-btn" onclick="navPodcast(-1)" ${currentPodcastIndex===0?'disabled':''}>← Prev</button>
-    <div class="ig-dots">${PODCAST_CLIPS.map((_,i)=>`<button class="ig-dot ${i===currentPodcastIndex?'active':''}" aria-label="Show podcast clip ${i+1}" aria-current="${i===currentPodcastIndex?'true':'false'}" onclick="gotoPodcast(${i})"></button>`).join('')}</div>
-    <button class="ig-btn" onclick="navPodcast(1)" ${currentPodcastIndex===PODCAST_CLIPS.length-1?'disabled':''}>Next →</button>`;
+    <button class="ig-btn" onclick="navClip(-1)" ${currentClipIndex===0?'disabled':''}>← Prev</button>
+    <div class="ig-dots">${g.clips.map((_,i)=>`<button class="ig-dot ${i===currentClipIndex?'active':''}" aria-label="Show ${g.label} ${i+1}" aria-current="${i===currentClipIndex?'true':'false'}" onclick="gotoClip(${i})"></button>`).join('')}</div>
+    <button class="ig-btn" onclick="navClip(1)" ${currentClipIndex===last?'disabled':''}>Next →</button>`;
 }
 
-function navPodcast(direction){
-  gotoPodcast(Math.max(0,Math.min(PODCAST_CLIPS.length-1,currentPodcastIndex+direction)));
+function navClip(direction){
+  const last=CLIP_GALLERIES[currentClipGallery].clips.length-1;
+  gotoClip(Math.max(0,Math.min(last,currentClipIndex+direction)));
 }
 
-function gotoPodcast(index){
-  if(index===currentPodcastIndex||index<0||index>=PODCAST_CLIPS.length)return;
-  currentPodcastIndex=index;
-  renderPodcastClip();
+function gotoClip(index){
+  const len=CLIP_GALLERIES[currentClipGallery].clips.length;
+  if(index===currentClipIndex||index<0||index>=len)return;
+  currentClipIndex=index;
+  renderClip();
 }
 
 // New Image Viewing Setup with Gallery Navigation
