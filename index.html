@@ -796,6 +796,16 @@ html.rc-on{--rc-rec:#ff4436;--rc-line:#34312c;--rc-panel:#171615;--rc-mono:"IBM 
 .rc-copy{margin-left:10px;border:1px solid var(--rc-line);background:#24221f;color:#eee;border-radius:7px;padding:4px 10px;font-size:.72rem;font-weight:700;cursor:pointer}
 .rc-copy:hover{border-color:var(--red)}
 @media (prefers-reduced-motion:reduce){.rc-frame,.rc-af{transition:none}.rc-viewer.cut .rc-info,.rc-viewer.cut .rc-frame,.rc-rec{animation:none}}
+
+/* council fixes 2026-11 */
+.bb-still{position:absolute;inset:0;z-index:2;background:#0b0b0b url('work/hero-still.jpg') center/cover no-repeat;transition:opacity .8s ease;pointer-events:none}
+.bb-still.gone{opacity:0}
+.hb-short{display:none}
+@media(max-width:768px){
+  .hire-btn{display:inline-block;padding:5px 10px;font-size:.6rem;letter-spacing:.1em;margin-left:6px}
+  .hb-long{display:none}.hb-short{display:inline}
+  .row-hint{display:none}
+}
 </style>
 </head>
 <body>
@@ -811,32 +821,30 @@ html.rc-on{--rc-rec:#ff4436;--rc-line:#34312c;--rc-panel:#171615;--rc-mono:"IBM 
     <a class="nm" data-s="photo" href="#photo">Photography</a>
     <button class="nm mobile-browse" id="browseBtn" aria-expanded="false" aria-controls="browseDropdown" onclick="toggleBrowse(event)">Browse ▾</button>
     
-    <a class="nm desktop-only" data-s="social" href="#social">Social Posts</a>
     <a class="nm desktop-only" data-s="writing" href="#writing">Writing &amp; Docs</a>
     <a class="nm desktop-only" data-s="about" href="#about">About</a>
     <a class="nm desktop-only" data-s="contact" href="#contact">Work With Me</a>
   </div>
   <div class="nav-end">
-    <a class="hire-btn" href="#contact">Start a Project</a>
+    <a class="hire-btn" href="#contact"><span class="hb-long">Start a Project</span><span class="hb-short">Contact</span></a>
   </div>
 </nav>
 
 <!-- Mobile Dropdown Menu Container -->
 <div class="browse-dropdown" id="browseDropdown">
-    <a class="nm" data-s="social" href="#social">Social Posts</a>
     <a class="nm" data-s="writing" href="#writing">Writing &amp; Docs</a>
     <a class="nm" data-s="about" href="#about">About</a>
     <a class="nm" data-s="contact" href="#contact">Work With Me</a>
 </div>
 
 <main id="main" tabindex="-1">
-<div class="billboard" id="billboard"><div class="billboard-vid"><iframe src="https://player.vimeo.com/video/1031440535?autoplay=1&muted=1&loop=1&background=1" title="Showreel background video" aria-hidden="true" tabindex="-1" allow="autoplay;fullscreen" allowfullscreen></iframe></div><div class="billboard-mask"></div><div class="billboard-info"><div class="bb-kicker"><span>Producer · Director · Editor ·</span><span style="white-space:nowrap">New York</span></div><h1 class="bb-title">CONCEPT THROUGH FINAL CUT.</h1>
+<div class="billboard" id="billboard"><div class="billboard-vid"><div class="bb-still" id="bbStill" aria-hidden="true"></div><iframe id="bbReel" src="https://player.vimeo.com/video/1031440535?autoplay=1&muted=1&loop=1&background=1" title="Showreel background video" aria-hidden="true" tabindex="-1" allow="autoplay;fullscreen" allowfullscreen></iframe></div><div class="billboard-mask"></div><div class="billboard-info"><div class="bb-kicker"><span>Producer · Director · Editor ·</span><span style="white-space:nowrap">New York</span></div><h1 class="bb-title">CONCEPT THROUGH FINAL CUT.</h1>
 
 <p class="bb-desc">Gopal makes documentary and branded video, from the first idea to the final export. He produces, directs and edits, so the person planning the shoot is the one cutting it.</p><div class="bb-actions"><button class="btn-w" onclick="play('https://player.vimeo.com/video/1031440535?autoplay=1','Showreel — Gopala Krishna','vimeo','https://vimeo.com/1031440535')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="currentColor"/></svg> Play Showreel</button><a class="btn-g" href="#film"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> More Work</a></div>
 
 <div class="bb-pills">
   <span class="bb-pill"><b>LIFF</b> 2025 Official Selection</span>
-  <span class="bb-pill"><b>3M+</b> views on work he produced</span>
+  <span class="bb-pill"><b>Clients</b> PhysioRX · Dr. Philipp Franck · Bobo’s Crab Shack</span>
   <span class="bb-pill"><b>MA</b> Media Studies, The New School</span>
 </div>
 </div></div>
@@ -1217,19 +1225,19 @@ html.rc-on{--rc-rec:#ff4436;--rc-line:#34312c;--rc-panel:#171615;--rc-mono:"IBM 
 <div class="sec" id="s-writing">
   <div class="sh">
     <div class="sh-t">WRITING</div>
-    <div class="sh-s">Narrative · Promo · Analytical Papers</div>
+    <div class="sh-s">Screenplays · Spec Scripts</div>
   </div>
   <div class="fbar" id="wF">
     <button class="fb on" onclick="fil('w','all',this)">All</button>
     <button class="fb" onclick="fil('w','narrative',this)">Narrative</button>
     <button class="fb" onclick="fil('w','promo',this)">Promo</button>
-    <button class="fb" onclick="fil('w','analytical',this)">Analytical Papers</button>
+    
   </div>
   <div class="t-cards" id="wG">
     <div class="t-card" data-c="narrative" onclick="play('https://drive.google.com/file/d/1zv3OaxJj4_rPRvQ55Kz9C-i6CJOuTEPa/preview', '“Boundaries” — Screenplay', 'doc', 'https://drive.google.com/file/d/1zv3OaxJj4_rPRvQ55Kz9C-i6CJOuTEPa/view?usp=drive_link')" role="button" tabindex="0">
       <div class="tc-cat">Narrative · Screenplay</div>
       <div class="tc-title">“Boundaries” — Screenplay</div>
-      <div class="tc-desc">Original screenplay for Boundaries — a short film written, directed, produced, and edited solo.</div>
+      <div class="tc-desc">Original screenplay for Boundaries, the short film Gopal wrote, directed, produced and edited.</div>
       <div class="tc-preview">Preview document <span>→</span></div>
     </div>
     <div class="t-card" data-c="narrative" onclick="play('https://drive.google.com/file/d/1-6gvu0nty7wIdF_3FO3j3wl3I6ueM14o/preview', '“Cadence” — Screenplay', 'doc', 'https://drive.google.com/file/d/1-6gvu0nty7wIdF_3FO3j3wl3I6ueM14o/view?usp=drive_link')" role="button" tabindex="0">
@@ -1238,27 +1246,15 @@ html.rc-on{--rc-rec:#ff4436;--rc-line:#34312c;--rc-panel:#171615;--rc-mono:"IBM 
       <div class="tc-desc">Original narrative screenplay.</div>
       <div class="tc-preview">Preview document <span>→</span></div>
     </div>
-    <div class="t-card" data-c="promo" onclick="play('https://drive.google.com/file/d/1GtsYbXTWz2u0Skppfv-3i2ih5kjHJXIj/preview', 'Coke — Promo Script', 'doc', 'https://drive.google.com/file/d/1GtsYbXTWz2u0Skppfv-3i2ih5kjHJXIj/view?usp=drive_link')" role="button" tabindex="0">
-      <div class="tc-cat">Promo · Commercial Script</div>
-      <div class="tc-title">Coke — Promo Script</div>
-      <div class="tc-desc">Promotional script developed for Coca-Cola.</div>
+    <div class="t-card" data-c="promo" onclick="play('https://drive.google.com/file/d/1GtsYbXTWz2u0Skppfv-3i2ih5kjHJXIj/preview', 'Coca-Cola — Spec Script', 'doc', 'https://drive.google.com/file/d/1GtsYbXTWz2u0Skppfv-3i2ih5kjHJXIj/view?usp=drive_link')" role="button" tabindex="0">
+      <div class="tc-cat">Promo · Spec Script</div>
+      <div class="tc-title">Coca-Cola — Spec Script</div>
+      <div class="tc-desc">Spec commercial script written for a Coca-Cola creative competition.</div>
       <div class="tc-preview">Preview document <span>→</span></div>
     </div>
-    <div class="t-card" data-c="analytical" onclick="play('https://docs.google.com/document/d/1vlDBAVx7ehoTywh4VQ_BupaB0zIZ8eGiTQC2iBQ9KBQ/preview', '“Tamasha” — Analytical Paper', 'doc', 'https://docs.google.com/document/d/1vlDBAVx7ehoTywh4VQ_BupaB0zIZ8eGiTQC2iBQ9KBQ/edit?usp=drive_link')" role="button" tabindex="0">
-      <div class="tc-cat">Analytical Paper · Film Studies</div>
-      <div class="tc-title">“Tamasha” — Analytical Paper</div>
-      <div class="tc-desc">A critical analytical paper on Tamasha.</div>
-      <div class="tc-preview">Preview document <span>→</span></div>
     </div>
-    <div class="t-card" data-c="analytical" onclick="play('https://drive.google.com/file/d/14qhWZ1saZGDfxfObR_wHCe5Y0qp85_Am/preview', '“Justice League” — Analytical Paper', 'doc', 'https://drive.google.com/file/d/14qhWZ1saZGDfxfObR_wHCe5Y0qp85_Am/view?usp=drive_link')" role="button" tabindex="0">
-      <div class="tc-cat">Analytical Paper · Film Studies</div>
-      <div class="tc-title">“Justice League” — Analytical Paper</div>
-      <div class="tc-desc">A critical analytical paper on Justice League.</div>
-      <div class="tc-preview">Preview document <span>→</span></div>
-    </div>
-  </div>
 
-<div class="sec-part" id="production-docs"><div class="sh"><div class="sh-t">PRODUCTION BINDER</div><div class="sh-s">Full production management documentation</div></div><div class="sh-desc">Every production I run comes with a complete binder. These documents reflect hands-on line producing experience across short films, branded content, and documentary work.</div><div class="b-grid">
+<div class="sec-part" id="production-docs"><div class="sh"><div class="sh-t">PRODUCTION BINDER</div><div class="sh-s">Full production management documentation</div></div><div class="sh-desc">Every production Gopal runs comes with a complete binder. These documents reflect hands-on line producing experience across short films, branded content, and documentary work.</div><div class="b-grid">
   <div class="b-card" onclick="play('https://docs.google.com/spreadsheets/d/1s3sr01TfIMs0OF90rJKlZA52MqXMso9Ss9MaErLr5L4/preview', 'Production Call Sheet', 'doc', 'https://docs.google.com/spreadsheets/d/1s3sr01TfIMs0OF90rJKlZA52MqXMso9Ss9MaErLr5L4/edit?usp=drive_link')">
     <div class="b-icon">📋</div>
     <div class="b-title">Call Sheets</div>
@@ -1303,13 +1299,13 @@ html.rc-on{--rc-rec:#ff4436;--rc-line:#34312c;--rc-panel:#171615;--rc-mono:"IBM 
   </div></div></div>
 </div>
 
-<div class="sec" id="s-about"><div class="sh"><div class="sh-t">ABOUT</div></div><div class="about-wrap"><div><p class="about-p"><strong>Gopala Krishna</strong>, Gopal to most people, is a producer, director and editor in New York, and one of the founders of <strong>Evolve Pictures</strong>. He has an MA in Media Studies from <strong>The New School</strong>.</p><p class="about-p">His short film <strong>Boundaries</strong>, which he wrote, directed, produced and edited, was an <strong>Official Selection at Lighthouse International Film Festival 2025</strong>. It took a very patient cast and one spite-fuelled all-nighter.</p><p class="about-p">In school he worked in the film equipment office, looking after more than <strong>$500K</strong> of gear. These days he runs productions end to end, with the full binder: call sheets, shot lists, schedules and budgets.</p><p class="about-p">The part he likes most is getting a DP, an editor, a sound person and the talent pulling the same way. He takes a project from the first idea to the final export and tries to keep everyone sane in between.</p><div class="chips"><span class="chip">Documentary</span><span class="chip">Branded Content</span><span class="chip">Narrative Film</span><span class="chip">Producing</span><span class="chip">Directing</span><span class="chip">Editing</span><span class="chip">Scriptwriting</span><span class="chip">Production Management</span><span class="chip">DaVinci Resolve</span><span class="chip">Adobe Premiere</span><span class="chip">Photography</span></div></div><div class="stat-grid"><div class="stat-box"><span class="stat-n">4+</span><span class="stat-l">Years in production</span></div><div class="stat-box"><span class="stat-n">3M+</span><span class="stat-l">Views on work he produced</span></div><div class="stat-box"><span class="stat-n">$500K+</span><span class="stat-l">Gear looked after</span></div><div class="stat-box"><span class="stat-n">LIFF</span><span class="stat-l">Official Selection 2025</span></div></div></div></div>
+<div class="sec" id="s-about"><div class="sh"><div class="sh-t">ABOUT</div></div><div class="about-wrap"><div><p class="about-p"><strong>Gopala Krishna</strong>, Gopal to most people, is a producer, director and editor in New York, and one of the founders of <strong>Evolve Pictures</strong>. He has an MA in Media Studies from <strong>The New School</strong>.</p><p class="about-p">His short film <strong>Boundaries</strong>, which he wrote, directed, produced and edited, was an <strong>Official Selection at Lighthouse International Film Festival 2025</strong>. It took a very patient cast and one spite-fuelled all-nighter.</p><p class="about-p">In school he worked in the film equipment office, looking after more than <strong>$500K</strong> of gear. These days he runs productions end to end, with the full binder: call sheets, shot lists, schedules and budgets.</p><p class="about-p">The part he likes most is getting a DP, an editor, a sound person and the talent pulling the same way. He takes a project from the first idea to the final export and tries to keep everyone sane in between.</p><div class="chips"><span class="chip">Documentary</span><span class="chip">Branded Content</span><span class="chip">Narrative Film</span><span class="chip">Producing</span><span class="chip">Directing</span><span class="chip">Editing</span><span class="chip">Scriptwriting</span><span class="chip">Production Management</span><span class="chip">DaVinci Resolve</span><span class="chip">Adobe Premiere</span><span class="chip">Photography</span></div></div><div class="stat-grid"><div class="stat-box"><span class="stat-n">4+</span><span class="stat-l">Years in production</span></div><div class="stat-box"><span class="stat-n">MA</span><span class="stat-l">The New School</span></div><div class="stat-box"><span class="stat-n">$500K+</span><span class="stat-l">Gear looked after</span></div><div class="stat-box"><span class="stat-n">LIFF</span><span class="stat-l">Official Selection 2025</span></div></div></div></div>
 
-<div class="sec" id="s-contact"><div class="sec-part first" id="work-with-me"><div class="sh"><div class="sh-t">WORK WITH GOPAL</div><div class="sh-s">Documentary · Branded · Narrative</div></div><div class="sh-desc">Gopal takes a project from the first idea to the final export: story, prep, shoot and edit, with one person answerable for all of it.</div><div class="svc-g"><div class="svc"><div class="svc-no">01</div><div class="svc-t">Documentary &amp; Interviews</div><div class="svc-d">Story, field shoots, interviews and edit for short docs and interview series. Recent work: Dr. Philipp Franck’s patient education reels and The Story of a Superfan.</div><div class="svc-tags"><span>Story</span><span>Interviews</span><span>Field Production</span><span>Edit</span></div></div><div class="svc"><div class="svc-no">02</div><div class="svc-t">Branded Content</div><div class="svc-d">Concept, script, shoot and edit for brands with a real story to tell. Recent work: PhysioRX and Bobo’s Crab Shack.</div><div class="svc-tags"><span>Concept &amp; Script</span><span>Direction</span><span>Production</span><span>Edit</span></div></div><div class="svc"><div class="svc-no">03</div><div class="svc-t">Narrative</div><div class="svc-d">Short films from script to festival cut. Boundaries was an Official Selection at Lighthouse International Film Festival 2025.</div><div class="svc-tags"><span>Writing</span><span>Directing</span><span>Producing</span><span>Editing</span></div></div></div></div><div class="sec-part" id="get-in-touch"><div class="sh"><div class="sh-t">GET IN TOUCH</div><div class="sh-s">Open to projects and full-time roles</div></div><div class="sh-desc">Working on something? Send a few lines about it and Gopal will get back to you. Based in New York, happy to work remotely.</div><div class="hire-g"><div class="hire fl"><div class="hire-tp">Freelance · Project Basis</div><div class="hire-ht">HAVE A<br>PROJECT?</div><ul class="hire-ul"><li>Documentary and interview films</li><li>Branded content and campaigns</li><li>Short narrative films</li><li>Scripts and shoot planning</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-r">Start a Project</a></div><div class="hire ft"><div class="hire-tp">Full-Time · Staff Role</div><div class="hire-ht">HIRING A<br>PRODUCER?</div><ul class="hire-ul"><li>Creative producer and director roles</li><li>Production companies and studios</li><li>Story-first branded and documentary teams</li><li>New York based or remote</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-b">Send an Opportunity</a></div></div><div class="c-rows"><div class="c-row"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></div><div class="c-row"><span class="c-lbl">LinkedIn</span><span class="c-val"><a href="https://linkedin.com/in/gopalakkrishna">linkedin.com/in/gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">Instagram</span><span class="c-val"><a href="https://www.instagram.com/gopalakkrishna/">@gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">YouTube</span><span class="c-val"><a href="https://www.youtube.com/@Evolvepictures">@Evolvepictures</a></span></div><div class="c-row"><span class="c-lbl">Resume</span><span class="c-val"><a href="#" onclick="event.preventDefault(); play('https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/preview', 'Gopala Krishna — Resume', 'doc', 'https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/view?usp=drive_link')">View Resume</a></span></div><div class="c-row"><span class="c-lbl">Location</span><span class="c-val" style="color:#fff;font-size:.8rem">New York City, NY <span style="color:var(--tx3);font-size:.7rem">(Open to other cities)</span></span></div></div></div></div>
+<div class="sec" id="s-contact"><div class="sec-part first" id="work-with-me"><div class="sh"><div class="sh-t">WORK WITH GOPAL</div><div class="sh-s">Documentary · Branded · Narrative</div></div><div class="sh-desc">Gopal takes a project from the first idea to the final export: story, prep, shoot and edit, with one person answerable for all of it.</div><div class="svc-g"><div class="svc"><div class="svc-no">01</div><div class="svc-t">Documentary &amp; Interviews</div><div class="svc-d">Story, field shoots, interviews and edit for short docs and interview series. Recent work: Dr. Philipp Franck’s patient education reels and The Story of a Superfan.</div><div class="svc-tags"><span>Story</span><span>Interviews</span><span>Field Production</span><span>Edit</span></div></div><div class="svc"><div class="svc-no">02</div><div class="svc-t">Branded Content</div><div class="svc-d">Concept, script, shoot and edit for brands with a real story to tell. Recent work: PhysioRX and Bobo’s Crab Shack.</div><div class="svc-tags"><span>Concept &amp; Script</span><span>Direction</span><span>Production</span><span>Edit</span></div></div><div class="svc"><div class="svc-no">03</div><div class="svc-t">Narrative</div><div class="svc-d">Short films from script to festival cut. Boundaries was an Official Selection at Lighthouse International Film Festival 2025.</div><div class="svc-tags"><span>Writing</span><span>Directing</span><span>Producing</span><span>Editing</span></div></div></div></div><div class="sec-part" id="get-in-touch"><div class="sh"><div class="sh-t">GET IN TOUCH</div><div class="sh-s">Open to projects and full-time roles</div></div><div class="sh-desc">Working on something? Send a few lines about it and Gopal will get back to you. Based in New York, happy to work remotely.</div><div class="hire-g"><div class="hire fl"><div class="hire-tp">Freelance · Project Basis</div><div class="hire-ht">HAVE A<br>PROJECT?</div><ul class="hire-ul"><li>Documentary and interview films</li><li>Branded content and campaigns</li><li>Short narrative films</li><li>Scripts and shoot planning</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-r">Start a Project</a></div><div class="hire ft"><div class="hire-tp">Full-Time · Staff Role</div><div class="hire-ht">HIRING A<br>PRODUCER?</div><ul class="hire-ul"><li>Creative producer and director roles</li><li>Production companies and studios</li><li>Story-first branded and documentary teams</li><li>New York based or remote</li></ul><a href="mailto:gopalaakkrishna@gmail.com" class="hire-cta cta-b">Send an Opportunity</a></div></div><div class="c-rows"><div class="c-row"><span class="c-lbl">Email</span><span class="c-val"><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></div><div class="c-row"><span class="c-lbl">LinkedIn</span><span class="c-val"><a href="https://linkedin.com/in/gopalakkrishna">linkedin.com/in/gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">Instagram</span><span class="c-val"><a href="https://www.instagram.com/gopalakkrishna/">@gopalakkrishna</a></span></div><div class="c-row"><span class="c-lbl">Company</span><span class="c-val"><a href="https://evolvepictures.com" target="_blank" rel="noopener">Evolve Pictures</a></span></div><div class="c-row"><span class="c-lbl">YouTube</span><span class="c-val"><a href="https://www.youtube.com/@Evolvepictures">@Evolvepictures</a></span></div><div class="c-row"><span class="c-lbl">Resume</span><span class="c-val"><a href="#" onclick="event.preventDefault(); play('https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/preview', 'Gopala Krishna — Resume', 'doc', 'https://drive.google.com/file/d/1QYXKdB2YRbzQA4f5ZdbNiHnHI8SXj68s/view?usp=drive_link')">View Resume</a></span></div><div class="c-row"><span class="c-lbl">Location</span><span class="c-val" style="color:#fff;font-size:.8rem">New York City, NY <span style="color:var(--tx3);font-size:.7rem">(Open to other cities)</span></span></div></div></div></div>
 
 </main>
 
-<footer id="ft"><span>© Gopala Krishna 2026 · Evolve Pictures LLC</span><span style="font-size:0.6875rem;color:var(--tx3);letter-spacing:.06em;">Currently available · New York City · Open to select remote projects</span><span><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></footer>
+<footer id="ft"><span>© Gopala Krishna 2026 · <a href="https://evolvepictures.com" target="_blank" rel="noopener">Evolve Pictures LLC</a></span><span style="font-size:0.6875rem;color:var(--tx3);letter-spacing:.06em;">Currently available · New York City · Open to select remote projects</span><span><a href="mailto:gopalaakkrishna@gmail.com">gopalaakkrishna@gmail.com</a></span></footer>
 
 <!-- MAIN MEDIA MODAL -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mT" onclick="if(event.target===this)xPlay()"><div class="m-box" onclick="event.stopPropagation()"><div class="m-top"><div class="m-info"><div class="m-plat" id="mPlat"><span id="mPN">YouTube</span></div><div class="m-t" id="mT">Video</div></div><button class="m-x" onclick="xPlay()">✕ Close</button></div><div class="m-stage">
@@ -2207,6 +2203,23 @@ let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() 
   if (film.classList.contains("rc-tl-on")){ const t = tNow(); buildTL(); seek(t); onScrub(); }
   if (photo && photo.classList.contains("rc-vf-on") && photo._rcRelayout) photo._rcRelayout();
 }, 150); });
+})();
+</script>
+
+<script>
+/* Hide the hero still once the background reel is really playing (Vimeo postMessage API). */
+(function(){
+  var still=document.getElementById('bbStill'), reel=document.getElementById('bbReel');
+  if(!still||!reel) return;
+  function hide(){ still.classList.add('gone'); }
+  addEventListener('message', function(e){
+    if(!/^https:\/\/player\.vimeo\.com$/.test(e.origin)) return;
+    var d=e.data; try{ if(typeof d==='string') d=JSON.parse(d); }catch(_){ return; }
+    if(!d) return;
+    if(d.event==='ready'){
+      ['play','timeupdate'].forEach(function(ev){ reel.contentWindow.postMessage(JSON.stringify({method:'addEventListener',value:ev}),'https://player.vimeo.com'); });
+    } else if(d.event==='play' || (d.event==='timeupdate' && d.data && d.data.seconds>0.2)){ hide(); }
+  });
 })();
 </script>
 </body>
