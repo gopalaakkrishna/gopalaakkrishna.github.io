@@ -403,6 +403,7 @@ html{scroll-behavior:auto}
 .modal[data-ig="biryani"] .ig-dot.active{background:#5a9e5a;border-color:#5a9e5a}
 .modal[data-ig="growth"] .ig-dot.active{background:#b070b0;border-color:#b070b0}
 .modal[data-ig="yiming"] .ig-dot.active{background:var(--gold);border-color:var(--gold)}
+.modal[data-ig="bobos"] .ig-dot.active{background:var(--gold);border-color:var(--gold)}
 .modal[data-gallery="podcast"] .ig-dot.active{background:#8af;border-color:#8af}
 .m-bot{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-top:1px solid rgba(255,255,255,.04)}
 .m-note{font-size:0.6875rem;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase}
@@ -936,9 +937,9 @@ html.rc-on{--rc-rec:#ff4436;--rc-line:#34312c;--rc-panel:#171615;--rc-mono:"IBM 
   <div class="card-body"><div class="card-badge b-gold">Branded Content · Instagram Reels</div><div class="card-title">PhysioRX Campaign</div><div class="card-role">Producer · Director · Editor · CapCut · DaVinci Resolve</div><div style="font-size:0.6875rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
 </div>
 
-<div class="card" role="button" tabindex="0" aria-label="Open Bobo’s Crab Shack reel" onclick="openIgModal('bobos', 'Bobo’s Crab Shack — Social Reel')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openIgModal('bobos', 'Bobo’s Crab Shack — Social Reel')}">
-  <div class="card-img" style="background:url('work/bobos-crab-shack-reel.jpg') center/cover no-repeat #201510;"><div class="card-play"><div class="card-play-c" style="background:rgba(224,151,73,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body"><div class="card-badge b-gold">Branded Content · Instagram Reel</div><div class="card-title">Bobo’s Crab Shack — Social Reel</div><div class="card-role">Producer · Videographer · Editor</div><div class="card-context">A social reel for Bobo’s Crab Shack in the Bronx.</div><div style="font-size:0.6875rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Open Reel</div></div>
+<div class="card" role="button" tabindex="0" aria-label="Open Bobo’s Crab Shack reels gallery, 2 reels" onclick="openIgModal('bobos', 'Bobo’s Crab Shack — Social Reels')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openIgModal('bobos', 'Bobo’s Crab Shack — Social Reels')}">
+  <div class="card-img collection-cover"><img src="work/bobos-crab-shack-reel.jpg" alt="" loading="lazy"><img src="work/bobos-crab-shack-reel-2.jpg" alt="" loading="lazy"><span class="collection-count">2 reels</span><div class="card-play"><div class="card-play-c" style="background:rgba(224,151,73,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-gold">Branded Content · Instagram Reels</div><div class="card-title">Bobo’s Crab Shack — Social Reels</div><div class="card-role">Producer · Videographer · Editor</div><div class="card-context">Two social reels for Bobo’s Crab Shack in the Bronx.</div><div style="font-size:0.6875rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Browse Reels</div></div>
 </div>
 
 <div class="card" onclick="openIgModal('growth', 'Instagram Growth Campaign')">
@@ -1672,7 +1673,7 @@ const IG={
   physio:{r:['DVoKY8ejDLV','DVbMAuxjM9c','DTa0jPQk_5b','DQ5RmrSjfze','DRPdSZVDRBZ','DSXYkwgjWQB']},
   growth:{r:['DSAG-FkDtAO','DTNFp9JkWT6','DSHszuKDj3n','DR7B0QoDtAA']},
   biryani:{r:['DM_Hi8rR22y']},
-  bobos:{r:['DeLnwzkxoLF']},
+  bobos:{r:['DeLnwzkxoLF','De62xXXRaW_']},
   yiming:{r:['Dc_n8utT8PS','DdrRDk_x4Jc'],titles:['Syrian Korean Pizza Reel','Kato Sake Works Reel'],credits:['Videographer · Editor Collaboration','Videographer']}
 };
 const IX={physio:0, growth:0, biryani:0, yiming:0, bobos:0};
