@@ -971,9 +971,9 @@ html.rc-on{--rc-rec:#ff4436;--rc-line:#34312c;--rc-panel:#171615;--rc-mono:"IBM 
   <div class="card-body"><div class="card-badge b-pink">Social Video · Content Strategy</div><div class="card-title">Instagram Growth Campaign</div><div class="card-role">DOP · Producer · 10.5K → 15.5K Followers · 3M+ Views</div><div class="card-context">A 68-day series, one video a day, revisiting every Thalapathy Vijay film.</div><div style="font-size:0.6875rem;color:#d8a;margin-top:6px;letter-spacing:.06em">▶ Play Reels</div></div>
 </div>
 
-<div class="card" role="button" tabindex="0" aria-label="Open Yiming Lin food reels gallery, 2 reels" onclick="openIgModal('yiming', 'Yiming Lin — Food Creator')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openIgModal('yiming', 'Yiming Lin — Food Creator')}">
-  <div class="card-img collection-cover"><img src="work/falafel-pizza-reel.jpg" alt="" loading="lazy"><img src="work/kato-sake-reel.jpg" alt="" loading="lazy"><span class="collection-count">2 reels</span><div class="card-play"><div class="card-play-c" style="background:rgba(224,151,73,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
-  <div class="card-body"><div class="card-badge b-gold">Creator Content · Instagram Reels</div><div class="card-title">Yiming Lin — Food Creator</div><div class="card-role">Videographer · Editor Collaboration on Pizza Reel</div><div class="card-context">Syrian Korean Pizza · Kato Sake Works</div><div style="font-size:0.6875rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Browse Reels</div></div>
+<div class="card" role="button" tabindex="0" aria-label="Open Yiming Lin food reels gallery, 3 reels" onclick="openIgModal('yiming', 'Yiming Lin — Food Creator')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openIgModal('yiming', 'Yiming Lin — Food Creator')}">
+  <div class="card-img collection-cover three"><img src="work/falafel-pizza-reel.jpg" alt="" loading="lazy"><img src="work/kato-sake-reel.jpg" alt="" loading="lazy"><img src="work/mama-sushi-reel.jpg" alt="" loading="lazy"><span class="collection-count">3 reels</span><div class="card-play"><div class="card-play-c" style="background:rgba(224,151,73,.9)"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div></div></div>
+  <div class="card-body"><div class="card-badge b-gold">Creator Content · Instagram Reels</div><div class="card-title">Yiming Lin — Food Creator</div><div class="card-role">Videographer</div><div class="card-context">Syrian Korean Pizza · Kato Sake Works · Mama Sushi</div><div style="font-size:0.6875rem;color:var(--gold);margin-top:6px;letter-spacing:.06em">▶ Browse Reels</div></div>
 </div>
 </div></div>
 
@@ -1707,11 +1707,11 @@ const IG={
   growth:{r:['DSAG-FkDtAO','DTNFp9JkWT6','DSHszuKDj3n','DR7B0QoDtAA']},
   biryani:{r:['DM_Hi8rR22y']},
   bobos:{r:['DeLnwzkxoLF','De62xXXRaW_']},
-  yiming:{r:['Dc_n8utT8PS','DdrRDk_x4Jc'],titles:['Syrian Korean Pizza Reel','Kato Sake Works Reel'],credits:['Videographer · Editor Collaboration','Videographer']}
+  yiming:{r:['Dc_n8utT8PS','DdrRDk_x4Jc','Dfh8yrgxaR0'],titles:['Syrian Korean Pizza Reel','Kato Sake Works Reel','Dominican Sushi Reel'],credits:['Videographer','Videographer','Videographer']}
 };
 const IX={physio:0, growth:0, biryani:0, yiming:0, bobos:0};
 // Reels with licensed Instagram music: Instagram refuses to play these in an embed, so show a cover + link instead.
-const IG_OFFSITE=new Set(["DTa0jPQk_5b", "DSXYkwgjWQB", "DSAG-FkDtAO", "DTNFp9JkWT6", "DSHszuKDj3n", "DR7B0QoDtAA", "Dc_n8utT8PS"]);
+const IG_OFFSITE=new Set(["DTa0jPQk_5b", "DSXYkwgjWQB", "DSAG-FkDtAO", "DTNFp9JkWT6", "DSHszuKDj3n", "DR7B0QoDtAA", "Dc_n8utT8PS", "Dfh8yrgxaR0"]);
 let currentIgKey=null;
 
 function openIgModal(k, title) {
